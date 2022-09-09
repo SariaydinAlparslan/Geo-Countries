@@ -10,7 +10,7 @@ import com.sariaydinalparslan.coutries.R
 import kotlinx.android.synthetic.main.activity_modes.*
 
 class ModesActivity : AppCompatActivity() {
-    val max = 190
+    val max = 195
     val min = 1
     val total: Int = max - min
 
@@ -25,14 +25,14 @@ class ModesActivity : AppCompatActivity() {
         fluid_slider.startText = "$min"
         fluid_slider.endText = "$max"
         fluid_slider.endTrackingListener = {
-            textCountry.text = "Your Country : ${fluid_slider.bubbleText.toString()}"
+            pick_country.text = "Your Country : ${fluid_slider.bubbleText.toString()}"
         }
     }
     fun choose_country(view :View){
-        pick_country.visibility = View.GONE
+        list.visibility = View.GONE
     }
     fun pick(view: View) {
-        pick_country.visibility = View.VISIBLE
+        list.visibility = View.VISIBLE
     }
     fun random(view: View) {
         val back = Intent(this@ModesActivity, MainActivity::class.java)
