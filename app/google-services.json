@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "868207297026",
+    "project_id": "coutries-c284a",
+    "storage_bucket": "coutries-c284a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:868207297026:android:b836e26146e4d9bebadd1b",
+        "android_client_info": {
+          "package_name": "com.sariaydinalparslan.coutries"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "868207297026-hsq5p77o34to2tg95pgibk2b7uvrh672.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6pTini5MurV_Cqs2P7E3hse8MjUWxbrY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "868207297026-hsq5p77o34to2tg95pgibk2b7uvrh672.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

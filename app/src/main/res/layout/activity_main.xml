@@ -30,11 +30,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/name_text"
                 android:layout_width="match_parent"
                 android:layout_height="67dp"
                 android:gravity="center"
-                android:text="Alparslan"
+                android:text=""
                 app:layout_constraintBottom_toTopOf="@+id/imageView"
                 app:layout_constraintEnd_toStartOf="@+id/imageView2"
                 app:layout_constraintHorizontal_bias="0.334"
