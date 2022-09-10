@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
            db.getReference("Users").child(safeUserId).child("userName").get().addOnCompleteListener {
                val alp = it.result
                name_text.text=alp.value.toString()
+               
            }
        }
     }

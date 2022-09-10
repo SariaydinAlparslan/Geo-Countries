@@ -92,7 +92,7 @@
                 android:layout_width="185dp"
                 android:layout_height="64dp"
                 android:layout_marginBottom="32dp"
-                android:onClick="pick"
+                android:onClick="countryPick"
                 android:text="Country Pick"
                 android:layout_weight="1"
                 app:layout_constraintBottom_toTopOf="@+id/button2"
@@ -106,7 +106,7 @@
                 android:layout_width="185dp"
                 android:layout_height="64dp"
                 android:layout_marginBottom="32dp"
-                android:onClick="random"
+                android:onClick="randomPick"
                 android:layout_weight="1"
                 android:text="Random Pick"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -155,7 +155,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="19"
                 android:layout_gravity="center"
-                android:id="@+id/onlinelist"
+                android:id="@+id/recyclerRandom"
 
                 />
 
