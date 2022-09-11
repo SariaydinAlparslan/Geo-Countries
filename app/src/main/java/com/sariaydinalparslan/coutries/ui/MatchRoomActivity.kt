@@ -20,14 +20,25 @@ class MatchRoomActivity : AppCompatActivity() {
     private lateinit var db : DatabaseReference
     private lateinit var empList : ArrayList<RoomData>
     private lateinit var pickList : ArrayList<RoomData>
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_match_room)
 
+        val db = FirebaseDatabase.getInstance()
+            FirebaseAuth.getInstance().uid?.let {
+                    safeUserId->
+                db.getReference("Users").child(safeUserId).child("userName").get().addOnCompleteListener {
+                    val alp = it.result
+                    mySingleton.chosenlandmark = alp.value.toString()
+                }
+            }
+
         auth = Firebase.auth
-        roomlistRecyclerView = findViewById(R.id.recycleroomlist)
+        roomlistRecyclerView = findViewById(R.id.recyclerandomroomlist)
         roomlistRecyclerView.layoutManager = LinearLayoutManager(this)
-        pickroomlistRecyclerView = findViewById(R.id.recyclerandomroomlist)
+        pickroomlistRecyclerView = findViewById(R.id.recycleroomlist)
         pickroomlistRecyclerView.layoutManager = LinearLayoutManager(this)
         empList = ArrayList<RoomData>()
         pickList = ArrayList<RoomData>()

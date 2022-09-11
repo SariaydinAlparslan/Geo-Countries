@@ -1,6 +1,5 @@
 package com.sariaydinalparslan.coutries.ui.adapters
 
-import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sariaydinalparslan.coutries.R
 import com.sariaydinalparslan.coutries.ui.GameActivity
 import com.sariaydinalparslan.coutries.ui.data.RoomData
+import com.sariaydinalparslan.coutries.ui.mySingleton
 import kotlinx.android.synthetic.main.reycler_row.view.*
 
 class RandomAdapter(private val empList : ArrayList<RoomData>): RecyclerView.Adapter<RandomAdapter.LandmarkHolder>() {
@@ -28,6 +28,8 @@ class RandomAdapter(private val empList : ArrayList<RoomData>): RecyclerView.Ada
             intent.putExtra("roomName",current.roomName)
             intent.putExtra("roomUserId",current.userId)
             intent.putExtra("roomUserName",current.userName)
+            intent.putExtra("visitorName",mySingleton.chosenlandmark)
+
             intent.putExtra("pick","random")
             //randomdan geldiğnini göster
             holder.itemView.context.startActivity(intent)

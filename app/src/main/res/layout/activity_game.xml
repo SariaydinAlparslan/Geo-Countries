@@ -8,30 +8,131 @@
     android:orientation="vertical"
     tools:context=".ui.GameActivity">
 
-    <TextView
-        android:id="@+id/a"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.391"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content"
+        >
 
-    <TextView
-        android:id="@+id/al"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/a"
-        app:layout_constraintTop_toBottomOf="@+id/a" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Visitor Country"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="20sp"/>
 
-    <TextView
-        android:id="@+id/alp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginEnd="4dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/al"
-        app:layout_constraintTop_toBottomOf="@+id/al" />
+        <TextView
+            android:id="@+id/visitornickname"
+            android:layout_width="98dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="20sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Map"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Host Country"
+            android:paddingLeft="40dp"
+            android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/hostnametext"
+            android:layout_weight="1"
+            android:layout_width="98dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <com.github.chrisbanes.photoview.PhotoView
+            android:id="@+id/worldismy"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/worldismy"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="89dp"
+            android:layout_height="44dp"
+            android:text="Button"
+            tools:layout_editor_absoluteX="317dp"
+            tools:layout_editor_absoluteY="365dp" />
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="89dp"
+            android:layout_height="44dp"
+            android:text="Button"
+            tools:layout_editor_absoluteX="523dp"
+            tools:layout_editor_absoluteY="364dp" />
+
+        <Button
+            android:id="@+id/button9"
+            android:layout_width="89dp"
+            android:layout_height="44dp"
+            android:text="Button"
+            tools:layout_editor_absoluteX="620dp"
+            tools:layout_editor_absoluteY="364dp" />
+
+        <Button
+            android:id="@+id/button11"
+            android:layout_width="89dp"
+            android:layout_height="44dp"
+            android:text="Button"
+            tools:layout_editor_absoluteX="721dp"
+            tools:layout_editor_absoluteY="364dp" />
+
+        <Button
+            android:id="@+id/button10"
+            android:layout_width="89dp"
+            android:layout_height="44dp"
+            android:text="Button"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="365dp" />
+
+        <Button
+            android:id="@+id/button8"
+            android:layout_width="89dp"
+            android:layout_height="44dp"
+            android:text="Button"
+            tools:layout_editor_absoluteX="423dp"
+            tools:layout_editor_absoluteY="364dp" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="89dp"
+            android:layout_height="44dp"
+            android:text="Button"
+            tools:layout_editor_absoluteX="213dp"
+            tools:layout_editor_absoluteY="365dp" />
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="89dp"
+            android:layout_height="44dp"
+            android:text="Button"
+            tools:layout_editor_absoluteX="116dp"
+            tools:layout_editor_absoluteY="365dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 </LinearLayout>

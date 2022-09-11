@@ -13,6 +13,7 @@ import com.google.firebase.ktx.Firebase
 import com.sariaydinalparslan.coutries.R
 import com.sariaydinalparslan.coutries.ui.data.RoomData
 import kotlinx.android.synthetic.main.activity_create.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 class CreateActivity : AppCompatActivity() {
 
@@ -20,8 +21,9 @@ class CreateActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create)
 
+
     }
-    //roomname i text yapmak zrunda bırak,refresh list button,
+    //roomname i text yapmak zrunda bırak
     fun create(view: View){
         val alp = create_room_text.text
         val db = FirebaseDatabase.getInstance()
@@ -38,6 +40,7 @@ class CreateActivity : AppCompatActivity() {
                     val gamedata=db.getReference("Room").child("AllPick")
                     val newroom = RoomData(alp.toString(),userId.value.toString(),userNamex.value.toString())
                     gamedata.push().setValue(newroom)
+                    nickname()
                 }
             }
         }else if (radio_two.isChecked&& create_room_text.text.isNotEmpty()){
@@ -50,6 +53,7 @@ class CreateActivity : AppCompatActivity() {
                     val gamedata=db.getReference("Room").child("AllRandom")
                     val newroom = RoomData(alp.toString(),userId.value.toString(),userNamex.value.toString())
                     gamedata.push().setValue(newroom)
+                    nickname()
                 }
             }
         }
@@ -57,5 +61,19 @@ class CreateActivity : AppCompatActivity() {
     fun back(view: View){
         val back = Intent(this@CreateActivity, ModesActivity::class.java)
         startActivity(back)
+    }
+    private fun nickname(){
+        val db = FirebaseDatabase.getInstance()
+        FirebaseAuth.getInstance().uid?.let {
+                safeUserId->
+            db.getReference("Users").child(safeUserId).child("userName").get().addOnCompleteListener {
+                val alp = it.result
+
+                val intent = Intent(this@CreateActivity,GameActivity::class.java)
+                intent.putExtra("hostname",alp.value.toString())
+                startActivity(intent)
+            }
+        }
+
     }
 }

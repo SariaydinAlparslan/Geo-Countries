@@ -8,6 +8,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.sariaydinalparslan.coutries.R
 import kotlinx.android.synthetic.main.activity_main.*
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +20,6 @@ class MainActivity : AppCompatActivity() {
            db.getReference("Users").child(safeUserId).child("userName").get().addOnCompleteListener {
                val alp = it.result
                name_text.text=alp.value.toString()
-               
            }
        }
     }
