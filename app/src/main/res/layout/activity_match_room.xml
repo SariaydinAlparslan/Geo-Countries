@@ -48,26 +48,34 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:layout_margin="60dp"
+        android:layout_margin="10dp"
         android:gravity="center">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleroomlist"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="match_parent"
             android:layout_marginStart="1dp"
             android:layout_marginEnd="1dp"
+            android:layout_weight="1"
             android:layout_marginBottom="1dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <View
+            android:layout_width="15dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/back_24"
+            >
+
+        </View>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerandomroomlist"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_marginStart="1dp"
             android:layout_marginEnd="1dp"
