@@ -8,7 +8,7 @@
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/activity_login.xml" value="0.23157894736842105" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/activity_main.xml" value="0.23157894736842105" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/activity_main2.xml" value="0.22" />
-        <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/activity_match_room.xml" value="0.23157894736842105" />
+        <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/activity_match_room.xml" value="0.22" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/activity_modes.xml" value="0.25" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/activity_notification.xml" value="0.2790328973444312" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/activity_register.xml" value="0.23157894736842105" />
@@ -20,6 +20,7 @@
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/fragment_splash.xml" value="0.17395833333333333" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/notification_recycler_list.xml" value="0.23157894736842105" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/reycler_row.xml" value="0.23157894736842105" />
+        <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/reycler_row_all_pick.xml" value="0.23157894736842105" />
       </map>
     </option>
   </component>

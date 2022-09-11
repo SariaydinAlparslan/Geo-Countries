@@ -11,7 +11,7 @@ class NotificationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notification)
     }
-
+//mesajları burda paylaşabilirsin welcome "username"
     fun back(view :View){
         val back = Intent(this@NotificationActivity,MainActivity::class.java)
         startActivity(back)
