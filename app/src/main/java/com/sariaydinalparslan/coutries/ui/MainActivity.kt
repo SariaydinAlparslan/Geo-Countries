@@ -13,15 +13,12 @@ import com.google.firebase.database.ValueEventListener
 import com.sariaydinalparslan.coutries.R
 import com.sariaydinalparslan.coutries.ui.data.UsersData
 import kotlinx.android.synthetic.main.activity_main.*
-private lateinit var auth : FirebaseAuth
-
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val db = FirebaseDatabase.getInstance()
-
         FirebaseAuth.getInstance().uid?.let {
            safeUserId->
            db.getReference("Users").child(safeUserId).child("userName").get().addOnCompleteListener {

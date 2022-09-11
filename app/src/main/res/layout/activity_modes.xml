@@ -5,128 +5,82 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    tools:context=".ui.ModesActivity">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"
-        android:orientation="vertical">
-
-        <com.ramotion.fluidslider.FluidSlider
-            android:id="@+id/fluid_slider"
-            android:layout_width="739dp"
-            android:layout_height="146dp"
-            android:layout_marginTop="4dp"
-            app:bar_color="#40FB47"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.333"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button4"
-            app:size="small" />
-
-        <com.github.chrisbanes.photoview.PhotoView
-            android:id="@+id/imageView3"
-            android:layout_width="763dp"
-            android:layout_height="292dp"
-            android:src="@drawable/list"
-            android:layout_marginBottom="5dp"
-            app:layout_constraintBottom_toTopOf="@+id/fluid_slider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/button4"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="236dp"
-            android:onClick="choose_country"
-            android:text="Choose"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.975"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
+    tools:context=".ui.MainActivity">
 
     <LinearLayout
-        android:id="@+id/linearlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-             android:padding="25dp"
-            android:src="@drawable/back_24"
-            android:onClick="back_main"
-            />
+
+        <LinearLayout
+            android:layout_width="138dp"
+            android:layout_height="407dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingTop="5dp">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="39dp"
+                android:layout_height="47dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="28dp"
+                android:src="@drawable/person_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/name_text_modes"
+                android:layout_width="match_parent"
+                android:layout_height="67dp"
+                android:gravity="center"
+                android:text=""
+                app:layout_constraintBottom_toTopOf="@+id/imageView"
+                app:layout_constraintEnd_toStartOf="@+id/imageView2"
+                app:layout_constraintHorizontal_bias="0.334"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.485" />
+
+
+
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="5dp"
             android:gravity="center"
-            android:orientation="vertical"
-            android:paddingTop="80dp">
-
-            <TextView
-                android:id="@+id/pick_country"
-                android:layout_width="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_height="wrap_content"
-                android:text="Your Country : "
-                />
+            android:layout_margin="15dp"
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/button"
                 android:layout_width="185dp"
                 android:layout_height="64dp"
-                android:layout_marginBottom="32dp"
-                android:onClick="countryPick"
-                android:text="Country Pick"
                 android:layout_weight="1"
-                app:layout_constraintBottom_toTopOf="@+id/button2"
-                app:layout_constraintEnd_toStartOf="@+id/lottie1"
-                app:layout_constraintHorizontal_bias="0.423"
-                app:layout_constraintStart_toStartOf="parent" />
-
-
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="185dp"
-                android:layout_height="64dp"
-                android:layout_marginBottom="32dp"
-                android:onClick="randomPick"
-                android:layout_weight="1"
-                android:text="Random Pick"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/lottie1"
-                app:layout_constraintHorizontal_bias="0.423"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:onClick="create"
+                android:layout_margin="15dp"
+                android:text="Create Room" />
 
             <Button
                 android:id="@+id/button3"
                 android:layout_width="185dp"
                 android:layout_height="64dp"
-                android:layout_marginBottom="58dp"
-                android:onClick="invite"
                 android:layout_weight="1"
-                android:text="İnvite"
-                app:layout_constraintBottom_toTopOf="@+id/button2"
-                app:layout_constraintEnd_toStartOf="@+id/lottie1"
-                app:layout_constraintHorizontal_bias="0.423"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:layout_margin="15dp"
+                android:onClick="findmatch"
+                android:text="Find Match" />
 
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="185dp"
+                android:layout_margin="15dp"
+                android:layout_height="64dp"
+                android:layout_weight="1"
+                android:text="Score"
+                android:onClick="invite"/>
 
         </LinearLayout>
 
@@ -141,23 +95,24 @@
                 android:id="@+id/imageView2"
                 android:layout_width="85dp"
                 android:layout_height="55dp"
-                android:layout_gravity="end"
                 android:layout_marginLeft="400dp"
                 android:layout_marginTop="10dp"
+                android:layout_gravity="end"
                 android:layout_weight="1"
-                android:src="@drawable/notifications_24"
+                android:onClick="notification"
+                android:src="@drawable/back_24"
                 app:layout_constraintBottom_toTopOf="@+id/imageView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.recyclerview.widget.RecyclerView
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottie1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="19"
-                android:layout_gravity="center"
-                android:id="@+id/recyclerRandom"
-
-                />
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/world" />
 
 
         </LinearLayout>

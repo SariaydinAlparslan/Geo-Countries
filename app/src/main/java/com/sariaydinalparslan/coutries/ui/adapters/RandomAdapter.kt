@@ -23,10 +23,6 @@ class RandomAdapter(private val empList : ArrayList<GameData>): RecyclerView.Ada
         val current=empList[position]
         holder.itemView.nickname.text = current.userName
 
-        holder.itemView.setOnClickListener {
-            val intent = Intent(holder.itemView.context,NotificationActivity::class.java)
-
-        }
     }
     override fun getItemCount(): Int {
         return empList.size
