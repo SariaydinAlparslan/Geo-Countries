@@ -28,13 +28,7 @@ class GameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
-        //code = room açtığın oda
-        code = "room1"
-        keyValue = code
-        btnreset.setOnClickListener {
-            reset()
-            removeCode()
-        }
+
 
         val intent = intent
         val roomName = intent.getStringExtra("roomName")
@@ -46,6 +40,9 @@ class GameActivity : AppCompatActivity() {
         val intent2 = intent
         val hostname = intent2.getStringExtra("hostname")
         hostnametext.text = hostname
+        //code = room açtığın oda
+        code = roomUserName.toString()
+        keyValue = code
 
         FirebaseDatabase.getInstance().reference.child("data").child(code)
             .addChildEventListener(object : ChildEventListener {
@@ -74,7 +71,10 @@ class GameActivity : AppCompatActivity() {
                     TODO("Not yet implemented")
                 }
             })
-
+        btnreset.setOnClickListener {
+            reset()
+            removeCode()
+        }
     }
 
     private fun reset() {
