@@ -6,15 +6,13 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.sariaydinalparslan.coutries.R
-import com.sariaydinalparslan.coutries.ui.data.UsersData
 import kotlinx.android.synthetic.main.activity_game.*
-
+var isCodeMaker = true
 var isMyMove = isCodeMaker
 var playerTurn = true
 var code = "null"
@@ -25,10 +23,6 @@ class GameActivity : AppCompatActivity() {
     var player1 = ArrayList<Int>()
     var emptyCells = ArrayList<Int>()
     var activeUser = 1
-
-    val intent2 = intent
-    val hostname = intent2.getStringExtra("hostname")
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,14 +35,14 @@ class GameActivity : AppCompatActivity() {
         val visitorName = intent.getStringExtra("visitorName")
         visitornickname.text = visitorName
 
-        hostnametext.text=hostname.toString()
+
 
         btnreset.setOnClickListener {
             reset()
             removeCode()
         }
 
-        FirebaseDatabase.getInstance().reference.child("data").child(hostname!!)
+        FirebaseDatabase.getInstance().reference.child("data").child(code)
             .addChildEventListener(object : ChildEventListener {
                 override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
 
@@ -104,14 +98,14 @@ class GameActivity : AppCompatActivity() {
             isMyMove = isCodeMaker
             if (isCodeMaker){
                 FirebaseDatabase.getInstance().reference.child("data")
-                    .child(hostname!!).removeValue()
+                    .child(code).removeValue()
             }
         }
     }
     fun removeCode(){
         if (isCodeMaker){
             FirebaseDatabase.getInstance().reference.child("codes")
-                .child(hostname!!).removeValue()
+                .child(keyValue).removeValue()
         }
     }
     fun moveOnline(data : String,move : Boolean){
@@ -139,7 +133,7 @@ class GameActivity : AppCompatActivity() {
         }
     }
     fun updateDatabase(cellId : Int){
-        FirebaseDatabase.getInstance().reference.child("data").child(hostname!!)
+        FirebaseDatabase.getInstance().reference.child("data").child(code)
             .push().setValue(cellId)
     }
 
