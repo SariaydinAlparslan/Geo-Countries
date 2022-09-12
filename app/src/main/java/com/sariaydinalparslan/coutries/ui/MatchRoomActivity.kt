@@ -58,7 +58,7 @@ class MatchRoomActivity : AppCompatActivity() {
         code = edittext.text.toString()
         if (code != "null" && code != ""){
             isCodeMaker = false
-        FirebaseDatabase.getInstance().reference.child("codes")
+        FirebaseDatabase.getInstance().reference.child("Room").child("AllPick")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     var data: Boolean = isValueAvaliable(snapshot, code)
@@ -75,8 +75,7 @@ class MatchRoomActivity : AppCompatActivity() {
                     TODO("Not yet implemented")
                 }
             })
-    }else
-    { }
+    }
     }
 
     private fun getRandomRoomList() {
@@ -102,7 +101,7 @@ class MatchRoomActivity : AppCompatActivity() {
     }
     private fun getPickRoomList() {
         val db = FirebaseDatabase.getInstance()
-        db.getReference("Room").child("AllPick")
+        db.getReference("RoomList").child("AllPick")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     pickList.clear()
@@ -121,4 +120,5 @@ class MatchRoomActivity : AppCompatActivity() {
                 }
             })
     }
+
 }

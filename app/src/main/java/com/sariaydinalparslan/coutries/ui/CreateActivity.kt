@@ -30,50 +30,57 @@ class CreateActivity : AppCompatActivity() {
     }
     //roomname i text yapmak zrunda bırak
     fun create(view: View){
-        //  val alp = create_room_text.text
         val db = FirebaseDatabase.getInstance()
         if (create_room_text.text.isEmpty()){
             Toast.makeText(this, "Please Give a RoomName ", Toast.LENGTH_SHORT).show()
         }
         if (radio_one.isChecked && create_room_text.text.isNotEmpty()){
-            FirebaseAuth.getInstance().uid?.let {
-                    safeUserId->
-                db.getReference("Users").child(safeUserId).get().addOnCompleteListener {
-                    val userId= it.result.child("uuid")
-                    val userNamex = it.result.child("userName")
-
                     code = create_room_text.text.toString()
                     codeFound = false
                     checkTemp = true
                     keyValue = "null"
                     isCodeMaker = true
-
-                    FirebaseDatabase.getInstance().reference.child("codes")
+            FirebaseAuth.getInstance().uid?.let {
+                    safeUserId->
+                db.getReference("Users").child(safeUserId).get().addOnCompleteListener {
+                    val userId= it.result.child("uuid")
+                    val userNamex = it.result.child("userName")
+                    FirebaseDatabase.getInstance().reference.child("Room")
+                        .child("AllPick")
                         .addValueEventListener(object : ValueEventListener {
                             override fun onDataChange(snapshot: DataSnapshot) {
                                 var check = isValueAvaliable(snapshot, code)
                                 Handler().postDelayed({
                                     if (check == true){
                                     }else{
-                                        FirebaseDatabase.getInstance().reference.child("codes").push()
+                                        FirebaseDatabase.getInstance().reference.child("Room")
+                                            .child("AllPick")
+                                            .push()
                                             .setValue(code)
+                                            .addOnCompleteListener {
+                                                val gamedata=db.getReference("RoomList").child("AllPick")
+                                                val newroom = RoomData(code,userId.value.toString(),userNamex.value.toString())
+                                                gamedata.push().setValue(newroom)
+                                            }
                                         isValueAvaliable(snapshot, code)
                                         checkTemp = false
+                                        //roomadapter sistemi kurulabilir
                                         Handler().postDelayed({
                                             nickname()
                                         },300)
                                     }
-                                },2000)
+                                },1000)
                             }
                             override fun onCancelled(error: DatabaseError) {
                             }
                         })
+                }
+            }
                     /*val gamedata=db.getReference("Room").child("AllPick")
                     val newroom = RoomData(alp.toString(),userId.value.toString(),userNamex.value.toString())
                     gamedata.push().setValue(newroom)*/
                     //nickname()
-                }
-            }
+
         }else if (radio_two.isChecked&& create_room_text.text.isNotEmpty()){
             FirebaseAuth.getInstance().uid?.let {
                     safeUserId->
