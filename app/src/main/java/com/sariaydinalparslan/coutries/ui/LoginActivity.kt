@@ -22,8 +22,8 @@ class LoginActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         firebaseUser = auth!!.currentUser!!
-        if (firebaseUser != null) { val intent = Intent(this@LoginActivity, MainActivity::class.java)
-            startActivity(intent)
+         if (firebaseUser != null) { val intent = Intent(this@LoginActivity, MainActivity::class.java)
+           startActivity(intent)
             finish()
         }
         buttonlogin.setOnClickListener {

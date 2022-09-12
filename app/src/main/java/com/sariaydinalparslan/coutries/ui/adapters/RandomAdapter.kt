@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sariaydinalparslan.coutries.R
 import com.sariaydinalparslan.coutries.ui.GameActivity
+import com.sariaydinalparslan.coutries.ui.code
 import com.sariaydinalparslan.coutries.ui.data.RoomData
 import com.sariaydinalparslan.coutries.ui.mySingleton
 import kotlinx.android.synthetic.main.reycler_row.view.*

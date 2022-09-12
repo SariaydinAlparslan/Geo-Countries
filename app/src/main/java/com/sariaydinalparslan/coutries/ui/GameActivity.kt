@@ -12,12 +12,8 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.sariaydinalparslan.coutries.R
 import kotlinx.android.synthetic.main.activity_game.*
-var isCodeMaker = true
 var isMyMove = isCodeMaker
 var playerTurn = true
-var code = "null"
-var keyValue : String = "null"
-
 class GameActivity : AppCompatActivity() {
     var player2 = ArrayList<Int>()
     var player1 = ArrayList<Int>()
@@ -34,8 +30,6 @@ class GameActivity : AppCompatActivity() {
         val roomUserName = intent.getStringExtra("roomUserName")
         val visitorName = intent.getStringExtra("visitorName")
         visitornickname.text = visitorName
-
-
 
         btnreset.setOnClickListener {
             reset()
@@ -187,16 +181,5 @@ class GameActivity : AppCompatActivity() {
             if (buttonSelected.isEnabled == true)
                 buttonSelected.isEnabled = false
         }
-    }
-    fun isValueAvaliable(snapshot : DataSnapshot,code:String):Boolean{
-        var data = snapshot.children
-        data.forEach{
-            var value = it.getValue().toString()
-            if (value == code){
-                keyValue = it.key.toString()
-                return true
-            }
-        }
-        return false
     }
 }
