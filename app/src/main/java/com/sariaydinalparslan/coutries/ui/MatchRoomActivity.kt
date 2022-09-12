@@ -12,7 +12,7 @@ import com.sariaydinalparslan.coutries.R
 import com.sariaydinalparslan.coutries.ui.adapters.PickAdapter
 import com.sariaydinalparslan.coutries.ui.adapters.RandomAdapter
 import com.sariaydinalparslan.coutries.ui.data.RoomData
-
+var isCodeMaker = true
 class MatchRoomActivity : AppCompatActivity() {
     private lateinit var roomlistRecyclerView: RecyclerView
     private lateinit var pickroomlistRecyclerView: RecyclerView
