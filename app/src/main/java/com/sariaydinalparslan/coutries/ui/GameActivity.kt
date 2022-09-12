@@ -29,6 +29,9 @@ class GameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
+        //code = room açtığın oda
+       // code = "hello motherfucker"
+        keyValue = code
 
         val intent = intent
         val roomName = intent.getStringExtra("roomName")
@@ -40,9 +43,12 @@ class GameActivity : AppCompatActivity() {
         val intent2 = intent
         val hostname = intent2.getStringExtra("hostname")
         hostnametext.text = hostname
-        //code = room açtığın oda
-        code = roomUserName.toString()
-        keyValue = code
+
+
+        btnreset.setOnClickListener {
+            reset()
+            removeCode()
+        }
 
         FirebaseDatabase.getInstance().reference.child("data").child(code)
             .addChildEventListener(object : ChildEventListener {
@@ -71,10 +77,7 @@ class GameActivity : AppCompatActivity() {
                     TODO("Not yet implemented")
                 }
             })
-        btnreset.setOnClickListener {
-            reset()
-            removeCode()
-        }
+
     }
 
     private fun reset() {
