@@ -19,19 +19,20 @@ var isMyMove = isCodeMaker
 var playerTurn = true
 var code = "null"
 var keyValue : String = "null"
+
 class GameActivity : AppCompatActivity() {
     var player2 = ArrayList<Int>()
     var player1 = ArrayList<Int>()
     var emptyCells = ArrayList<Int>()
     var activeUser = 1
 
+    val intent2 = intent
+    val hostname = intent2.getStringExtra("hostname")
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
-
-        //code = room açtığın oda
-       // code = "hello motherfucker"
-        keyValue = code
 
         val intent = intent
         val roomName = intent.getStringExtra("roomName")
@@ -40,17 +41,14 @@ class GameActivity : AppCompatActivity() {
         val visitorName = intent.getStringExtra("visitorName")
         visitornickname.text = visitorName
 
-        val intent2 = intent
-        val hostname = intent2.getStringExtra("hostname")
-        hostnametext.text = hostname
-
+        hostnametext.text=hostname.toString()
 
         btnreset.setOnClickListener {
             reset()
             removeCode()
         }
 
-        FirebaseDatabase.getInstance().reference.child("data").child(code)
+        FirebaseDatabase.getInstance().reference.child("data").child(hostname!!)
             .addChildEventListener(object : ChildEventListener {
                 override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
 
@@ -67,7 +65,9 @@ class GameActivity : AppCompatActivity() {
                     TODO("Not yet implemented")
                 }
                 override fun onChildRemoved(snapshot: DataSnapshot) {
-                   // reset()
+
+                    // 1 değişiklik
+                   //reset()
                    // Toast.makeText(this@OnlineMultiPlayerActivity, "Gamereset", Toast.LENGTH_SHORT).show()
                 }
                 override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
@@ -104,14 +104,14 @@ class GameActivity : AppCompatActivity() {
             isMyMove = isCodeMaker
             if (isCodeMaker){
                 FirebaseDatabase.getInstance().reference.child("data")
-                    .child(code).removeValue()
+                    .child(hostname!!).removeValue()
             }
         }
     }
     fun removeCode(){
         if (isCodeMaker){
             FirebaseDatabase.getInstance().reference.child("codes")
-                .child(keyValue).removeValue()
+                .child(hostname!!).removeValue()
         }
     }
     fun moveOnline(data : String,move : Boolean){
@@ -139,7 +139,7 @@ class GameActivity : AppCompatActivity() {
         }
     }
     fun updateDatabase(cellId : Int){
-        FirebaseDatabase.getInstance().reference.child("data").child(code)
+        FirebaseDatabase.getInstance().reference.child("data").child(hostname!!)
             .push().setValue(cellId)
     }
 
