@@ -46,6 +46,7 @@ class PickAdapter(private val empList : ArrayList<RoomData>): RecyclerView.Adapt
                          if (data == true) {
                              codeFound = true
                              val intent = Intent(holder.itemView.context,GameActivity::class.java)
+                             //pickten geldiğnini göster
                              holder.itemView.context.startActivity(intent)
                          } else {
                          }
@@ -56,31 +57,7 @@ class PickAdapter(private val empList : ArrayList<RoomData>): RecyclerView.Adapt
                  }
              })
             Toast.makeText(holder.itemView.context, code, Toast.LENGTH_SHORT).show()
-
-
-
-
-
-
-/*  val intent = Intent(holder.itemView.context, GameActivity::class.java)
-         intent.putExtra("roomName",current.roomName)
-         intent.putExtra("roomUserId",current.userId)
-         intent.putExtra("roomUserName",current.userName)
-         intent.putExtra("visitorName",mySingleton.chosenlandmark)
-         intent.putExtra("pick","pick")
-         //randomdan geldiğnini göster
-         holder.itemView.context.startActivity(intent)*/
-
-/*   val intent = Intent(holder.itemView.context, GameActivity::class.java)
- intent.putExtra("roomName",current.roomName)
- intent.putExtra("roomUserId",current.userId)
- intent.putExtra("roomUserName",current.userName)
-
- intent.putExtra("pick","pick")
-
- //randomdan geldiğnini göster
- holder.itemView.context.startActivity(intent)*/
-}
+        }
 }
 override fun getItemCount(): Int {
 return empList.size

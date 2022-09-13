@@ -69,29 +69,53 @@ class CreateActivity : AppCompatActivity() {
                                             nickname()
                                         },300)
                                     }
-                                },1000)
+                                },400)
                             }
                             override fun onCancelled(error: DatabaseError) {
                             }
                         })
                 }
             }
-                    /*val gamedata=db.getReference("Room").child("AllPick")
-                    val newroom = RoomData(alp.toString(),userId.value.toString(),userNamex.value.toString())
-                    gamedata.push().setValue(newroom)*/
-                    //nickname()
-
         }else if (radio_two.isChecked&& create_room_text.text.isNotEmpty()){
+            code = create_room_text.text.toString()
+            codeFound = false
+            checkTemp = true
+            keyValue = "null"
+            isCodeMaker = true
             FirebaseAuth.getInstance().uid?.let {
                     safeUserId->
                 db.getReference("Users").child(safeUserId).get().addOnCompleteListener {
                     val userId= it.result.child("uuid")
                     val userNamex = it.result.child("userName")
-
-                    val gamedata=db.getReference("Room").child("AllRandom")
-                    val newroom = RoomData(code.toString(),userId.value.toString(),userNamex.value.toString())
-                    gamedata.push().setValue(newroom)
-                    nickname()
+                    FirebaseDatabase.getInstance().reference.child("Room")
+                        .child("AllRandom")
+                        .addValueEventListener(object : ValueEventListener {
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                var check = isValueAvaliable(snapshot, code)
+                                Handler().postDelayed({
+                                    if (check == true){
+                                    }else{
+                                        FirebaseDatabase.getInstance().reference.child("Room")
+                                            .child("AllRandom")
+                                            .push()
+                                            .setValue(code)
+                                            .addOnCompleteListener {
+                                                val gamedata=db.getReference("RoomList").child("AllRandom")
+                                                val newroom = RoomData(code,userId.value.toString(),userNamex.value.toString())
+                                                gamedata.push().setValue(newroom)
+                                            }
+                                        isValueAvaliable(snapshot, code)
+                                        checkTemp = false
+                                        //roomadapter sistemi kurulabilir
+                                        Handler().postDelayed({
+                                            nickname()
+                                        },300)
+                                    }
+                                },400)
+                            }
+                            override fun onCancelled(error: DatabaseError) {
+                            }
+                        })
                 }
             }
         }

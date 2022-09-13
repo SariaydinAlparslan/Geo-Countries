@@ -39,7 +39,6 @@ class MatchRoomActivity : AppCompatActivity() {
                     mySingleton.chosenlandmark = alp.value.toString()
                 }
         }
-
         auth = Firebase.auth
         roomlistRecyclerView = findViewById(R.id.recyclerandomroomlist)
         roomlistRecyclerView.layoutManager = LinearLayoutManager(this)
@@ -51,36 +50,9 @@ class MatchRoomActivity : AppCompatActivity() {
         getPickRoomList()
     }
 
-    fun gir(view: View) {
-        codeFound = false
-        checkTemp = true
-        keyValue = "null"
-        code = edittext.text.toString()
-        if (code != "null" && code != ""){
-            isCodeMaker = false
-        FirebaseDatabase.getInstance().reference.child("Room").child("AllPick")
-            .addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    var data: Boolean = isValueAvaliable(snapshot, code)
-                    Handler().postDelayed({
-                        if (data == true) {
-                            codeFound = true
-                            val intent = Intent(this@MatchRoomActivity,GameActivity::class.java)
-                            startActivity(intent)
-                        } else {
-                        }
-                    }, 2000)
-                }
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
-            })
-    }
-    }
-
     private fun getRandomRoomList() {
         val db = FirebaseDatabase.getInstance()
-        db.getReference("Room").child("AllRandom")
+        db.getReference("RoomList").child("AllRandom")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     empList.clear()
