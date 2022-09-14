@@ -42,10 +42,13 @@ class CreateActivity : AppCompatActivity() {
                     checkTemp = true
                     keyValue = "null"
                     isCodeMaker = true
-
+            //country aktarımı
             val hostCountry = "France"
             mySingleton.hostCountry= hostCountry
+            FirebaseDatabase.getInstance().reference.child("hostcountry").child(code)
+                .push().setValue(mySingleton.hostCountry)
 
+            //allpick, game activity e geçiş
             FirebaseAuth.getInstance().uid?.let {
                     safeUserId->
                 db.getReference("Users").child(safeUserId).get().addOnCompleteListener {

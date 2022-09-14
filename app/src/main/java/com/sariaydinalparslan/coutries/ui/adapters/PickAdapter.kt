@@ -32,7 +32,7 @@ class PickAdapter(private val empList : ArrayList<RoomData>): RecyclerView.Adapt
         return LandmarkHolder(itemView)
     }
     override fun onBindViewHolder(holder: LandmarkHolder, position: Int) {
-
+        //geçiş
         val current=empList[position]
         holder.itemView.nickname.text = current.userName
         holder.itemView.roomname.text= current.roomName
@@ -46,7 +46,6 @@ class PickAdapter(private val empList : ArrayList<RoomData>): RecyclerView.Adapt
                          if (data == true) {
                              codeFound = true
                              val intent = Intent(holder.itemView.context,GameActivity::class.java)
-                             //pickten geldiğnini göster
                              holder.itemView.context.startActivity(intent)
                          } else {
                          }
@@ -57,7 +56,13 @@ class PickAdapter(private val empList : ArrayList<RoomData>): RecyclerView.Adapt
                  }
              })
             Toast.makeText(holder.itemView.context, code, Toast.LENGTH_SHORT).show()
+            //roomlistedeki silinmeli
+
+            //ap taki ülkeyi geçişi
+            FirebaseDatabase.getInstance().reference.child("visitorscountry").child(code)
+                .push().setValue(mySingleton.chosenCountry)
         }
+
 }
 override fun getItemCount(): Int {
 return empList.size

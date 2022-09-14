@@ -1,8 +1,5 @@
 package com.sariaydinalparslan.coutries.ui
 
-import android.annotation.SuppressLint
-import android.content.Context
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -10,10 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import com.google.firebase.database.ChildEventListener
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.sariaydinalparslan.coutries.R
 import kotlinx.android.synthetic.main.activity_game.*
 import kotlinx.android.synthetic.main.activity_game.view.*
@@ -30,18 +24,24 @@ class GameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
-        val intent = intent
-        val visitorName = intent.getStringExtra("visitorName")
-        visitornickname.text = visitorName
-
         //  btnreset.setOnClickListener {
         //     reset()
         //     removeCode()
         // }
+
+        val intent = intent
+        val visitorName = intent.getStringExtra("visitorName")
+        visitornickname.text = visitorName
+
+        hostCountry()
+        visitorCountry()
+        data()
+
+    }
+    private fun data(){
         FirebaseDatabase.getInstance().reference.child("data").child(code)
             .addChildEventListener(object : ChildEventListener {
                 override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-
                     var data = snapshot.value
                     if (isMyMove == true){
                         isMyMove = false
@@ -55,10 +55,8 @@ class GameActivity : AppCompatActivity() {
                     TODO("Not yet implemented")
                 }
                 override fun onChildRemoved(snapshot: DataSnapshot) {
-
                     // 1 değişiklik
-                   //reset()
-                   // Toast.makeText(this@OnlineMultiPlayerActivity, "Gamereset", Toast.LENGTH_SHORT).show()
+                    //reset()
                 }
                 override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
                     TODO("Not yet implemented")
@@ -67,9 +65,58 @@ class GameActivity : AppCompatActivity() {
                     TODO("Not yet implemented")
                 }
             })
-
     }
-    //bir hareket sonrası disable mi değil mi onu anlamak için
+    private fun visitorCountry(){
+        FirebaseDatabase.getInstance().reference.child("visitorscountry").child(code)
+            .addChildEventListener(object :ChildEventListener{
+                override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                    mySingleton.readyVisitorCountry =snapshot.value.toString()
+                }
+
+                override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onChildRemoved(snapshot: DataSnapshot) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+    }
+    private fun hostCountry(){
+        FirebaseDatabase.getInstance().reference.child("hostcountry").child(code)
+            .addChildEventListener(object :ChildEventListener{
+                override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                    mySingleton.readyhostCountry =snapshot.value.toString()
+                }
+
+                override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onChildRemoved(snapshot: DataSnapshot) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+    }
+    //oyun bitiminde ya hepsi disable hali yada o durumdan bahsediyor
     fun buttonDisable(){
         for (i in 1..9){
             val buttonSelected = when(i){
@@ -129,7 +176,7 @@ class GameActivity : AppCompatActivity() {
     fun playNow(buttonSelected : Button, currCell : Int){
         tips.visibility = View.VISIBLE
         tips.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.fire))
-        Toast.makeText(this, mySingleton.chosenCountry, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, mySingleton.readyVisitorCountry, Toast.LENGTH_SHORT).show()
             Handler().postDelayed({
                 tips.visibility = View.GONE
                 emptyCells.remove(currCell)
@@ -155,8 +202,8 @@ class GameActivity : AppCompatActivity() {
                 8-> button8
                 else-> { button }
             }
-            Toast.makeText(this, mySingleton.hostCountry, Toast.LENGTH_SHORT).show()
-            tips2.setImageDrawable( ContextCompat.getDrawable(applicationContext,R.drawable.water))
+           Toast.makeText(this, mySingleton.readyhostCountry, Toast.LENGTH_SHORT).show()
+           tips2.setImageDrawable( ContextCompat.getDrawable(applicationContext,R.drawable.water))
             tips2.visibility = View.VISIBLE
             Handler().postDelayed({
                 tips2.visibility =View.GONE
