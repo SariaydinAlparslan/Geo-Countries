@@ -29,10 +29,6 @@ class GameActivity : AppCompatActivity() {
         //     removeCode()
         // }
 
-        val intent = intent
-        val visitorName = intent.getStringExtra("visitorName")
-        visitornickname.text = visitorName
-
         hostCountry()
         visitorCountry()
         data()
@@ -71,6 +67,7 @@ class GameActivity : AppCompatActivity() {
             .addChildEventListener(object :ChildEventListener{
                 override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                     mySingleton.readyVisitorCountry =snapshot.value.toString()
+                    giris.visibility=View.GONE
                 }
 
                 override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {

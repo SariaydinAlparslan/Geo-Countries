@@ -6,4 +6,6 @@ object mySingleton{
     var readyVisitorCountry: String? = null
     var hostCountry: String? = null
     var readyhostCountry: String? = null
+    var visitorReady: String? = null
+    var visitorReadyOnline: String? = null
 }
