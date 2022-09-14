@@ -27,6 +27,8 @@ class CreateActivity : AppCompatActivity() {
         setContentView(R.layout.activity_create)
 
 
+
+
     }
     //roomname i text yapmak zrunda bırak
     fun create(view: View){
@@ -40,6 +42,10 @@ class CreateActivity : AppCompatActivity() {
                     checkTemp = true
                     keyValue = "null"
                     isCodeMaker = true
+
+            val hostCountry = "France"
+            mySingleton.hostCountry= hostCountry
+
             FirebaseAuth.getInstance().uid?.let {
                     safeUserId->
                 db.getReference("Users").child(safeUserId).get().addOnCompleteListener {
@@ -64,7 +70,6 @@ class CreateActivity : AppCompatActivity() {
                                             }
                                         isValueAvaliable(snapshot, code)
                                         checkTemp = false
-                                        //roomadapter sistemi kurulabilir
                                         Handler().postDelayed({
                                             nickname()
                                         },300)

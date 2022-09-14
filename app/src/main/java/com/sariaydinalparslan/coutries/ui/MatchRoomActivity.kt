@@ -31,6 +31,10 @@ class MatchRoomActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_match_room)
 
+
+        val alpulke = "Hollanda"
+        mySingleton.chosenCountry = alpulke
+
         val db = FirebaseDatabase.getInstance()
         FirebaseAuth.getInstance().uid?.let { safeUserId ->
             db.getReference("Users").child(safeUserId).child("userName").get()
@@ -63,7 +67,7 @@ class MatchRoomActivity : AppCompatActivity() {
                         }
                         val rAdapter = RandomAdapter(empList)
                         roomlistRecyclerView.adapter = rAdapter
-                       // rAdapter.notifyDataSetChanged()
+
                     }
                 }
                 override fun onCancelled(error: DatabaseError) {
