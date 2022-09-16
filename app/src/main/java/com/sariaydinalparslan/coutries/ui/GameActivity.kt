@@ -9,8 +9,10 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.google.firebase.database.*
 import com.sariaydinalparslan.coutries.R
+import com.sariaydinalparslan.coutries.ui.ui.code
+import com.sariaydinalparslan.coutries.ui.ui.isCodeMaker
+import com.sariaydinalparslan.coutries.ui.ui.keyValue
 import kotlinx.android.synthetic.main.activity_game.*
-import kotlinx.android.synthetic.main.activity_game.view.*
 
 var isMyMove = isCodeMaker
 var playerTurn = true
@@ -171,17 +173,20 @@ class GameActivity : AppCompatActivity() {
     }
     // buttona bastığında ne olduğu
     fun playNow(buttonSelected : Button, currCell : Int){
-        tips.visibility = View.VISIBLE
-        tips.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.fire))
+        countrytips.visibility = View.VISIBLE
+        tips1_text.text = mySingleton.readyVisitorCountry
+        tips1.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.fire))
+        tips2_text.text = mySingleton.readyhostCountry
+        tips2.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.water))
         Toast.makeText(this, mySingleton.readyVisitorCountry, Toast.LENGTH_SHORT).show()
             Handler().postDelayed({
-                tips.visibility = View.GONE
+                countrytips.visibility = View.GONE
                 emptyCells.remove(currCell)
                 player1.add(currCell)
                 emptyCells.add(currCell)
                 buttonSelected.isEnabled = false
                 buttonSelected.setBackgroundColor(ContextCompat.getColor(this, R.color.black))
-            }, 2000)
+            }, 600)
        // checkWinner()
     }
     //butona bir oyuncu bastığında rakipte ne gözüktüğü
@@ -199,16 +204,18 @@ class GameActivity : AppCompatActivity() {
                 8-> button8
                 else-> { button }
             }
-           Toast.makeText(this, mySingleton.readyhostCountry, Toast.LENGTH_SHORT).show()
-           tips2.setImageDrawable( ContextCompat.getDrawable(applicationContext,R.drawable.water))
-            tips2.visibility = View.VISIBLE
+            countrytips.visibility = View.VISIBLE
+            tips1_text.text = mySingleton.readyVisitorCountry
+            tips1.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.fire))
+            tips2_text.text = mySingleton.readyhostCountry
+            tips2.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.water))
             Handler().postDelayed({
-                tips2.visibility =View.GONE
+                countrytips.visibility =View.GONE
                 player2.add(data.toInt())
                 emptyCells.add(data.toInt())
                 buttonSelected.isEnabled = false
                 buttonSelected.setBackgroundColor(ContextCompat.getColor(this, R.color.black))
-            },2000)
+            },600)
             //checkWinner()
         }
     }

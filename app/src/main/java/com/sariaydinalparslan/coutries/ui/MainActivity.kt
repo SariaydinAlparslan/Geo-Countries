@@ -1,40 +1,48 @@
 package com.sariaydinalparslan.coutries.ui
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
+import androidx.fragment.app.Fragment
 import com.sariaydinalparslan.coutries.R
+import com.sariaydinalparslan.coutries.databinding.ActivityMainBinding
+import com.sariaydinalparslan.coutries.ui.ui.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+        replaceFragment(HomeFragment())
 
-        val db = FirebaseDatabase.getInstance()
-        FirebaseAuth.getInstance().uid?.let {
-           safeUserId->
-           db.getReference("Users").child(safeUserId).child("userName").get().addOnCompleteListener {
-               val alp = it.result
-               name_text.text=alp.value.toString()
-           }
-       }
+        bottom.background =null
+        bottom.menu.getItem(2).isEnabled = false
+
+        binding.bottom.setOnItemSelectedListener {
+            when(it.itemId){
+                R.id.bottomHome -> replaceFragment(HomeFragment())
+                R.id.bottomProfile ->replaceFragment(ProfileFragment())
+                R.id.bottomList ->replaceFragment(SearchFragment())
+                R.id.bottomSingle ->replaceFragment(SinglePlayerFragment())
+                else ->{
+                }
+            }
+            true
+        }
+        binding.fab.setOnClickListener {
+            replaceFragment(CreateFragment())
+        }
+
+
     }
-    fun findmatch(view: View) {
-        val find = Intent(this@MainActivity, ModesActivity::class.java)
-        startActivity(find)
-    }
-    fun score(view: View) {
-        val score = Intent(this@MainActivity, ScoreActivity::class.java)
-        startActivity(score)
-        finish()
-    }
-    fun notification(view: View) {
-        val notification = Intent(this@MainActivity, NotificationActivity::class.java)
-        startActivity(notification)
-        finish()
+
+    private fun replaceFragment (fragment : Fragment){
+
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.frame_layout,fragment)
+        fragmentTransaction.commit()
     }
 }

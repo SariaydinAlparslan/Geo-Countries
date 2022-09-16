@@ -14,6 +14,7 @@ import com.google.firebase.database.ValueEventListener
 import com.sariaydinalparslan.coutries.R
 import com.sariaydinalparslan.coutries.ui.*
 import com.sariaydinalparslan.coutries.ui.data.RoomData
+import com.sariaydinalparslan.coutries.ui.ui.*
 import kotlinx.android.synthetic.main.reycler_row.view.*
 
 class RandomAdapter(private val empList : ArrayList<RoomData>): RecyclerView.Adapter<RandomAdapter.LandmarkHolder>() {

@@ -1,11 +1,10 @@
-package com.sariaydinalparslan.coutries.ui
+package com.sariaydinalparslan.coutries.ui.ui
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
+import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -16,22 +15,29 @@ import com.sariaydinalparslan.coutries.R
 import com.sariaydinalparslan.coutries.ui.adapters.PickAdapter
 import com.sariaydinalparslan.coutries.ui.adapters.RandomAdapter
 import com.sariaydinalparslan.coutries.ui.data.RoomData
-import kotlinx.android.synthetic.main.activity_match_room.*
+import com.sariaydinalparslan.coutries.ui.mySingleton
 
-class MatchRoomActivity : AppCompatActivity() {
+class SearchFragment : Fragment() {
     private lateinit var roomlistRecyclerView: RecyclerView
     private lateinit var pickroomlistRecyclerView: RecyclerView
     private lateinit var auth: FirebaseAuth
     private lateinit var db: DatabaseReference
     private lateinit var empList: ArrayList<RoomData>
     private lateinit var pickList: ArrayList<RoomData>
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_match_room)
 
+    }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
+        return inflater.inflate(R.layout.fragment_search, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         val alpulke = "Hollanda"
         mySingleton.chosenCountry = alpulke
 
@@ -44,16 +50,15 @@ class MatchRoomActivity : AppCompatActivity() {
                 }
         }
         auth = Firebase.auth
-        roomlistRecyclerView = findViewById(R.id.recyclerandomroomlist)
-        roomlistRecyclerView.layoutManager = LinearLayoutManager(this)
-        pickroomlistRecyclerView = findViewById(R.id.recycleroomlist)
-        pickroomlistRecyclerView.layoutManager = LinearLayoutManager(this)
+        roomlistRecyclerView = view.findViewById(R.id.recyclerandomroomlist)
+        roomlistRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        pickroomlistRecyclerView =view.findViewById(R.id.recycleroomlist)
+        pickroomlistRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         empList = ArrayList<RoomData>()
         pickList = ArrayList<RoomData>()
         getRandomRoomList()
         getPickRoomList()
     }
-
     private fun getRandomRoomList() {
         val db = FirebaseDatabase.getInstance()
         db.getReference("RoomList").child("AllRandom")

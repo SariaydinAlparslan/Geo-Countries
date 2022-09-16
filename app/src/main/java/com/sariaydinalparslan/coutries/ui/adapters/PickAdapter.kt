@@ -14,10 +14,9 @@ import com.google.firebase.database.ValueEventListener
 import com.sariaydinalparslan.coutries.R
 import com.sariaydinalparslan.coutries.ui.*
 import com.sariaydinalparslan.coutries.ui.data.RoomData
-import kotlinx.android.synthetic.main.activity_match_room.*
+import com.sariaydinalparslan.coutries.ui.ui.*
 import kotlinx.android.synthetic.main.reycler_row.view.nickname
 import kotlinx.android.synthetic.main.reycler_row.view.roomname
-import kotlinx.android.synthetic.main.reycler_row_all_pick.view.*
 
 class PickAdapter(private val empList : ArrayList<RoomData>): RecyclerView.Adapter<PickAdapter.LandmarkHolder>() {
 
@@ -58,7 +57,7 @@ class PickAdapter(private val empList : ArrayList<RoomData>): RecyclerView.Adapt
             Toast.makeText(holder.itemView.context, code, Toast.LENGTH_SHORT).show()
             //roomlistedeki silinmeli
 
-            //ap taki ülkeyi geçişi
+            //ap taki ülkeyi geçişi ve ready ayarlama
             FirebaseDatabase.getInstance().reference.child("visitorscountry").child(code)
                 .push().setValue(mySingleton.chosenCountry)
         }
