@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -15,13 +16,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:paddingLeft="10dp"
+            android:layout_marginTop="15dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_gravity="center"
-                android:paddingLeft="10dp"
                 android:id="@+id/allpick"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -29,25 +28,24 @@
                 android:text="Pick"
                 android:textSize="20sp"
                 android:layout_weight="1"
-                android:textColor="#2F7FBF"
+                android:textColor="@color/black"
                 >
             </TextView>
             <TextView
                 android:layout_gravity="center"
                 android:paddingLeft="10dp"
-                android:id="@+id/nickName2"
+                android:id="@+id/roomList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:textSize="20sp"
                 android:text="List"
                 android:layout_weight="1"
-                android:textColor="#2F7FBF"
+                android:textColor="@color/black"
                 >
             </TextView>
             <TextView
                 android:layout_gravity="center"
-                android:paddingLeft="10dp"
                 android:id="@+id/allrandom"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -55,7 +53,7 @@
                 android:gravity="center"
                 android:textSize="20sp"
                 android:layout_weight="1"
-                android:textColor="#2F7FBF"
+                android:textColor="@color/black"
                 >
             </TextView>
 
@@ -70,7 +68,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycleroomlist"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="1dp"
                 android:layout_marginEnd="1dp"
@@ -78,7 +76,7 @@
                 android:layout_marginBottom="40dp" />
 
             <View
-                android:layout_width="15dp"
+                android:layout_width="10dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/back_24"
                 >
@@ -87,7 +85,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerandomroomlist"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="1dp"
                 android:layout_marginEnd="1dp"

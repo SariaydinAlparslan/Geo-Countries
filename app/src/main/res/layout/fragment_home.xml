@@ -7,6 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.ui.HomeFragment">
 
+
     <LinearLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
@@ -63,17 +64,18 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/avatarView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="40dp"
+                android:layout_marginBottom="10dp"
                 android:src="@drawable/person_24" />
             <TextView
                 android:id="@+id/name_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="200dp"
                 android:gravity="center"
-                android:text="naber lan" />
+                android:text="" />
         </LinearLayout>
 
 

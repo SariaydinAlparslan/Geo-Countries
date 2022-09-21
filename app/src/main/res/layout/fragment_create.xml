@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.ui.CreateFragment">
 
+
+    <include layout="@layout/include_pick_country"
+        android:id="@+id/includecountrypick"
+        android:visibility="gone"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,27 +18,31 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="138dp"
-            android:layout_height="407dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_weight="1"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="5"
             android:orientation="vertical"
             android:paddingTop="5dp">
+            <Button
+                android:id="@+id/btn_choose_country"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="60dp"
+                android:text="Choose Country">
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="39dp"
-                android:layout_height="47dp"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="28dp"
-                android:src="@drawable/person_24" />
+            </Button>
 
             <TextView
-                android:id="@+id/name_text_modes"
-                android:layout_width="match_parent"
-                android:layout_height="67dp"
-                android:gravity="center"
-                android:text="" />
+                android:id="@+id/yourCountry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="28dp"
+                android:text="Your Country: "
+                android:src="@drawable/person_24" />
 
 
         </LinearLayout>
@@ -40,15 +50,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="7"
-            android:gravity="center"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:orientation="vertical">
 
             <EditText
                 android:id="@+id/create_room_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:ems="10"
                 android:gravity="center"
@@ -79,12 +88,13 @@
                     android:text="All Random" />
 
             </RadioGroup>
+
             <Button
                 android:id="@+id/btn_create"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:gravity="center"
                 android:onClick="create"
                 android:text="Create" />

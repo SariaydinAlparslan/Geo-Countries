@@ -1,5 +1,6 @@
 package com.sariaydinalparslan.coutries.ui.ui
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -8,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -17,10 +19,14 @@ import com.sariaydinalparslan.coutries.R
 import com.sariaydinalparslan.coutries.ui.GameActivity
 import com.sariaydinalparslan.coutries.ui.data.RoomData
 import com.sariaydinalparslan.coutries.ui.mySingleton
-import kotlinx.android.synthetic.main.fragment_create.btn_create
-import kotlinx.android.synthetic.main.fragment_create.create_room_text
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_create.*
 import kotlinx.android.synthetic.main.fragment_create.radio_one
 import kotlinx.android.synthetic.main.fragment_create.radio_two
+import kotlinx.android.synthetic.main.include_avatar_layout.*
+import kotlinx.android.synthetic.main.include_pick_country.*
+import www.sanju.motiontoast.MotionToast
+import www.sanju.motiontoast.MotionToastStyle
 
 var isCodeMaker = true
 var code = "null"
@@ -28,22 +34,33 @@ var codeFound = false
 var checkTemp = true
 var keyValue : String = "null"
 class CreateFragment : Fragment() {
-
+    val max = 100
+    val min = 0
+    val total : Int = max - min
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_create, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        btn_choose_country.setOnClickListener {
+
+            includecountrypick.visibility = View.VISIBLE
+            setUpSlider()
+        }
 
         btn_create.setOnClickListener {
 
@@ -90,10 +107,11 @@ class CreateFragment : Fragment() {
                                             isValueAvaliable(snapshot,code)
                                            checkTemp = false
                                             Handler().postDelayed({
+                                                picktoast()
                                                 nickname()
-                                            },300)
+                                            },10)
                                         }
-                                    },400)
+                                    },10)
                                 }
                                 override fun onCancelled(error: DatabaseError) {
                                 }
@@ -132,6 +150,7 @@ class CreateFragment : Fragment() {
                                             checkTemp = false
                                             //roomadapter sistemi kurulabilir
                                             Handler().postDelayed({
+                                                randomtoast()
                                                 nickname()
                                             },300)
                                         }
@@ -157,6 +176,31 @@ class CreateFragment : Fragment() {
             }
         }
     }
+    private fun setUpSlider() {
+        fluid_slider.positionListener    = {pos -> fluid_slider.bubbleText="${min+(total*pos).toInt()}";countryTextView.text = "${min+(total*pos).toInt()}"}
+        fluid_slider.position = 0.3f
+        fluid_slider.startText = "$min"
+        fluid_slider.endText = "$max"
+    }
+
+    private fun picktoast(){
+        MotionToast.darkToast(
+            requireContext() as Activity, "U Create The Pick Room","Room Name : ${code}" +
+                    "Your Country :  ${mySingleton.hostCountry}",
+            MotionToastStyle.SUCCESS,
+            MotionToast.GRAVITY_CENTER,
+            MotionToast.LONG_DURATION,
+            ResourcesCompat.getFont(requireContext(), www.sanju.motiontoast.R.font.helvetica_regular))
+    }
+    private fun randomtoast(){
+        MotionToast.darkToast(
+            requireContext() as Activity, "U Create The Room","Your Country Will Be Randomly Given ",
+            MotionToastStyle.SUCCESS,
+            MotionToast.GRAVITY_CENTER,
+            MotionToast.LONG_DURATION,
+            ResourcesCompat.getFont(requireContext(), www.sanju.motiontoast.R.font.helvetica_regular))
+    }
+
 }
 fun isValueAvaliable(snapshot : DataSnapshot,code:String):Boolean{
     var data = snapshot.children
