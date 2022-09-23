@@ -9,4 +9,6 @@ object mySingleton{
     var visitorReady: String? = null
     var visitorReadyOnline: String? = null
     var avatarId: String? = null
+    var alp : Int? = null
+    var keyId: String? = null
 }

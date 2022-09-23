@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -41,6 +42,7 @@ class SearchFragment : Fragment() {
         val alpulke = "Hollanda"
         mySingleton.chosenCountry = alpulke
 
+
         val db = FirebaseDatabase.getInstance()
         FirebaseAuth.getInstance().uid?.let { safeUserId ->
             db.getReference("Users").child(safeUserId).child("userName").get()
@@ -72,7 +74,6 @@ class SearchFragment : Fragment() {
                         }
                         val rAdapter = RandomAdapter(empList)
                         roomlistRecyclerView.adapter = rAdapter
-
                     }
                 }
                 override fun onCancelled(error: DatabaseError) {
@@ -90,6 +91,7 @@ class SearchFragment : Fragment() {
                         for (d in snapshot.children){
                             val e = d.getValue(RoomData::class.java)
                             pickList.add(e!!)
+                            d.key
                         }
                         val pAdapter = PickAdapter(pickList)
                         pickroomlistRecyclerView.adapter = pAdapter

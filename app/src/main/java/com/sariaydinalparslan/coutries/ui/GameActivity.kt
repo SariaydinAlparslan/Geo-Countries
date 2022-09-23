@@ -1,5 +1,6 @@
 package com.sariaydinalparslan.coutries.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -9,6 +10,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.google.firebase.database.*
 import com.sariaydinalparslan.coutries.R
+import com.sariaydinalparslan.coutries.ui.mySingleton.alp
 import com.sariaydinalparslan.coutries.ui.ui.code
 import com.sariaydinalparslan.coutries.ui.ui.isCodeMaker
 import com.sariaydinalparslan.coutries.ui.ui.keyValue
@@ -21,6 +23,9 @@ class GameActivity : AppCompatActivity() {
     var player1 = ArrayList<Int>()
     var emptyCells = ArrayList<Int>()
     var activeUser = 1
+    val max = 100
+    val min = 0
+    val total : Int = max - min
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +36,7 @@ class GameActivity : AppCompatActivity() {
         //     removeCode()
         // }
 
+        setUpSlider()
         hostCountry()
         visitorCountry()
         data()
@@ -115,23 +121,12 @@ class GameActivity : AppCompatActivity() {
 
             })
     }
-    //oyun bitiminde ya hepsi disable hali yada o durumdan bahsediyor
-    fun buttonDisable(){
-        for (i in 1..9){
-            val buttonSelected = when(i){
-                1 ->button
-                2 ->button2
-                3 ->button3
-                4 ->button4
-                5 ->button5
-                6 ->button6
-                7 ->button7
-                8 ->button8
-                else -> { button }
-            }
-            if (buttonSelected.isEnabled == true)
-                buttonSelected.isEnabled = false
-        }
+    private fun setUpSlider() {
+        fluid_slider.positionListener = {pos -> fluid_slider.bubbleText="${min+(total*pos).toInt()}";
+            result_guess.text = "${min+(total*pos).toInt()}"}
+        fluid_slider.position = 0.3f
+        fluid_slider.startText = "$min"
+        fluid_slider.endText = "$max"
     }
     private fun reset() {
         player1.clear()
@@ -160,13 +155,17 @@ class GameActivity : AppCompatActivity() {
             }
         }
     }
-    fun removeCode(){
+    private fun goBack(){
+        val intent = Intent(this,MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+    private fun removeCode(){
         if (isCodeMaker){
             FirebaseDatabase.getInstance().reference.child("codes")
                 .child(keyValue).removeValue()
         }
     }
-
     fun updateDatabase(cellId : Int){
         FirebaseDatabase.getInstance().reference.child("data").child(code)
             .push().setValue(cellId)
@@ -187,7 +186,6 @@ class GameActivity : AppCompatActivity() {
                 buttonSelected.isEnabled = false
                 buttonSelected.setBackgroundColor(ContextCompat.getColor(this, R.color.black))
             }, 600)
-       // checkWinner()
     }
     //butona bir oyuncu bastığında rakipte ne gözüktüğü
     fun moveOnline(data : String,move : Boolean){
@@ -240,6 +238,58 @@ class GameActivity : AppCompatActivity() {
                 playerTurn = true },600)
             playNow(but,cellOnline)
            updateDatabase(cellOnline)
+        }
+    }
+    fun guess(view: View){
+        guess_country_view.visibility = View.VISIBLE
+        guess.visibility = View.GONE
+        guess2.visibility = View.VISIBLE
+       alp = 1
+    }
+    fun guess2(view: View){
+        guess_country_view.visibility = View.VISIBLE
+        btn_result_guess2.visibility = View.VISIBLE
+    }
+    fun list_guess(view: View){
+        if (result_guess.text == mySingleton.chosenCountry){
+            guess_country_view.visibility = View.GONE
+            //1. kazanma yolu
+            //you win + score artışı
+            //firebase e cevap gidecek on child change olunca diğer rakip you lose olacak
+            Toast.makeText(this, "You Win ", Toast.LENGTH_SHORT).show()
+            reset()
+            removeCode()
+            //intent
+            goBack()
+        }else{
+            //1.yanlış
+            guess_country_view.visibility = View.GONE
+            btn_result_guess1.visibility = View.GONE
+            Toast.makeText(this, "You Lose 1. yanlış : alp 1 oldu", Toast.LENGTH_SHORT).show()
+        }
+    }
+    fun list_guess2(view: View){
+        if (result_guess.text == mySingleton.chosenCountry){
+            guess_country_view.visibility = View.GONE
+            //2. kazanma yolu
+            //you win + score
+            //firebase e cevap gidecek on child change olunca diğer rakip you lose olacak
+            Toast.makeText(this, "You Win ", Toast.LENGTH_SHORT).show()
+            //Room silme işlemi
+            reset()
+            removeCode()
+            goBack()
+        }else{
+            //2.yanlış
+            //1.kaybetme yönü
+            guess_country_view.visibility = View.GONE
+            Toast.makeText(this, "You Lose 2. yanlış Oyun Biter", Toast.LENGTH_SHORT).show()
+            //you lose + intent + score
+            //firebase e cevap gidecek on child change olunca diğer rakip you win olacak
+            reset()
+            removeCode()
+            //Room silme işlemi
+            goBack()
         }
     }
 }

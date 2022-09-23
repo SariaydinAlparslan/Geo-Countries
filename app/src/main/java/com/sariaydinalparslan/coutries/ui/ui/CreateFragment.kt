@@ -1,5 +1,6 @@
 package com.sariaydinalparslan.coutries.ui.ui
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -11,12 +12,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import com.sariaydinalparslan.coutries.R
 import com.sariaydinalparslan.coutries.ui.GameActivity
+import com.sariaydinalparslan.coutries.ui.adapters.PickAdapter
+import com.sariaydinalparslan.coutries.ui.data.KeyData
 import com.sariaydinalparslan.coutries.ui.data.RoomData
 import com.sariaydinalparslan.coutries.ui.mySingleton
 import kotlinx.android.synthetic.main.activity_main.*
@@ -37,6 +37,8 @@ class CreateFragment : Fragment() {
     val max = 100
     val min = 0
     val total : Int = max - min
+
+    private lateinit var pickList: ArrayList<KeyData>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,6 +92,7 @@ class CreateFragment : Fragment() {
                         FirebaseDatabase.getInstance().reference.child("Room")
                             .child("AllPick")
                             .addValueEventListener(object : ValueEventListener {
+                                @SuppressLint("RestrictedApi")
                                 override fun onDataChange(snapshot: DataSnapshot) {
                                     var check = isValueAvaliable(snapshot, code)
                                     Handler().postDelayed({
@@ -100,6 +103,8 @@ class CreateFragment : Fragment() {
                                                 .push()
                                                 .setValue(code)
                                                 .addOnCompleteListener {
+                                                   // val gamedata = FirebaseDatabase.getInstance().reference
+                                                  //      .child("RoomList").child("AllPick").
                                                     val gamedata=db.getReference("RoomList").child("AllPick")
                                                     val newroom = RoomData(code,userId.value.toString(),userNamex.value.toString())
                                                     gamedata.push().setValue(newroom)
@@ -199,6 +204,23 @@ class CreateFragment : Fragment() {
             MotionToast.GRAVITY_CENTER,
             MotionToast.LONG_DURATION,
             ResourcesCompat.getFont(requireContext(), www.sanju.motiontoast.R.font.helvetica_regular))
+    }
+    private fun getKey() {
+        val db = FirebaseDatabase.getInstance()
+        db.getReference("RoomList").child("AllPick")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()){
+                        for (d in snapshot.children){
+                            val alp =d.key!!.get(0)
+                            Toast.makeText(requireContext(), alp.toString(), Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+            })
     }
 
 }

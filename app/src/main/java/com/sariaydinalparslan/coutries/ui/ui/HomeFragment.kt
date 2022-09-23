@@ -1,5 +1,6 @@
 package com.sariaydinalparslan.coutries.ui.ui
 
+import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -14,6 +15,7 @@ import com.sariaydinalparslan.coutries.ui.mySingleton
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
+    var prefs : String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -35,6 +37,12 @@ class HomeFragment : Fragment() {
                     name_text.text=alp.value.toString()
                 }
             }
+
+        val sharedPreferences = this.activity?.getSharedPreferences("com.sariaydinalparslan.coutries",
+            MODE_PRIVATE)
+        prefs = sharedPreferences!!.getString("pref","")
+        mySingleton.avatarId = prefs
+
         val resourceID = getResources().getIdentifier("${mySingleton.avatarId}", "drawable", this.requireContext().packageName)
         Log.e(  "alp", resourceID.toString())
         avatarView.setImageResource(resourceID)

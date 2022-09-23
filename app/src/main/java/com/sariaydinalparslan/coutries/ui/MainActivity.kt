@@ -98,6 +98,9 @@ class MainActivity : AppCompatActivity() {
             R.id.radio_36 -> mySingleton.avatarId = "thirtysix"
 
         }
+        val sharedPreferences = this.getSharedPreferences("com.sariaydinalparslan.coutries",
+            Context.MODE_PRIVATE)
+        sharedPreferences!!.edit().putString("pref",mySingleton.avatarId!!).apply()
         replaceFragment(HomeFragment())
         bottom.selectedItemId = R.id.placeholder
         includeavatar.visibility = View.GONE
@@ -105,5 +108,4 @@ class MainActivity : AppCompatActivity() {
         share.visibility = View.VISIBLE
         edit.visibility=View.VISIBLE
     }
-
 }

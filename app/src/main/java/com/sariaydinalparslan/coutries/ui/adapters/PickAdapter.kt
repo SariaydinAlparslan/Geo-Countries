@@ -31,10 +31,10 @@ class PickAdapter(private val empList : ArrayList<RoomData>): RecyclerView.Adapt
         return LandmarkHolder(itemView)
     }
     override fun onBindViewHolder(holder: LandmarkHolder, position: Int) {
-        //geçiş
         val current=empList[position]
         holder.itemView.nickname.text = current.userName
-        holder.itemView.roomname.text= current.roomName
+        holder.itemView.roomname.text= current.datakey
+        empList.get(position)
         code = current.roomName.toString()
         holder.itemView.setOnClickListener {
          FirebaseDatabase.getInstance().reference.child("Room").child("AllPick")
@@ -48,13 +48,13 @@ class PickAdapter(private val empList : ArrayList<RoomData>): RecyclerView.Adapt
                              holder.itemView.context.startActivity(intent)
                          } else {
                          }
-                     }, 600)
+                     }, 10)
                  }
                  override fun onCancelled(error: DatabaseError) {
                      TODO("Not yet implemented")
                  }
              })
-            Toast.makeText(holder.itemView.context, code, Toast.LENGTH_SHORT).show()
+            Toast.makeText(it.context,position.toString(), Toast.LENGTH_SHORT).show()
             //roomlistedeki silinmeli
 
             //ap taki ülkeyi geçişi ve ready ayarlama

@@ -3,6 +3,8 @@ package com.sariaydinalparslan.coutries.ui.data
 import com.google.firebase.database.IgnoreExtraProperties
 
 @IgnoreExtraProperties
-data class RoomData(var roomName: String?= "",var userId: String?="", var userName: String?=""){
+data class RoomData(var roomName: String?= "",var userId: String?="", var userName: String?=""
+                ,var datakey: String? = ""
+){
 
 }
