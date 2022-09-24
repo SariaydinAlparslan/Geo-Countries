@@ -32,8 +32,8 @@ class PickAdapter(private val empList : ArrayList<RoomData>): RecyclerView.Adapt
     }
     override fun onBindViewHolder(holder: LandmarkHolder, position: Int) {
         val current=empList[position]
-        holder.itemView.nickname.text = current.userName
-        holder.itemView.roomname.text= current.datakey
+        holder.itemView.nickname.text = current.roomName
+        holder.itemView.roomname.text= current.userId
         empList.get(position)
         code = current.roomName.toString()
         holder.itemView.setOnClickListener {
@@ -57,7 +57,7 @@ class PickAdapter(private val empList : ArrayList<RoomData>): RecyclerView.Adapt
             Toast.makeText(it.context,position.toString(), Toast.LENGTH_SHORT).show()
             //roomlistedeki silinmeli
 
-            //ap taki ülkeyi geçişi ve ready ayarlama
+            //ap taki ülkeyi oyun acitivitye geçiş ve ready ayarlama
             FirebaseDatabase.getInstance().reference.child("visitorscountry").child(code)
                 .push().setValue(mySingleton.chosenCountry)
         }

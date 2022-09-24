@@ -7,10 +7,11 @@ import android.os.Handler
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.google.firebase.database.*
 import com.sariaydinalparslan.coutries.R
-import com.sariaydinalparslan.coutries.ui.mySingleton.alp
+import com.sariaydinalparslan.coutries.databinding.ActivityGameBinding
 import com.sariaydinalparslan.coutries.ui.ui.code
 import com.sariaydinalparslan.coutries.ui.ui.isCodeMaker
 import com.sariaydinalparslan.coutries.ui.ui.keyValue
@@ -26,21 +27,32 @@ class GameActivity : AppCompatActivity() {
     val max = 100
     val min = 0
     val total : Int = max - min
-
+    private lateinit var binding: ActivityGameBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_game)
-
-        //  btnreset.setOnClickListener {
-        //     reset()
-        //     removeCode()
-        // }
+        binding = ActivityGameBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         setUpSlider()
         hostCountry()
         visitorCountry()
         data()
-
+    }
+    override fun onBackPressed() {
+        val alert = AlertDialog.Builder(this)
+        alert.setTitle("Are You Quit The Match")
+        alert.setMessage("If you quit match is over and score update,Are You Sure")
+        alert.setPositiveButton("yes") {dialog, which->
+            reset()
+            removeCode()
+            //intent
+            goBack()
+        }
+        alert.setNegativeButton("No") {dialog, which->
+            Toast.makeText(applicationContext, "DevamKe", Toast.LENGTH_SHORT).show()
+        }
+        alert.show()
     }
     private fun data(){
         FirebaseDatabase.getInstance().reference.child("data").child(code)
@@ -170,16 +182,16 @@ class GameActivity : AppCompatActivity() {
         FirebaseDatabase.getInstance().reference.child("data").child(code)
             .push().setValue(cellId)
     }
-    // buttona bastığında ne olduğu
+    // buttona host bastığında ne olduğu
     fun playNow(buttonSelected : Button, currCell : Int){
-        countrytips.visibility = View.VISIBLE
-        tips1_text.text = mySingleton.readyVisitorCountry
-        tips1.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.fire))
-        tips2_text.text = mySingleton.readyhostCountry
-        tips2.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.water))
+        binding.countrytips.visibility = View.VISIBLE
+        binding.tips1Text.text = mySingleton.readyVisitorCountry
+        binding.tips1.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.fire))
+        binding.tips2Text.text = mySingleton.readyhostCountry
+        binding.tips2.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.water))
         Toast.makeText(this, mySingleton.readyVisitorCountry, Toast.LENGTH_SHORT).show()
             Handler().postDelayed({
-                countrytips.visibility = View.GONE
+               binding.countrytips.visibility = View.GONE
                 emptyCells.remove(currCell)
                 player1.add(currCell)
                 emptyCells.add(currCell)
@@ -187,7 +199,7 @@ class GameActivity : AppCompatActivity() {
                 buttonSelected.setBackgroundColor(ContextCompat.getColor(this, R.color.black))
             }, 600)
     }
-    //butona bir oyuncu bastığında rakipte ne gözüktüğü
+    //butona visitor oyuncu bastığında rakipte ne gözüktüğü
     fun moveOnline(data : String,move : Boolean){
         if (move){
             var buttonSelected : Button ?
@@ -202,11 +214,11 @@ class GameActivity : AppCompatActivity() {
                 8-> button8
                 else-> { button }
             }
-            countrytips.visibility = View.VISIBLE
-            tips1_text.text = mySingleton.readyVisitorCountry
-            tips1.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.fire))
-            tips2_text.text = mySingleton.readyhostCountry
-            tips2.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.water))
+           binding.countrytips.visibility = View.VISIBLE
+           binding.tips1Text.text = mySingleton.readyVisitorCountry
+           binding.tips1.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.fire))
+           binding.tips2Text.text = mySingleton.readyhostCountry
+           binding.tips2.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.water))
             Handler().postDelayed({
                 countrytips.visibility =View.GONE
                 player2.add(data.toInt())
@@ -214,7 +226,6 @@ class GameActivity : AppCompatActivity() {
                 buttonSelected.isEnabled = false
                 buttonSelected.setBackgroundColor(ContextCompat.getColor(this, R.color.black))
             },600)
-            //checkWinner()
         }
     }
     //basma halinde data gitmesi, hangi butonlar olacağı, sıra geçimi,basma özellikleri
@@ -241,18 +252,17 @@ class GameActivity : AppCompatActivity() {
         }
     }
     fun guess(view: View){
-        guess_country_view.visibility = View.VISIBLE
-        guess.visibility = View.GONE
-        guess2.visibility = View.VISIBLE
-       alp = 1
+       binding.guessCountryView.visibility = View.VISIBLE
+       binding.guess.visibility = View.GONE
+        binding.guess2.visibility = View.VISIBLE
     }
     fun guess2(view: View){
-        guess_country_view.visibility = View.VISIBLE
-        btn_result_guess2.visibility = View.VISIBLE
+       binding.guessCountryView.visibility = View.VISIBLE
+       binding.btnResultGuess2.visibility = View.VISIBLE
     }
     fun list_guess(view: View){
-        if (result_guess.text == mySingleton.chosenCountry){
-            guess_country_view.visibility = View.GONE
+        if (binding.resultGuess.text == mySingleton.chosenCountry){
+           binding.guessCountryView.visibility = View.GONE
             //1. kazanma yolu
             //you win + score artışı
             //firebase e cevap gidecek on child change olunca diğer rakip you lose olacak
@@ -263,14 +273,14 @@ class GameActivity : AppCompatActivity() {
             goBack()
         }else{
             //1.yanlış
-            guess_country_view.visibility = View.GONE
-            btn_result_guess1.visibility = View.GONE
+            binding.guessCountryView.visibility = View.GONE
+            binding.btnResultGuess1.visibility = View.GONE
             Toast.makeText(this, "You Lose 1. yanlış : alp 1 oldu", Toast.LENGTH_SHORT).show()
         }
     }
     fun list_guess2(view: View){
-        if (result_guess.text == mySingleton.chosenCountry){
-            guess_country_view.visibility = View.GONE
+        if (binding.resultGuess.text == mySingleton.chosenCountry){
+            binding.guessCountryView.visibility = View.GONE
             //2. kazanma yolu
             //you win + score
             //firebase e cevap gidecek on child change olunca diğer rakip you lose olacak
@@ -282,7 +292,7 @@ class GameActivity : AppCompatActivity() {
         }else{
             //2.yanlış
             //1.kaybetme yönü
-            guess_country_view.visibility = View.GONE
+            binding.guessCountryView.visibility = View.GONE
             Toast.makeText(this, "You Lose 2. yanlış Oyun Biter", Toast.LENGTH_SHORT).show()
             //you lose + intent + score
             //firebase e cevap gidecek on child change olunca diğer rakip you win olacak
@@ -292,4 +302,5 @@ class GameActivity : AppCompatActivity() {
             goBack()
         }
     }
+
 }

@@ -1,14 +1,15 @@
 package com.sariaydinalparslan.coutries.ui
 
 object mySingleton{
-    var chosenlandmark: String? = null
+    //visitorın özellikleri seçtiği ve adapter de kendini game activity atması
     var chosenCountry: String? = null
-    var readyVisitorCountry: String? = null
+    //create (hostun özellikleri)
     var hostCountry: String? = null
+    var hostName : String? = null
+    //gameactivityde hazır countryler
+    var readyVisitorCountry: String? = null
     var readyhostCountry: String? = null
-    var visitorReady: String? = null
-    var visitorReadyOnline: String? = null
+    //homeFragment and settings fragment
     var avatarId: String? = null
-    var alp : Int? = null
-    var keyId: String? = null
+
 }

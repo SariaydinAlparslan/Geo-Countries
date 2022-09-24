@@ -20,14 +20,6 @@
             android:screenOrientation="landscape"
             android:exported="false" />
         <activity
-            android:name=".ui.MatchRoomActivity"
-            android:exported="false"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".ui.CreateActivity"
-            android:exported="false"
-            android:screenOrientation="landscape" />
-        <activity
             android:name=".ui.RegisterActivity"
             android:exported="false" />
         <activity
@@ -39,20 +31,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.NotificationActivity"
-            android:exported="false"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".ui.ScoreActivity"
-            android:exported="false"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".ui.ModesActivity"
-            android:exported="false"
-            android:label="@string/title_activity_modes"
-            android:screenOrientation="landscape"
-            android:theme="@style/Theme.Coutries.NoActionBar" />
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"

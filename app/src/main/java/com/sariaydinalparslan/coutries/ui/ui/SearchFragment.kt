@@ -13,6 +13,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import com.sariaydinalparslan.coutries.R
+import com.sariaydinalparslan.coutries.databinding.FragmentSearchBinding
 import com.sariaydinalparslan.coutries.ui.adapters.PickAdapter
 import com.sariaydinalparslan.coutries.ui.adapters.RandomAdapter
 import com.sariaydinalparslan.coutries.ui.data.RoomData
@@ -25,6 +26,8 @@ class SearchFragment : Fragment() {
     private lateinit var db: DatabaseReference
     private lateinit var empList: ArrayList<RoomData>
     private lateinit var pickList: ArrayList<RoomData>
+    private var _binding: FragmentSearchBinding? = null
+    private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -33,24 +36,13 @@ class SearchFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val alpulke = "Hollanda"
-        mySingleton.chosenCountry = alpulke
 
-
-        val db = FirebaseDatabase.getInstance()
-        FirebaseAuth.getInstance().uid?.let { safeUserId ->
-            db.getReference("Users").child(safeUserId).child("userName").get()
-                .addOnCompleteListener {
-                    val alp = it.result
-                    mySingleton.chosenlandmark = alp.value.toString()
-                }
-        }
         auth = Firebase.auth
         roomlistRecyclerView = view.findViewById(R.id.recyclerandomroomlist)
         roomlistRecyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -60,6 +52,10 @@ class SearchFragment : Fragment() {
         pickList = ArrayList<RoomData>()
         getRandomRoomList()
         getPickRoomList()
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
     private fun getRandomRoomList() {
         val db = FirebaseDatabase.getInstance()

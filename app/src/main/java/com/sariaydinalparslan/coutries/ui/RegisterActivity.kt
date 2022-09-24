@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.sariaydinalparslan.coutries.R
+import com.sariaydinalparslan.coutries.databinding.ActivityRegisterBinding
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -17,20 +18,23 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var databaseReference: DatabaseReference
     private var firebaseUser: FirebaseUser? = null
+    private lateinit var binding: ActivityRegisterBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         auth = FirebaseAuth.getInstance()
 
     }
     fun signup(view: View) {
-            val userName = etName.text.toString()
-            val email = etEmail.text.toString()
-            val password = etPassword.text.toString()
-            val confirmPassword = etConfirmPassword.text.toString()
+            val userName = binding.etName.text.toString()
+            val email =binding.etEmail.text.toString()
+            val password =binding.etPassword.text.toString()
+            val confirmPassword =binding.etConfirmPassword.text.toString()
             if (userName.isEmpty()) {
                 Toast.makeText(applicationContext, "username is required", Toast.LENGTH_SHORT)
                     .show()
@@ -60,7 +64,6 @@ class RegisterActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-
         private fun registerUser(userName: String, email: String, password: String) {
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) {
@@ -78,10 +81,10 @@ class RegisterActivity : AppCompatActivity() {
                         databaseReference.setValue(hashMap).addOnCompleteListener(this) {
                             if (it.isSuccessful) {
                                 //open home activity
-                                etName.setText("")
-                                etEmail.setText("")
-                                etPassword.setText("")
-                                etConfirmPassword.setText("")
+                               binding.etName.setText("")
+                               binding.etEmail.setText("")
+                               binding.etPassword.setText("")
+                               binding.etConfirmPassword.setText("")
                                 val intent = Intent(
                                     this@RegisterActivity,
                                     MainActivity::class.java

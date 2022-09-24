@@ -31,7 +31,7 @@ class RandomAdapter(private val empList : ArrayList<RoomData>): RecyclerView.Ada
     }
     override fun onBindViewHolder(holder: LandmarkHolder, position: Int) {
         val current=empList[position]
-        holder.itemView.nickname.text = current.userName
+        holder.itemView.nickname.text = current.userId
         holder.itemView.roomname.text= current.roomName
         code = current.roomName.toString()
         holder.itemView.setOnClickListener {

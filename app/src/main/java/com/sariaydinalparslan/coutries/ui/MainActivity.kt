@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.sariaydinalparslan.coutries.R
@@ -20,6 +21,7 @@ import kotlinx.android.synthetic.main.include_pick_country.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private  var backPressedTime = 0L
 
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,8 +32,8 @@ class MainActivity : AppCompatActivity() {
         replaceFragment(HomeFragment())
 
 
-        bottom.background =null
-        bottom.menu.getItem(2).isEnabled = false
+       binding.bottom.background =null
+       binding.bottom.menu.getItem(2).isEnabled = false
 
         binding.bottom.setOnItemSelectedListener {
             when(it.itemId){
@@ -48,7 +50,18 @@ class MainActivity : AppCompatActivity() {
             replaceFragment(CreateFragment())
         }
 
+    }
+    override fun onBackPressed() {
+        if(backPressedTime + 2000 > System.currentTimeMillis()){
+            super.onBackPressed()
+        }else{
+            Toast.makeText(this," Press back again to exit app", Toast.LENGTH_SHORT).show()
+        }
+        backPressedTime = System.currentTimeMillis()
 
+    }
+    override fun onDestroy() {
+        super.onDestroy()
     }
     private fun replaceFragment (fragment : Fragment){
         val fragmentManager = supportFragmentManager
@@ -102,7 +115,7 @@ class MainActivity : AppCompatActivity() {
             Context.MODE_PRIVATE)
         sharedPreferences!!.edit().putString("pref",mySingleton.avatarId!!).apply()
         replaceFragment(HomeFragment())
-        bottom.selectedItemId = R.id.placeholder
+        binding.bottom.selectedItemId = R.id.placeholder
         includeavatar.visibility = View.GONE
         change_avatar.visibility=View.VISIBLE
         share.visibility = View.VISIBLE

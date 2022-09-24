@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "868207297026",
+    "firebase_url": "https://coutries-c284a-default-rtdb.firebaseio.com",
     "project_id": "coutries-c284a",
     "storage_bucket": "coutries-c284a.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "868207297026-n8l7i6gr6gpf4adounomlvu0lt9ab6eu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sariaydinalparslan.coutries",
+            "certificate_hash": "cc13f5ce8276ae743dde73d5ee1239a1cd5a99f2"
+          }
+        },
         {
           "client_id": "868207297026-hsq5p77o34to2tg95pgibk2b7uvrh672.apps.googleusercontent.com",
           "client_type": 3
