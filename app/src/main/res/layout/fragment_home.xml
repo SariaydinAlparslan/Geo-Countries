@@ -68,14 +68,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="45dp"
-                android:layout_weight="1"
+                android:layout_weight="0.1"
                 android:src="@drawable/person_24" />
             <TextView
                 android:id="@+id/name_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginBottom="150dp"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text="" />
         </LinearLayout>

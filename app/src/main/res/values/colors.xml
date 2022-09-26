@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="a">#000000</color>
     <color name="al">#5D4461</color>
+    <color name="alp">#6FD2FF</color>
+    <color name="alpi">#F3FF79</color>
 </resources>

@@ -34,6 +34,7 @@ class GameActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        Toast.makeText(this, mySingleton.createRoomId.toString() , Toast.LENGTH_SHORT).show()
         setUpSlider()
         hostCountry()
         visitorCountry()
@@ -46,8 +47,10 @@ class GameActivity : AppCompatActivity() {
         alert.setPositiveButton("yes") {dialog, which->
             reset()
             removeCode()
-            //intent
+            deleteGamersCountries()
+            deleteRoom()
             goBack()
+
         }
         alert.setNegativeButton("No") {dialog, which->
             Toast.makeText(applicationContext, "DevamKe", Toast.LENGTH_SHORT).show()
@@ -189,7 +192,10 @@ class GameActivity : AppCompatActivity() {
         binding.tips1.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.fire))
         binding.tips2Text.text = mySingleton.readyhostCountry
         binding.tips2.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.water))
-        Toast.makeText(this, mySingleton.readyVisitorCountry, Toast.LENGTH_SHORT).show()
+        val key1 = FirebaseDatabase.getInstance().reference.child("Room")
+            .child("AllPick").child(code).root
+        Toast.makeText(this, key1.toString(), Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, mySingleton.readyVisitorCountry, Toast.LENGTH_SHORT).show()
             Handler().postDelayed({
                binding.countrytips.visibility = View.GONE
                 emptyCells.remove(currCell)
@@ -269,8 +275,10 @@ class GameActivity : AppCompatActivity() {
             Toast.makeText(this, "You Win ", Toast.LENGTH_SHORT).show()
             reset()
             removeCode()
-            //intent
+            deleteGamersCountries()
+            deleteRoom()
             goBack()
+
         }else{
             //1.yanlış
             binding.guessCountryView.visibility = View.GONE
@@ -285,22 +293,40 @@ class GameActivity : AppCompatActivity() {
             //you win + score
             //firebase e cevap gidecek on child change olunca diğer rakip you lose olacak
             Toast.makeText(this, "You Win ", Toast.LENGTH_SHORT).show()
-            //Room silme işlemi
             reset()
             removeCode()
+            deleteGamersCountries()
+            deleteRoom()
             goBack()
+
         }else{
             //2.yanlış
-            //1.kaybetme yönü
+            //1.kaybetme yolu
             binding.guessCountryView.visibility = View.GONE
             Toast.makeText(this, "You Lose 2. yanlış Oyun Biter", Toast.LENGTH_SHORT).show()
             //you lose + intent + score
             //firebase e cevap gidecek on child change olunca diğer rakip you win olacak
             reset()
             removeCode()
-            //Room silme işlemi
+            deleteGamersCountries()
+            deleteRoom()
             goBack()
         }
     }
+    fun deleteGamersCountries(){
+        FirebaseDatabase.getInstance().reference.child("visitorscountry").child(code)
+            .removeValue()
+        FirebaseDatabase.getInstance().reference.child("hostcountry").child(code)
+            .removeValue()
+    }
+    fun deleteRoom(){
+       FirebaseDatabase.getInstance().reference.child("Room").child("AllPick")
+           .child(mySingleton.createRoomId.toString()).removeValue()
+        FirebaseDatabase.getInstance().reference.child("Room").child("AllRandom")
+            .child(mySingleton.createRoomId.toString()).removeValue()
+
+
+    }
+
 
 }

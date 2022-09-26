@@ -12,4 +12,7 @@ object mySingleton{
     //homeFragment and settings fragment
     var avatarId: String? = null
 
+    var createRoomId: String? = null
+
+
 }

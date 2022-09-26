@@ -2,6 +2,7 @@ package com.sariaydinalparslan.coutries.ui
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.SharedPreferences
 import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,11 +11,15 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
+import com.getkeepsafe.taptargetview.TapTarget
+import com.getkeepsafe.taptargetview.TapTargetView
 import com.sariaydinalparslan.coutries.R
 import com.sariaydinalparslan.coutries.databinding.ActivityMainBinding
 import com.sariaydinalparslan.coutries.ui.ui.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_settings.*
 import kotlinx.android.synthetic.main.include_pick_country.*
@@ -22,6 +27,8 @@ import kotlinx.android.synthetic.main.include_pick_country.*
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private  var backPressedTime = 0L
+    lateinit var sharedPref: SharedPreferences
+    lateinit var prefEditor :  SharedPreferences.Editor
 
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +36,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
         replaceFragment(HomeFragment())
+        sharedPref = getSharedPreferences("didShowPrompt", MODE_PRIVATE)
+        prefEditor =sharedPref.edit()
+
+        showFabPrompt()
 
 
        binding.bottom.background =null
@@ -69,6 +81,37 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.replace(R.id.frame_layout,fragment)
         fragmentTransaction.commit()
     }
+    private fun showFabPrompt() {
+        if (!sharedPref.getBoolean("didShowPrompt", false)) {
+            TapTargetView.showFor(this,  // `this` is an Activity
+                TapTarget.forView(binding.fab, "create match room ", "choose the game style")
+                    .tintTarget(false)
+                    .outerCircleColor(R.color.alpi),
+                object : TapTargetView.Listener() {
+                    override fun onTargetClick(view: TapTargetView) {
+                        super.onTargetClick(view)
+                        showButtonPrompt()
+                    }
+                })
+        }
+    }
+    private fun showButtonPrompt() {
+        TapTargetView.showFor(this,
+            TapTarget.forView(binding.bottomAppBar, "Home, Single Player , GameList, Profile Settings")
+                .tintTarget(false)
+                .outerCircleColor(R.color.alp),
+            object : TapTargetView.Listener() {
+                override fun onTargetClick(view: TapTargetView) {
+                    super.onTargetClick(view)
+
+                    val prefEditor = sharedPref.edit()
+                    prefEditor.putBoolean("didShowPrompt", true)
+                    prefEditor.apply()
+                }
+            })
+    }
+
+
 
     fun avatar(view:View){
         val but = view as TextView

@@ -1,11 +1,11 @@
 package com.sariaydinalparslan.coutries.ui.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -17,6 +17,8 @@ import com.sariaydinalparslan.coutries.databinding.FragmentSearchBinding
 import com.sariaydinalparslan.coutries.ui.adapters.PickAdapter
 import com.sariaydinalparslan.coutries.ui.adapters.RandomAdapter
 import com.sariaydinalparslan.coutries.ui.data.RoomData
+import com.sariaydinalparslan.coutries.ui.data.ApRoomId
+import com.sariaydinalparslan.coutries.ui.data.ArRoomId
 import com.sariaydinalparslan.coutries.ui.mySingleton
 
 class SearchFragment : Fragment() {
@@ -26,6 +28,8 @@ class SearchFragment : Fragment() {
     private lateinit var db: DatabaseReference
     private lateinit var empList: ArrayList<RoomData>
     private lateinit var pickList: ArrayList<RoomData>
+    private lateinit var apRoomIdList : ArrayList<ApRoomId>
+    private lateinit var arRoomIdList : ArrayList<ArRoomId>
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,6 +56,8 @@ class SearchFragment : Fragment() {
         pickList = ArrayList<RoomData>()
         getRandomRoomList()
         getPickRoomList()
+        apRoomIdList = ArrayList<ApRoomId>()
+        arRoomIdList = ArrayList<ArRoomId>()
     }
     override fun onDestroyView() {
         super.onDestroyView()
@@ -67,8 +73,12 @@ class SearchFragment : Fragment() {
                         for (d in snapshot.children){
                             val e = d.getValue(RoomData::class.java)
                             empList.add(e!!)
+                            val alp = d.key
+                            val dd = ArRoomId(alp)
+                            arRoomIdList.add(dd)
+                            Log.e("alp",alp.toString())
                         }
-                        val rAdapter = RandomAdapter(empList)
+                        val rAdapter = RandomAdapter(empList,arRoomIdList)
                         roomlistRecyclerView.adapter = rAdapter
                     }
                 }
@@ -87,11 +97,12 @@ class SearchFragment : Fragment() {
                         for (d in snapshot.children){
                             val e = d.getValue(RoomData::class.java)
                             pickList.add(e!!)
-                            d.key
+                            val key = d.key
+                            val dKey = ApRoomId(key)
+                            apRoomIdList.add(dKey)
                         }
-                        val pAdapter = PickAdapter(pickList)
+                        val pAdapter = PickAdapter(pickList,apRoomIdList)
                         pickroomlistRecyclerView.adapter = pAdapter
-                        // rAdapter.notifyDataSetChanged()
                     }
                 }
                 override fun onCancelled(error: DatabaseError) {

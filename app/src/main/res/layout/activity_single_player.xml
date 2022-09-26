@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.SinglePlayerActivity">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/guess_country_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <com.github.chrisbanes.photoview.PhotoView
+                android:id="@+id/country_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/list"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/result_guess"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Value"
+                    android:layout_marginRight="330dp"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/btn_result_guess1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="50dp"
+                    android:onClick="list_guess"
+                    android:text="Guess"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/btn_result_guess2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="50dp"
+                    android:onClick="list_guess2"
+                    android:visibility="gone"
+                    android:text="Guess"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <com.ramotion.fluidslider.FluidSlider
+                android:id="@+id/fluid_slider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                app:bar_color="#E91E63"
+                app:duration="195"
+                app:end_text="Max"
+                app:initial_position=".5"
+                app:size="small"
+                app:text_size="20sp"
+                app:start_text="0" />
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Map"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:orientation="horizontal">
+
+        <com.github.chrisbanes.photoview.PhotoView
+            android:id="@+id/worldismy"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/worldismy"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.221"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/guess"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Guess(2)"
+            android:onClick="guess"
+            android:layout_marginRight="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/worldismy"
+            app:layout_constraintEnd_toEndOf="@+id/worldismy"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/guess2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Guess(1)"
+            android:onClick="guess2"
+            android:visibility="gone"
+            android:layout_marginRight="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/worldismy"
+            app:layout_constraintEnd_toEndOf="@+id/worldismy"
+            app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@+id/worldismy">
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/q5"
+                android:onClick="clickfun"
+                android:text="Button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/button3" />
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="89dp"
+                android:layout_height="44dp"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/q5"
+                android:onClick="clickfun"
+                android:text="Button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/button5"
+                app:layout_constraintTop_toTopOf="@+id/button8"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <Button
+                android:id="@+id/button7"
+                android:layout_width="89dp"
+                android:layout_height="44dp"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/q5"
+                android:onClick="clickfun"
+                android:text="Button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/button6"
+                app:layout_constraintTop_toTopOf="@+id/button8"
+                app:layout_constraintVertical_bias="1.0" />
+
+
+            <Button
+                android:id="@+id/button8"
+                android:layout_width="89dp"
+                android:layout_height="44dp"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/q5"
+                android:onClick="clickfun" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="89dp"
+                android:layout_height="44dp"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/q5"
+                android:onClick="clickfun" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="89dp"
+                android:layout_height="44dp"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/q5"
+                android:onClick="clickfun" />
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="89dp"
+                android:layout_height="44dp"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/q5"
+                android:onClick="clickfun" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="89dp"
+                android:layout_height="44dp"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/q5"
+                android:onClick="clickfun" />
+
+
+        </LinearLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/countrytips"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="60dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/tips2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:visibility="visible"
+                    app:srcCompat="@drawable/eve" />
+                <TextView
+                    android:id="@+id/tips2_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="9"
+                    android:text="hellowolrd"
+                    android:textColor="@color/black"
+                    android:gravity="center">
+                </TextView>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

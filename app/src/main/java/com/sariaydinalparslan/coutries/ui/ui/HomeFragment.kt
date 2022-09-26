@@ -6,10 +6,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.sariaydinalparslan.coutries.databinding.FragmentHomeBinding
 import com.sariaydinalparslan.coutries.ui.mySingleton
 
@@ -48,6 +50,8 @@ class HomeFragment : Fragment() {
         val resourceID = getResources().getIdentifier("${mySingleton.avatarId}", "drawable", this.requireContext().packageName)
         Log.e(  "alp", resourceID.toString())
         binding.avatarView.setImageResource(resourceID)
+
+
 
     }
     override fun onDestroyView() {
