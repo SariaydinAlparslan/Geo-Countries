@@ -42,12 +42,6 @@ class PickAdapter(private val empList : ArrayList<RoomData>,
         holder.itemView.roomname.text= current.userId
         code = current.roomName.toString()
         holder.itemView.setOnClickListener {
-            //RoomList delete
-            FirebaseDatabase.getInstance().reference
-                .child("RoomList")
-                .child("AllPick")
-                .child(list.apRoomId.toString()).removeValue()
-
          FirebaseDatabase.getInstance().reference.child("Room").child("AllPick")
              .addValueEventListener(object : ValueEventListener {
                  override fun onDataChange(snapshot: DataSnapshot) {
@@ -57,7 +51,6 @@ class PickAdapter(private val empList : ArrayList<RoomData>,
                              codeFound = true
                             val intent = Intent(holder.itemView.context,GameActivity::class.java)
                              holder.itemView.context.startActivity(intent)
-                         } else {
                          }
                      }, 100)
                  }
@@ -68,6 +61,11 @@ class PickAdapter(private val empList : ArrayList<RoomData>,
             //ap taki ülkeyi oyun acitivitye geçiş ve ready ayarlama
             FirebaseDatabase.getInstance().reference.child("visitorscountry").child(code)
                 .push().setValue(mySingleton.chosenCountry)
+            //RoomList delete
+            FirebaseDatabase.getInstance().reference
+                .child("RoomList")
+                .child("AllPick")
+                .child(list.apRoomId.toString()).removeValue()
         }
 }
 override fun getItemCount(): Int {

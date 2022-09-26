@@ -11,7 +11,7 @@ object mySingleton{
     var readyhostCountry: String? = null
     //homeFragment and settings fragment
     var avatarId: String? = null
-
+    //createfragment da firebasedeki room-allpick veriyi silmek için
     var createRoomId: String? = null
 
 

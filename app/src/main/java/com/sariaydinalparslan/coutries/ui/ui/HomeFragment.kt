@@ -51,8 +51,6 @@ class HomeFragment : Fragment() {
         Log.e(  "alp", resourceID.toString())
         binding.avatarView.setImageResource(resourceID)
 
-
-
     }
     override fun onDestroyView() {
         super.onDestroyView()
