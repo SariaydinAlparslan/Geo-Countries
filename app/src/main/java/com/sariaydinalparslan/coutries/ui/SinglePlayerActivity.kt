@@ -11,7 +11,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.sariaydinalparslan.coutries.R
 import com.sariaydinalparslan.coutries.databinding.ActivitySinglePlayerBinding
-import com.sariaydinalparslan.coutries.ui.ui.code
 import com.sariaydinalparslan.coutries.ui.ui.isCodeMaker
 import kotlinx.android.synthetic.main.activity_game.*
 
@@ -65,8 +64,6 @@ class SinglePlayerActivity : AppCompatActivity() {
                 4->button4
                 5->button5
                 6->button6
-                7->button7
-                8->button8
                 else -> {button}
             }
             buttonSelected.isEnabled = true
@@ -104,8 +101,6 @@ class SinglePlayerActivity : AppCompatActivity() {
                 R.id.button4 -> cellOnline =4
                 R.id.button5 -> cellOnline =5
                 R.id.button6 -> cellOnline =6
-                R.id.button7 -> cellOnline =7
-                R.id.button8 -> cellOnline =8
                 else -> {cellOnline = 0}
             }
             playerTurn = false

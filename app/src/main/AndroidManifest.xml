@@ -16,9 +16,13 @@
         android:theme="@style/Theme.Coutries"
         tools:targetApi="31">
         <activity
-            android:name=".ui.SinglePlayerActivity"
+            android:name=".ui.SelectCountryActivity"
             android:screenOrientation="landscape"
             android:exported="false" />
+        <activity
+            android:name=".ui.SinglePlayerActivity"
+            android:exported="false"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".ui.GameActivity"
             android:exported="false"
@@ -28,7 +32,8 @@
             android:exported="false" />
         <activity
             android:name=".ui.LoginActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

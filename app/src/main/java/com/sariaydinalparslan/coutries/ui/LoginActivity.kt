@@ -39,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        binding.signin.setOnClickListener {
+        binding.lottieStart.setOnClickListener {
             val signInIntent: Intent = mGoogleSignInClient.getSignInIntent()
             startActivityForResult(signInIntent, RC_SIGN_IN)
         }

@@ -10,15 +10,15 @@
     android:gravity="center"
     tools:context=".ui.ui.SinglePlayerFragment">
 
-    <TextView
-        android:id="@+id/btn_start"
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/btnStart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:textSize="40dp"
-        android:text="Start"
-        />
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/start" />
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

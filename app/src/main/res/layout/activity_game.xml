@@ -19,16 +19,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
-    <TextView
-        android:id="@+id/text_game_activity"
-        android:layout_weight="1"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottiewaiting"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:gravity="center"
-        android:layout_marginLeft="4dp"
-        android:text="Waiting the other player..."
-        android:textSize="26sp" />
+        android:layout_weight="1"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="false"
+        app:lottie_rawRes="@raw/waiting" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottieLoading"
@@ -52,7 +51,6 @@
         android:layout_height="match_parent"
         android:visibility="gone"
         >
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -82,6 +80,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="50dp"
+                    android:drawableRight="@drawable/think1"
                     android:onClick="list_guess"
                     android:text="Guess"
                     android:textColor="@color/black"
@@ -93,6 +92,7 @@
                     android:layout_marginRight="50dp"
                     android:onClick="list_guess2"
                     android:visibility="gone"
+                    android:drawableRight="@drawable/think1"
                     android:text="Guess"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
@@ -189,6 +189,8 @@
             android:layout_height="wrap_content"
             android:text="Guess(2)"
             android:onClick="guess"
+            android:visibility="visible"
+            android:drawableTop="@drawable/think1"
             android:layout_marginRight="5dp"
             app:layout_constraintBottom_toBottomOf="@+id/worldismy"
             app:layout_constraintEnd_toEndOf="@+id/worldismy"
@@ -200,16 +202,20 @@
             android:text="Guess(1)"
             android:onClick="guess2"
             android:visibility="gone"
+            android:drawableTop="@drawable/think1"
             android:layout_marginRight="5dp"
             app:layout_constraintBottom_toBottomOf="@+id/worldismy"
             app:layout_constraintEnd_toEndOf="@+id/worldismy"
             app:layout_constraintTop_toTopOf="parent" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="bottom"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="@+id/worldismy">
+            android:layout_marginLeft="150dp"
+            app:layout_constraintBottom_toBottomOf="@+id/worldismy"
+            tools:layout_editor_absoluteX="0dp">
 
             <Button
                 android:id="@+id/button4"
@@ -235,27 +241,6 @@
                 app:layout_constraintTop_toTopOf="@+id/button8"
                 app:layout_constraintVertical_bias="0.0" />
 
-            <Button
-                android:id="@+id/button7"
-                android:layout_width="89dp"
-                android:layout_height="44dp"
-                android:background="@android:color/transparent"
-                android:drawableTop="@drawable/q5"
-                android:onClick="clickfun"
-                android:text="Button"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/button6"
-                app:layout_constraintTop_toTopOf="@+id/button8"
-                app:layout_constraintVertical_bias="1.0" />
-
-
-            <Button
-                android:id="@+id/button8"
-                android:layout_width="89dp"
-                android:layout_height="44dp"
-                android:background="@android:color/transparent"
-                android:drawableTop="@drawable/q5"
-                android:onClick="clickfun" />
 
             <Button
                 android:id="@+id/button2"
@@ -291,7 +276,6 @@
 
 
         </LinearLayout>
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

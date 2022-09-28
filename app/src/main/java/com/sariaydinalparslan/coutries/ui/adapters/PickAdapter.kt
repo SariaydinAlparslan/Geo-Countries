@@ -1,5 +1,6 @@
 package com.sariaydinalparslan.coutries.ui.adapters
 
+import android.content.Context
 import android.content.Intent
 import android.os.Handler
 import android.util.Log
@@ -19,7 +20,8 @@ import com.sariaydinalparslan.coutries.ui.ui.*
 import kotlinx.android.synthetic.main.reycler_row.view.*
 
 class PickAdapter(private val empList : ArrayList<RoomData>,
-                  private val apRoomIdList : ArrayList<ApRoomId>
+                  private val apRoomIdList : ArrayList<ApRoomId>,
+
                   ) : RecyclerView.Adapter<PickAdapter.LandmarkHolder>() {
 
     class LandmarkHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -67,9 +69,11 @@ class PickAdapter(private val empList : ArrayList<RoomData>,
                 .child("AllPick")
                 .child(list.apRoomId.toString()).removeValue()
         }
+
 }
 override fun getItemCount(): Int {
 return empList.size
 }
+
 
 }

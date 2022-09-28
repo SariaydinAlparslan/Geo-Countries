@@ -20,36 +20,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginLeft="15dp"
-            android:layout_weight="5"
-            android:orientation="vertical"
-            android:paddingTop="5dp">
-            <Button
-                android:id="@+id/btn_choose_country"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="60dp"
-                android:text="Choose Country">
-
-            </Button>
-
-            <TextView
-                android:id="@+id/yourCountry"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="28dp"
-                android:text="Your Country: "
-                android:src="@drawable/person_24" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:orientation="vertical">

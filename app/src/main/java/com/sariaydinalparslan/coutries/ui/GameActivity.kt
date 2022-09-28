@@ -34,7 +34,6 @@ class GameActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        Toast.makeText(this, mySingleton.createRoomId.toString() , Toast.LENGTH_SHORT).show()
         setUpSlider()
         hostCountry()
         visitorCountry()
@@ -157,8 +156,6 @@ class GameActivity : AppCompatActivity() {
                 4->button4
                 5->button5
                 6->button6
-                7->button7
-                8->button8
                 else -> {button}
             }
             buttonSelected.isEnabled = true
@@ -203,7 +200,7 @@ class GameActivity : AppCompatActivity() {
                 emptyCells.add(currCell)
                 buttonSelected.isEnabled = false
                 buttonSelected.setBackgroundColor(ContextCompat.getColor(this, R.color.black))
-            }, 600)
+            }, 4600)
     }
     //butona visitor oyuncu bastığında rakipte ne gözüktüğü
     fun moveOnline(data : String,move : Boolean){
@@ -216,8 +213,6 @@ class GameActivity : AppCompatActivity() {
                 4-> button4
                 5-> button5
                 6-> button6
-                7-> button7
-                8-> button8
                 else-> { button }
             }
            binding.countrytips.visibility = View.VISIBLE
@@ -246,8 +241,6 @@ class GameActivity : AppCompatActivity() {
                 R.id.button4 -> cellOnline =4
                 R.id.button5 -> cellOnline =5
                 R.id.button6 -> cellOnline =6
-                R.id.button7 -> cellOnline =7
-                R.id.button8 -> cellOnline =8
                 else -> {cellOnline = 0}
             }
             playerTurn = false
@@ -324,8 +317,12 @@ class GameActivity : AppCompatActivity() {
            .child(mySingleton.createRoomId.toString()).removeValue()
         FirebaseDatabase.getInstance().reference.child("Room").child("AllRandom")
             .child(mySingleton.createRoomId.toString()).removeValue()
-
-
+    }
+    fun deleteRoomList(){
+        FirebaseDatabase.getInstance().reference.child("RoomList").child("AllPick")
+            .child(mySingleton.createRoomId.toString()).removeValue()
+        FirebaseDatabase.getInstance().reference.child("Room").child("AllRandom")
+            .child(mySingleton.createRoomId.toString()).removeValue()
     }
 
 

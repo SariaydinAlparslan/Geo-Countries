@@ -43,7 +43,6 @@ class MainActivity : AppCompatActivity() {
 
         showFabPrompt()
 
-
        binding.bottom.background =null
        binding.bottom.menu.getItem(2).isEnabled = false
 
@@ -162,6 +161,6 @@ class MainActivity : AppCompatActivity() {
         includeavatar.visibility = View.GONE
         change_avatar.visibility=View.VISIBLE
         share.visibility = View.VISIBLE
-        edit.visibility=View.VISIBLE
+        rate.visibility=View.VISIBLE
     }
 }

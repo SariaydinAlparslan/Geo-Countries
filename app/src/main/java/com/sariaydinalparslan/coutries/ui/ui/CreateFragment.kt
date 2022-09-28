@@ -2,14 +2,18 @@ package com.sariaydinalparslan.coutries.ui.ui
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.ContentProvider
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.res.ResourcesCompat
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.firebase.auth.FirebaseAuth
@@ -28,7 +32,7 @@ var code = "null"
 var codeFound = false
 var checkTemp = true
 var keyValue : String = "null"
-class CreateFragment : Fragment() {
+class CreateFragment() : Fragment() {
     val max = 100
     val min = 0
     val total : Int = max - min
@@ -49,13 +53,8 @@ class CreateFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val alpulke = "Hollanda"
-        mySingleton.chosenCountry = alpulke
-
-        setUpSlider()
-        btn_choose_country.setOnClickListener {
-            includecountrypick.visibility = View.VISIBLE
-        }
+        binding.radioOne.text = "All Pick  " +
+                "(Your Country : ${mySingleton.chosenCountry})"
 
         btn_create.setOnClickListener {
             val db = FirebaseDatabase.getInstance()
@@ -69,12 +68,6 @@ class CreateFragment : Fragment() {
                 checkTemp = true
                 keyValue = "null"
                 isCodeMaker = true
-                //country aktarımı
-                val hostCountry = "France"
-                mySingleton.hostCountry= hostCountry
-
-                FirebaseDatabase.getInstance().reference.child("hostcountry").child(code)
-                    .push().setValue(mySingleton.hostCountry)
                 //allpick, game activity e geçiş
                         FirebaseDatabase.getInstance().reference.child("Room")
                             .child("AllPick")
@@ -84,7 +77,17 @@ class CreateFragment : Fragment() {
                                     var check = isValueAvaliable(snapshot, code)
                                     Handler().postDelayed({
                                         if (check == true){
+                                            MotionToast.darkToast(
+                                                requireContext() as Activity, "Change Room Name Please ","",
+                                                MotionToastStyle.ERROR,
+                                                MotionToast.GRAVITY_CENTER,
+                                                MotionToast.LONG_DURATION,
+                                                ResourcesCompat.getFont(requireContext(), www.sanju.motiontoast.R.font.helvetica_regular))
                                         }else{
+                                            //ap oyunda karşıya atış
+                                            FirebaseDatabase.getInstance().reference.child("hostcountry").child(code)
+                                                .push().setValue(mySingleton.chosenCountry)
+                                            //Roomliste kayıt
                                             FirebaseDatabase.getInstance().reference.child("Room")
                                                 .child("AllPick")
                                                 .push()
@@ -153,19 +156,11 @@ class CreateFragment : Fragment() {
     private fun intent(){
         val intent = Intent(requireContext(), GameActivity::class.java)
                 startActivity(intent)
-
     }
-    private fun setUpSlider() {
-        fluid_slider.positionListener    = {pos -> fluid_slider.bubbleText="${min+(total*pos).toInt()}";countryTextView.text = "${min+(total*pos).toInt()}"}
-        fluid_slider.position = 0.3f
-        fluid_slider.startText = "$min"
-        fluid_slider.endText = "$max"
-    }
-
     private fun picktoast(){
         MotionToast.darkToast(
             requireContext() as Activity, "U Create The Pick Room","Room Name : ${code}" +
-                    "Your Country :  ${mySingleton.hostCountry}",
+                    "Your Country :  ${mySingleton.chosenCountry}",
             MotionToastStyle.SUCCESS,
             MotionToast.GRAVITY_CENTER,
             MotionToast.LONG_DURATION,
@@ -193,3 +188,4 @@ fun isValueAvaliable(snapshot : DataSnapshot,code:String):Boolean{
     }
     return false
 }
+

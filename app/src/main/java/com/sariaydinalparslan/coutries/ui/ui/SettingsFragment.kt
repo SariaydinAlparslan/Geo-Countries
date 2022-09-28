@@ -36,7 +36,7 @@ class SettingsFragment : Fragment() {
         change_avatar.setOnClickListener {
             binding.changeAvatar.visibility=View.GONE
             binding.share.visibility = View.GONE
-            binding.edit.visibility=View.GONE
+            binding.rate.visibility=View.GONE
           includeavatar.visibility = View.VISIBLE
         }
     }

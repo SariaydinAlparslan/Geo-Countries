@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/drawable/back_24.xml" value="0.1135" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/drawable/notifications_24.xml" value="0.3675" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/activity_create.xml" value="0.18" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/activity_game.xml" value="0.25" />
@@ -14,6 +15,7 @@
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/activity_notification.xml" value="0.2790328973444312" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/activity_register.xml" value="0.23157894736842105" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/activity_score.xml" value="0.22269736842105264" />
+        <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/activity_select_country.xml" value="0.25" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/activity_single_player.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/fragment_create.xml" value="0.2526720820863617" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/fragment_home.xml" value="0.25" />
@@ -22,8 +24,9 @@
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/fragment_notification.xml" value="0.1" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/fragment_profile.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/fragment_score.xml" value="0.1" />
-        <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/fragment_search.xml" value="0.2894399315946986" />
-        <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/fragment_settings.xml" value="0.33" />
+        <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/fragment_search.xml" value="0.25" />
+        <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/fragment_select_country.xml" value="0.3009833262077811" />
+        <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/fragment_settings.xml" value="0.22" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/fragment_single_player.xml" value="0.2894399315946986" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/fragment_splash.xml" value="0.17395833333333333" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/frame_layout.xml" value="0.3009833262077811" />

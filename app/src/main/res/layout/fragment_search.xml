@@ -5,18 +5,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/alake"
     tools:context=".ui.ui.SearchFragment">
 
     <LinearLayout
+        android:id="@+id/search_game_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".ui.MatchRoomActivity">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <TextView
@@ -63,22 +64,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:layout_margin="4dp"
             android:gravity="center">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycleroomlist"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="1dp"
-                android:layout_marginEnd="1dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="5dp"
                 android:layout_weight="1"
                 android:layout_marginBottom="40dp" />
 
             <View
-                android:layout_width="10dp"
+                android:layout_width="20dp"
                 android:layout_height="match_parent"
-                android:background="@drawable/back_24"
                 >
 
             </View>
@@ -87,10 +87,11 @@
                 android:id="@+id/recyclerandomroomlist"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="1dp"
-                android:layout_marginEnd="1dp"
-                android:layout_marginBottom="40dp"
-                android:layout_weight="1" />
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:layout_marginBottom="40dp" />
         </LinearLayout>
 
 
