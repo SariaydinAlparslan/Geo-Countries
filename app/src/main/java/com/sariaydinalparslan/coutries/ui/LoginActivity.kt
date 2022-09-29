@@ -64,7 +64,7 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this, "Account Created", Toast.LENGTH_SHORT).show()
                 }else{
                 }
-                startActivity(Intent(this@LoginActivity,MainActivity::class.java))
+                startActivity(Intent(this@LoginActivity,OnBoardingActivity::class.java))
                 finish()
             }
             .addOnFailureListener {

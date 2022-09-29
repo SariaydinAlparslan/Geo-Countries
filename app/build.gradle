@@ -75,6 +75,7 @@ dependencies {
 
     implementation 'com.ramotion.fluidslider:fluid-slider:0.3.1'
 
-    implementation 'com.getkeepsafe.taptargetview:taptargetview:1.13.3'
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
 }

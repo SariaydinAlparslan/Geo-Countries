@@ -22,6 +22,7 @@ import com.sariaydinalparslan.coutries.ui.mySingleton
 class HomeFragment : Fragment() {
     var prefs : String? = null
     var chosen : String? = null
+    var scoreShared : Int? = null
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
@@ -68,5 +69,4 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }
