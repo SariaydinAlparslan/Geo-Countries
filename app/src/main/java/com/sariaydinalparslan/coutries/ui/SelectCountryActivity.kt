@@ -4,10 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import com.sariaydinalparslan.coutries.R
 import com.sariaydinalparslan.coutries.databinding.ActivitySelectCountryBinding
-import kotlinx.android.synthetic.main.activity_game.fluid_slider
 import kotlinx.android.synthetic.main.activity_select_country.*
 
 val max = 195

@@ -13,6 +13,7 @@ import com.sariaydinalparslan.coutries.R
 import com.sariaydinalparslan.coutries.databinding.ActivitySinglePlayerBinding
 import com.sariaydinalparslan.coutries.ui.ui.isCodeMaker
 import kotlinx.android.synthetic.main.activity_game.*
+import kotlinx.android.synthetic.main.include_guess_view.view.*
 
 class SinglePlayerActivity : AppCompatActivity() {
     var emptyCells = ArrayList<Int>()
@@ -45,11 +46,11 @@ class SinglePlayerActivity : AppCompatActivity() {
         alert.show()
     }
     private fun setUpSlider() {
-        fluid_slider.positionListener = {pos -> fluid_slider.bubbleText="${min+(total*pos).toInt()}";
-            result_guess.text = "${min+(total*pos).toInt()}"}
-        fluid_slider.position = 0.3f
-        fluid_slider.startText = "$min"
-        fluid_slider.endText = "$max"
+      binding.guessCountryView.fluid_slider.positionListener = {pos ->  binding.guessCountryView.fluid_slider.bubbleText="${min+(total*pos).toInt()}";
+         binding.guessCountryView.result_guess.text = "${min+(total*pos).toInt()}"}
+        binding.guessCountryView.fluid_slider.position = 0.3f
+        binding.guessCountryView.fluid_slider.startText = "$min"
+        binding.guessCountryView.fluid_slider.endText = "$max"
     }
     private fun reset() {
         player1.clear()
@@ -154,5 +155,4 @@ class SinglePlayerActivity : AppCompatActivity() {
             goBack()
         }
     }
-
 }
