@@ -4,30 +4,61 @@
     android:layout_width="match_parent"
     android:id="@+id/countrytips"
     android:visibility="gone"
+    android:orientation="vertical"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="9"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Kullanıcı Adı Country"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="25dp"
+            >
+        </TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Kullanıcı Adı Country"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="25dp"
+            >
+        </TextView>
+
+
+
+    </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="horizontal">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_marginBottom="60dp"
+                android:layout_marginBottom="10dp"
                 android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/tips1"
                     android:layout_width="match_parent"
                     android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/water"/>
+                    android:layout_height="match_parent"/>
                 <TextView
                     android:id="@+id/tips1_text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="9"
+                    android:layout_weight="10"
                     android:text="hellowolrd"
                     android:textColor="@color/black"
                     android:gravity="center"
@@ -38,7 +69,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="60dp"
+                android:layout_marginBottom="10dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -47,8 +78,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:visibility="visible"
-                    android:src="@drawable/eve"/>
+                    android:visibility="visible" />
+
                 <TextView
                     android:id="@+id/tips2_text"
                     android:layout_width="match_parent"

@@ -17,7 +17,7 @@
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/activity_register.xml" value="0.23157894736842105" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/activity_score.xml" value="0.22269736842105264" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/activity_select_country.xml" value="0.25" />
-        <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/activity_single_player.xml" value="0.3009833262077811" />
+        <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/activity_single_player.xml" value="0.25" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/fragment_create.xml" value="0.2526720820863617" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/fragment_first_screen.xml" value="0.1" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/fragment_home.xml" value="0.25" />
@@ -37,10 +37,12 @@
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/frame_layout.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/include_avatar_layout.xml" value="0.33" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/include_avatars_view.xml" value="0.33" />
-        <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/include_country_tips.xml" value="0.30012825994014536" />
+        <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/include_country_tips.xml" value="0.25" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/include_guess_view.xml" value="0.11677479147358666" />
+        <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/include_lose.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/include_pick_country.xml" value="0.33" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/include_waiting_player.xml" value="0.2975630611372381" />
+        <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/include_win.xml" value="0.25" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/notification_recycler_list.xml" value="0.23157894736842105" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/reycler_row.xml" value="0.23157894736842105" />
         <entry key="..\:/Users/ALP/Desktop/Ek Project/Coutries/app/src/main/res/layout/reycler_row_all_pick.xml" value="0.23157894736842105" />

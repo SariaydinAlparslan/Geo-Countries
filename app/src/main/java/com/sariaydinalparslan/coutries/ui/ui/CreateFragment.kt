@@ -77,12 +77,6 @@ class CreateFragment() : Fragment() {
                                     var check = isValueAvaliable(snapshot, code)
                                     Handler().postDelayed({
                                         if (check == true){
-                                            MotionToast.darkToast(
-                                                requireContext() as Activity, "Change Room Name Please ","",
-                                                MotionToastStyle.ERROR,
-                                                MotionToast.GRAVITY_CENTER,
-                                                MotionToast.LONG_DURATION,
-                                                ResourcesCompat.getFont(requireContext(), www.sanju.motiontoast.R.font.helvetica_regular))
                                         }else{
                                             //ap oyunda karşıya atış
                                             FirebaseDatabase.getInstance().reference.child("hostcountry").child(code)
@@ -181,7 +175,7 @@ fun isValueAvaliable(snapshot : DataSnapshot,code:String):Boolean{
         var value = it.getValue().toString()
         if (value == code){
             keyValue = it.key.toString()
-            var alp = it.key
+            var alp = it.key.toString()
             mySingleton.createRoomId = alp
             return true
         }

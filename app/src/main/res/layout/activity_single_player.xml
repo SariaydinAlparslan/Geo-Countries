@@ -8,6 +8,12 @@
     android:orientation="vertical"
     tools:context=".ui.SinglePlayerActivity">
 
+    <include
+        layout="@layout/include_lose"
+        android:id="@+id/lose_view"/>
+    <include
+        layout="@layout/include_win"
+        android:id="@+id/win_view"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/guess_country_view"
@@ -83,16 +89,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         >
-
         <TextView
+            android:id="@+id/txt_timer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Map"
             android:gravity="center"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:textSize="20sp"/>
+
 
     </LinearLayout>
 
@@ -101,6 +108,8 @@
         android:layout_height="match_parent"
         android:layout_weight="2"
         android:orientation="horizontal">
+
+
 
         <com.github.chrisbanes.photoview.PhotoView
             android:id="@+id/worldismy"
@@ -138,7 +147,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="bottom"
+            android:gravity="bottom|center"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="@+id/worldismy">
 

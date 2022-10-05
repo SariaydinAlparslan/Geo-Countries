@@ -1,6 +1,5 @@
 package com.sariaydinalparslan.coutries.ui
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,19 +10,25 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import com.google.firebase.database.*
 import com.sariaydinalparslan.coutries.R
 import com.sariaydinalparslan.coutries.databinding.ActivityGameBinding
 import com.sariaydinalparslan.coutries.ui.ui.code
 import com.sariaydinalparslan.coutries.ui.ui.isCodeMaker
 import com.sariaydinalparslan.coutries.ui.ui.keyValue
+import com.sariaydinalparslan.coutries.ui.utils.downloadfromUrl
+import com.sariaydinalparslan.coutries.ui.utils.placeholderProgressBar
 import kotlinx.android.synthetic.main.activity_game.*
 import kotlinx.android.synthetic.main.include_guess_view.*
 import kotlinx.android.synthetic.main.include_waiting_player.*
 import kotlinx.android.synthetic.main.reycler_row.*
+import www.sanju.motiontoast.MotionToast
+import www.sanju.motiontoast.MotionToastStyle
 
 var isMyMove = isCodeMaker
 var playerTurn = true
+
 class GameActivity : AppCompatActivity() {
     var player2 = ArrayList<Int>()
     var player1 = ArrayList<Int>()
@@ -32,7 +37,9 @@ class GameActivity : AppCompatActivity() {
     val max = 100
     val min = 0
     val total: Int = max - min
-    private lateinit var timer : CountDownTimer
+    var host = false
+    var visitor = false
+    private lateinit var timer: CountDownTimer
     private lateinit var binding: ActivityGameBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,21 +47,23 @@ class GameActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        timer = object : CountDownTimer(40000,1000){
+        Toast.makeText(this,mySingleton.createRoomId, Toast.LENGTH_SHORT).show()
+
+        timer = object : CountDownTimer(140000, 1000) {
             override fun onTick(p0: Long) {
-                binding.txtTimer.text = p0.toString()
+                binding.txtTimer.text = " ${p0 / 1000}"
             }
             override fun onFinish() {
                 Toast.makeText(this@GameActivity, "U Draw", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this@GameActivity,MainActivity::class.java)
+                val intent = Intent(this@GameActivity, MainActivity::class.java)
                 startActivity(intent)
             }
         }
+        //bunu onchild change e koy   timer.start()
         setUpSlider()
         hostCountry()
         visitorCountry()
         data()
-        disable()
     }
 
     override fun onBackPressed() {
@@ -63,11 +72,11 @@ class GameActivity : AppCompatActivity() {
         alert.setTitle("Are You Quit The Match")
         alert.setMessage("If you quit match is over and score update,Are You Sure")
         alert.setPositiveButton("yes") { dialog, which ->
+            goBack()
+            failToast()
             reset()
             removeCode()
             deleteGamersCountries()
-            //deleteRoom()
-            goBack()
         }
         alert.setNegativeButton("No") { dialog, which ->
             Toast.makeText(applicationContext, "DevamKe", Toast.LENGTH_SHORT).show()
@@ -113,7 +122,7 @@ class GameActivity : AppCompatActivity() {
             .addChildEventListener(object : ChildEventListener {
                 override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                     mySingleton.readyVisitorCountry = snapshot.value.toString()
-                    giris.visibility = View.GONE
+                    binding.includeWaiting.giris.visibility = View.GONE
                 }
 
                 override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
@@ -121,7 +130,7 @@ class GameActivity : AppCompatActivity() {
                 }
 
                 override fun onChildRemoved(snapshot: DataSnapshot) {
-                    TODO("Not yet implemented")
+                    failToast()
                 }
 
                 override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
@@ -198,14 +207,7 @@ class GameActivity : AppCompatActivity() {
             }
         }
     }
-   private fun disable(){
-        if (!button.isEnabled && !button2.isEnabled && !button3.isEnabled && !button4.isEnabled && !button5.isEnabled && !button6.isEnabled
-        ){
-            binding.txtTimer.visibility=View.VISIBLE
-            timer.start()
-        }
 
-    }
     private fun goBack() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
@@ -224,39 +226,41 @@ class GameActivity : AppCompatActivity() {
             .push().setValue(cellId)
     }
 
-    // buttona host bastığında ne olduğu
+    // buttona basan kiside görünen
     fun playNow(buttonSelected: Button, currCell: Int) {
+        val random = (1..10).shuffled().last()
         binding.countryTips.countrytips.visibility = View.VISIBLE
-        binding.countryTips.tips1Text.text = mySingleton.readyVisitorCountry
-        binding.countryTips.tips1.setImageDrawable(
-            ContextCompat.getDrawable(
-                applicationContext,
-                R.drawable.fire
-            )
-        )
-        binding.countryTips.tips2Text.text  = mySingleton.readyhostCountry
-        binding.countryTips.tips2.setImageDrawable(
-            ContextCompat.getDrawable(
-                applicationContext,
-                R.drawable.water
-            )
-        )
-        val key1 = FirebaseDatabase.getInstance().reference.child("Room")
-            .child("AllPick").child(code).root
-        Toast.makeText(this, key1.toString(), Toast.LENGTH_SHORT).show()
-        //Toast.makeText(this, mySingleton.readyVisitorCountry, Toast.LENGTH_SHORT).show()
+            FirebaseDatabase.getInstance().reference.child("images").child("1")
+                .child(random.toString()).get().addOnSuccessListener {
+                    binding.countryTips.tips1.downloadfromUrl(it.value.toString(), placeholderProgressBar(this))
+                }
+            binding.countryTips.tips1Text.text = random.toString()
+            buttonSelected.setBackgroundColor(ContextCompat.getColor(this, R.color.black))
+            Handler().postDelayed({
+                binding.countryTips.countrytips.visibility = View.GONE
+                emptyCells.remove(currCell)
+                player1.add(currCell)
+                emptyCells.add(currCell)
+                buttonSelected.isEnabled = false
+            }, 6000)
+        //
+        FirebaseDatabase.getInstance().reference.child("images").child("2")
+            .child("3").get().addOnSuccessListener {
+                binding.countryTips.tips2.downloadfromUrl(it.value.toString(), placeholderProgressBar(this))
+            }
+        binding.countryTips.tips2Text.text = random.toString()
+        buttonSelected.setBackgroundColor(ContextCompat.getColor(this, R.color.black))
         Handler().postDelayed({
             binding.countryTips.countrytips.visibility = View.GONE
             emptyCells.remove(currCell)
             player1.add(currCell)
             emptyCells.add(currCell)
             buttonSelected.isEnabled = false
-            buttonSelected.setBackgroundColor(ContextCompat.getColor(this, R.color.black))
-        }, 4600)
+        }, 6000)
     }
-
-    //butona visitor oyuncu bastığında rakipte ne gözüktüğü
+    // buttona basan kisi değilde visitorda görünen
     fun moveOnline(data: String, move: Boolean) {
+        val random = (1..10).shuffled().last()
         if (move) {
             var buttonSelected: Button?
             buttonSelected = when (data.toInt()) {
@@ -270,31 +274,35 @@ class GameActivity : AppCompatActivity() {
                     button
                 }
             }
-            binding.countryTips.countrytips.visibility= View.VISIBLE
-            binding.countryTips.tips1Text.text=mySingleton.readyVisitorCountry
-            binding.countryTips.tips1.setImageDrawable(
-                ContextCompat.getDrawable(
-                    applicationContext,
-                    R.drawable.fire
-                )
-            )
-            binding.countryTips.tips2Text.text= mySingleton.readyhostCountry
-            binding.countryTips.tips2.setImageDrawable(
-                ContextCompat.getDrawable(
-                    applicationContext,
-                    R.drawable.water
-                )
-            )
+            binding.countryTips.countrytips.visibility = View.VISIBLE
+            FirebaseDatabase.getInstance().reference.child("images").child("1")
+                .child(random.toString()).get().addOnSuccessListener {
+                    binding.countryTips.tips1.downloadfromUrl(it.value.toString(), placeholderProgressBar(this))
+                }
+            binding.countryTips.tips1Text.text = random.toString()
+            buttonSelected.setBackgroundColor(ContextCompat.getColor(this, R.color.black))
             Handler().postDelayed({
-                binding.countryTips.countrytips.visibility= View.GONE
+                binding.countryTips.countrytips.visibility = View.GONE
                 player2.add(data.toInt())
                 emptyCells.add(data.toInt())
                 buttonSelected.isEnabled = false
-                buttonSelected.setBackgroundColor(ContextCompat.getColor(this, R.color.black))
-            }, 600)
+            }, 6000)
+            //
+            FirebaseDatabase.getInstance().reference.child("images").child("2")
+                .child("3").get().addOnSuccessListener {
+                    binding.countryTips.tips2.downloadfromUrl(it.value.toString(), placeholderProgressBar(this))
+                }
+            binding.countryTips.tips2Text.text = random.toString()
+            buttonSelected.setBackgroundColor(ContextCompat.getColor(this, R.color.black))
+            Handler().postDelayed({
+                binding.countryTips.countrytips.visibility = View.GONE
+                player2.add(data.toInt())
+                emptyCells.add(data.toInt())
+                buttonSelected.isEnabled = false
+            }, 6000)
+
         }
     }
-
     //basma halinde data gitmesi, hangi butonlar olacağı, sıra geçimi,basma özellikleri
     fun clickfun(view: View) {
         if (isMyMove) {
@@ -321,7 +329,7 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun guess(view: View) {
-        binding.guessCountryView.guessCountryView.visibility= View.VISIBLE
+        binding.guessCountryView.guessCountryView.visibility = View.VISIBLE
         binding.guess.visibility = View.GONE
         binding.guess2.visibility = View.VISIBLE
     }
@@ -332,64 +340,78 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun list_guess(view: View) {
-        if (binding.guessCountryView.resultGuess.text== mySingleton.chosenCountry) {
+        if (binding.guessCountryView.resultGuess.text == mySingleton.chosenCountry) {
             binding.guessCountryView.guessCountryView.visibility = View.GONE
             //1. kazanma yolu
-            //you win + score artışı
             //firebase e cevap gidecek on child change olunca diğer rakip you lose olacak
-            Toast.makeText(this, "You Win ", Toast.LENGTH_SHORT).show()
-            reset()
-            removeCode()
-            deleteGamersCountries()
-            //   deleteRoom()
-            goBack()
-
+            binding.winViewOnline.winner.visibility = View.VISIBLE
+            winToast()
+            Handler().postDelayed({
+                reset()
+                goBack()
+                removeCode()
+                deleteGamersCountries()
+            }, 4500)
         } else {
             //1.yanlış
             binding.guessCountryView.guessCountryView.visibility = View.GONE
-            binding.guessCountryView.btnResultGuess1.visibility= View.GONE
+            binding.guessCountryView.btnResultGuess1.visibility = View.GONE
             Toast.makeText(this, "You Lose 1. yanlış : alp 1 oldu", Toast.LENGTH_SHORT).show()
         }
     }
 
     fun list_guess2(view: View) {
-        if (binding.guessCountryView.resultGuess.text  == mySingleton.chosenCountry) {
+        if (binding.guessCountryView.resultGuess.text == mySingleton.chosenCountry) {
             binding.guessCountryView.guessCountryView.visibility = View.GONE
             //2. kazanma yolu
-            //you win + score
             //firebase e cevap gidecek on child change olunca diğer rakip you lose olacak
-            Toast.makeText(this, "You Win ", Toast.LENGTH_SHORT).show()
-            reset()
-            removeCode()
-            deleteGamersCountries()
-            //   deleteRoom()
-            goBack()
-
+            binding.winViewOnline.winner.visibility = View.VISIBLE
+            winToast()
+            Handler().postDelayed({
+                reset()
+                goBack()
+                removeCode()
+                deleteGamersCountries()
+            }, 4500)
         } else {
             //2.yanlış
             //1.kaybetme yolu
-            binding.guessCountryView.guessCountryView.visibility = View.GONE
-            Toast.makeText(this, "You Lose 2. yanlış Oyun Biter", Toast.LENGTH_SHORT).show()
             //firebase e cevap gidecek on child change olunca diğer rakip you win olacak
-            reset()
-            removeCode()
-            deleteGamersCountries()
-           // deleteRoom()
-            goBack()
+            binding.guessCountryView.guessCountryView.visibility = View.GONE
+            failToast()
+            binding.loseViewOnline.loser.visibility = View.VISIBLE
+            Handler().postDelayed({
+                reset()
+                goBack()
+                removeCode()
+                deleteGamersCountries()
+            }, 4500)
         }
     }
+
     fun deleteGamersCountries() {
         FirebaseDatabase.getInstance().reference.child("visitorscountry").child(code)
             .removeValue()
         FirebaseDatabase.getInstance().reference.child("hostcountry").child(code)
             .removeValue()
     }
-//hatalı kod u fail olunca main activity dönmüyor
-    fun deleteRoom() {
-        FirebaseDatabase.getInstance().reference.child("Room").child("AllPick")
-            .child(mySingleton.createRoomId.toString()).removeValue()
-        FirebaseDatabase.getInstance().reference.child("Room").child("AllRandom")
-            .child(mySingleton.createRoomId.toString()).removeValue()
-    }
 
+    //hatalı kod u fail olunca main activity dönmüyor
+
+    private fun winToast(){
+        MotionToast.darkToast(
+            this, "U WİN","" ,
+            MotionToastStyle.SUCCESS,
+            MotionToast.GRAVITY_BOTTOM,
+            MotionToast.LONG_DURATION,
+            ResourcesCompat.getFont(this, www.sanju.motiontoast.R.font.helvetica_regular))
+    }
+    private fun failToast(){
+        MotionToast.darkToast(
+            this, "U FAİL","" ,
+            MotionToastStyle.ERROR,
+            MotionToast.GRAVITY_BOTTOM,
+            MotionToast.LONG_DURATION,
+            ResourcesCompat.getFont(this, www.sanju.motiontoast.R.font.helvetica_regular))
+    }
 }

@@ -20,9 +20,9 @@ import com.sariaydinalparslan.coutries.ui.mySingleton
 
 
 class HomeFragment : Fragment() {
-    var prefs : String? = null
-    var chosen : String? = null
-    var scoreShared : Int? = null
+    var prefs: String? = null
+    var chosen: String? = null
+    var scoreShared: Int? = null
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
@@ -30,6 +30,7 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,8 +38,17 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //roomsilme
+        FirebaseDatabase.getInstance().reference.child("Room").child("AllPick")
+                .child(mySingleton.createRoomId.toString()).removeValue()
+
+        val random = (1..12).shuffled().last()
+
+        Toast.makeText(requireContext(), random.toString(), Toast.LENGTH_SHORT).show()
 
         val acct = GoogleSignIn.getLastSignedInAccount(requireActivity())
         if (acct != null) {
@@ -46,25 +56,33 @@ class HomeFragment : Fragment() {
             binding.nameText.text = personName
             mySingleton.hostName = personName
         }
-        val sharedPreferences = this.activity?.getSharedPreferences("com.sariaydinalparslan.coutries",
-            MODE_PRIVATE)
-        prefs = sharedPreferences!!.getString("pref","")
+        val sharedPreferences = this.activity?.getSharedPreferences(
+            "com.sariaydinalparslan.coutries",
+            MODE_PRIVATE
+        )
+        prefs = sharedPreferences!!.getString("pref", "")
         mySingleton.avatarId = prefs
 
-        chosen = sharedPreferences!!.getString("chosen","")
+        chosen = sharedPreferences!!.getString("chosen", "")
         mySingleton.chosenCountry = chosen
 
         binding.homeChosenCountry.text = "Your Country : ${mySingleton.chosenCountry}"
 
-        val resourceID = getResources().getIdentifier("${mySingleton.avatarId}", "drawable", this.requireContext().packageName)
-        Log.e(  "alp", resourceID.toString())
+
+        val resourceID = getResources().getIdentifier(
+            "${mySingleton.avatarId}",
+            "drawable",
+            this.requireContext().packageName
+        )
+        Log.e("alp", resourceID.toString())
         binding.avatarView.setImageResource(resourceID)
 
         binding.selectCountry.setOnClickListener {
-            val intebt = Intent(requireActivity(),SelectCountryActivity::class.java)
+            val intebt = Intent(requireActivity(), SelectCountryActivity::class.java)
             startActivity(intebt)
         }
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
