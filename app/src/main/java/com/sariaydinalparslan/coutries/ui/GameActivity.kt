@@ -37,8 +37,6 @@ class GameActivity : AppCompatActivity() {
     val max = 100
     val min = 0
     val total: Int = max - min
-    var host = false
-    var visitor = false
     private lateinit var timer: CountDownTimer
     private lateinit var binding: ActivityGameBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,8 +44,6 @@ class GameActivity : AppCompatActivity() {
         binding = ActivityGameBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
-        Toast.makeText(this,mySingleton.createRoomId, Toast.LENGTH_SHORT).show()
 
         timer = object : CountDownTimer(140000, 1000) {
             override fun onTick(p0: Long) {
@@ -57,6 +53,7 @@ class GameActivity : AppCompatActivity() {
                 Toast.makeText(this@GameActivity, "U Draw", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this@GameActivity, MainActivity::class.java)
                 startActivity(intent)
+                finishAffinity()
             }
         }
         //bunu onchild change e koy   timer.start()
@@ -65,7 +62,6 @@ class GameActivity : AppCompatActivity() {
         visitorCountry()
         data()
     }
-
     override fun onBackPressed() {
         //2.kaybetme yolu
         val alert = AlertDialog.Builder(this)
@@ -104,7 +100,7 @@ class GameActivity : AppCompatActivity() {
 
                 override fun onChildRemoved(snapshot: DataSnapshot) {
                     // 1 değişiklik
-                    //reset()
+                   // reset()
                 }
 
                 override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
@@ -116,7 +112,6 @@ class GameActivity : AppCompatActivity() {
                 }
             })
     }
-
     private fun visitorCountry() {
         FirebaseDatabase.getInstance().reference.child("visitorscountry").child(code)
             .addChildEventListener(object : ChildEventListener {
@@ -130,7 +125,7 @@ class GameActivity : AppCompatActivity() {
                 }
 
                 override fun onChildRemoved(snapshot: DataSnapshot) {
-                    failToast()
+
                 }
 
                 override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
@@ -212,6 +207,7 @@ class GameActivity : AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
+        finishAffinity()
     }
 
     private fun removeCode() {
@@ -359,7 +355,6 @@ class GameActivity : AppCompatActivity() {
             Toast.makeText(this, "You Lose 1. yanlış : alp 1 oldu", Toast.LENGTH_SHORT).show()
         }
     }
-
     fun list_guess2(view: View) {
         if (binding.guessCountryView.resultGuess.text == mySingleton.chosenCountry) {
             binding.guessCountryView.guessCountryView.visibility = View.GONE
@@ -371,7 +366,7 @@ class GameActivity : AppCompatActivity() {
                 reset()
                 goBack()
                 removeCode()
-                deleteGamersCountries()
+               // deleteGamersCountries()
             }, 4500)
         } else {
             //2.yanlış
@@ -380,11 +375,11 @@ class GameActivity : AppCompatActivity() {
             binding.guessCountryView.guessCountryView.visibility = View.GONE
             failToast()
             binding.loseViewOnline.loser.visibility = View.VISIBLE
+            reset()
+            removeCode()
+            deleteGamersCountries()
             Handler().postDelayed({
-                reset()
                 goBack()
-                removeCode()
-                deleteGamersCountries()
             }, 4500)
         }
     }

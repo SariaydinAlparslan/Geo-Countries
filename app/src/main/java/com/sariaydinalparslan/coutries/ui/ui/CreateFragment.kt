@@ -1,22 +1,15 @@
 package com.sariaydinalparslan.coutries.ui.ui
 
-import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.ContentProvider
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.res.ResourcesCompat
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.sariaydinalparslan.coutries.databinding.FragmentCreateBinding
 import com.sariaydinalparslan.coutries.ui.GameActivity
@@ -72,15 +65,14 @@ class CreateFragment() : Fragment() {
                         FirebaseDatabase.getInstance().reference.child("Room")
                             .child("AllPick")
                             .addValueEventListener(object : ValueEventListener {
-                                @SuppressLint("RestrictedApi")
                                 override fun onDataChange(snapshot: DataSnapshot) {
                                     var check = isValueAvaliable(snapshot, code)
                                     Handler().postDelayed({
                                         if (check == true){
                                         }else{
                                             //ap oyunda karşıya atış
-                                            FirebaseDatabase.getInstance().reference.child("hostcountry").child(code)
-                                                .push().setValue(mySingleton.chosenCountry)
+                                            /*FirebaseDatabase.getInstance().reference.child("hostcountry").child(code)
+                                                .push().setValue(mySingleton.chosenCountry)*/
                                             //Roomliste kayıt
                                             FirebaseDatabase.getInstance().reference.child("Room")
                                                 .child("AllPick")
@@ -149,7 +141,8 @@ class CreateFragment() : Fragment() {
     }
     private fun intent(){
         val intent = Intent(requireContext(), GameActivity::class.java)
-                startActivity(intent)
+        startActivity(intent)
+        requireActivity().finishAffinity()
     }
     private fun picktoast(){
         MotionToast.darkToast(
@@ -175,8 +168,8 @@ fun isValueAvaliable(snapshot : DataSnapshot,code:String):Boolean{
         var value = it.getValue().toString()
         if (value == code){
             keyValue = it.key.toString()
-            var alp = it.key.toString()
-            mySingleton.createRoomId = alp
+           /* var alp = it.key.toString()
+            mySingleton.createRoomId = alp*/
             return true
         }
     }

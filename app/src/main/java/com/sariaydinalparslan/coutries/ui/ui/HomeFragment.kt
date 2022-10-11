@@ -42,10 +42,6 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //roomsilme
-        FirebaseDatabase.getInstance().reference.child("Room").child("AllPick")
-                .child(mySingleton.createRoomId.toString()).removeValue()
-
         val random = (1..12).shuffled().last()
 
         Toast.makeText(requireContext(), random.toString(), Toast.LENGTH_SHORT).show()

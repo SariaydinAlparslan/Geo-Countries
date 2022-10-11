@@ -90,16 +90,17 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0" />
 
-
-
         <TextView
             android:id="@+id/guess"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
             android:text="Guess(2)"
             android:onClick="guess"
             android:visibility="visible"
+            android:background="@drawable/round_btn"
+            android:gravity="center"
             android:drawableTop="@drawable/think1"
+            android:textColor="@color/white"
             android:layout_marginRight="5dp"
             app:layout_constraintBottom_toBottomOf="@+id/worldismy"
             app:layout_constraintEnd_toEndOf="@+id/worldismy"
@@ -112,6 +113,8 @@
             android:onClick="guess2"
             android:visibility="gone"
             android:drawableTop="@drawable/think1"
+            android:background="@drawable/round_btn"
+            android:gravity="center"
             android:layout_marginRight="5dp"
             app:layout_constraintBottom_toBottomOf="@+id/worldismy"
             app:layout_constraintEnd_toEndOf="@+id/worldismy"
