@@ -17,6 +17,7 @@ import com.sariaydinalparslan.coutries.ui.*
 import com.sariaydinalparslan.coutries.ui.data.RoomData
 import com.sariaydinalparslan.coutries.ui.data.ApRoomId
 import com.sariaydinalparslan.coutries.ui.ui.*
+import com.sariaydinalparslan.coutries.ui.utils.isValueAvaliable
 import kotlinx.android.synthetic.main.reycler_row.view.*
 
 class PickAdapter(private val empList : ArrayList<RoomData>,

@@ -56,7 +56,7 @@
                 app:initial_position=".5"
                 app:size="small"
                 app:text_size="20sp"
-                app:start_text="0" />
+                app:start_text="1" />
 
         </LinearLayout>
 

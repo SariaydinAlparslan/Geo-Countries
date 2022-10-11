@@ -14,14 +14,17 @@
     <include
         layout="@layout/include_win"
         android:id="@+id/win_view"/>
+    <include
+        layout="@layout/include_country_tips_single"
+        android:id="@+id/country_tips_view"/>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/guess_country_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
+        android:visibility="visible"
         >
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -32,84 +35,78 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@drawable/list"/>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/result_guess"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Value"
-                    android:layout_marginRight="330dp"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-                <TextView
-                    android:id="@+id/btn_result_guess1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="50dp"
-                    android:onClick="list_guess"
-                    android:text="Guess"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-                <TextView
-                    android:id="@+id/btn_result_guess2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="50dp"
-                    android:onClick="list_guess2"
-                    android:visibility="gone"
-                    android:text="Guess"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-            </LinearLayout>
 
             <com.ramotion.fluidslider.FluidSlider
                 android:id="@+id/fluid_slider"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                app:bar_color="#E91E63"
+                app:bar_color="#3F57DA"
                 app:duration="195"
-                app:end_text="Max"
+                app:end_text="195"
                 app:initial_position=".5"
                 app:size="small"
                 app:text_size="20sp"
-                app:start_text="0" />
+                app:start_text="1" />
 
         </LinearLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+            <TextView
+                android:id="@+id/result_guess"
+                android:layout_width="104dp"
+                android:layout_height="75dp"
+                android:text="Value"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="32sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/btn_result_guess1"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="255dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/round_btn"
+                android:drawableTop="@drawable/think1"
+                android:gravity="center_horizontal"
+                android:onClick="list_guess"
+                android:text="Guess"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/btn_result_guess2"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="255dp"
+                android:onClick="list_guess2"
+                android:visibility="gone"
+                android:text="Guess"
+                android:textColor="@color/black"
+                android:drawableTop="@drawable/think1"
+                android:gravity="center_horizontal"
+                android:background="@drawable/round_btn"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
-        <TextView
-            android:id="@+id/txt_timer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:textSize="20sp"/>
-
-
-    </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="2"
         android:orientation="horizontal">
-
-
 
         <com.github.chrisbanes.photoview.PhotoView
             android:id="@+id/worldismy"
@@ -125,31 +122,38 @@
 
         <TextView
             android:id="@+id/guess"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Guess(2)"
-            android:onClick="guess"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="45dp"
             android:layout_marginRight="5dp"
-            app:layout_constraintBottom_toBottomOf="@+id/worldismy"
+            android:background="@drawable/round_btn"
+            android:drawableTop="@drawable/think1"
+            android:gravity="center_horizontal"
+            android:onClick="guess"
+            android:text="Guess(2)"
             app:layout_constraintEnd_toEndOf="@+id/worldismy"
             app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/guess2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Guess(1)"
-            android:onClick="guess2"
-            android:visibility="gone"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="45dp"
             android:layout_marginRight="5dp"
-            app:layout_constraintBottom_toBottomOf="@+id/worldismy"
+            android:background="@drawable/round_btn"
+            android:drawableTop="@drawable/think1"
+            android:gravity="center_horizontal"
+            android:onClick="guess2"
+            android:text="Guess(1)"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@+id/worldismy"
             app:layout_constraintTop_toTopOf="parent" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="bottom|center"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="@+id/worldismy">
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/button4"
@@ -158,9 +162,7 @@
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/q5"
                 android:onClick="clickfun"
-                android:text="Button"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/button3" />
+                android:text="Button" />
 
             <Button
                 android:id="@+id/button6"
@@ -169,11 +171,7 @@
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/q5"
                 android:onClick="clickfun"
-                android:text="Button"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/button5"
-                app:layout_constraintTop_toTopOf="@+id/button8"
-                app:layout_constraintVertical_bias="0.0" />
+                android:text="Button" />
 
 
             <Button
@@ -207,10 +205,22 @@
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/q5"
                 android:onClick="clickfun" />
-
+            <Button
+                android:id="@+id/button7"
+                android:layout_width="89dp"
+                android:layout_height="44dp"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/q5"
+                android:onClick="clickfun" />
+            <Button
+                android:id="@+id/button8"
+                android:layout_width="89dp"
+                android:layout_height="44dp"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/q5"
+                android:onClick="clickfun" />
 
         </LinearLayout>
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

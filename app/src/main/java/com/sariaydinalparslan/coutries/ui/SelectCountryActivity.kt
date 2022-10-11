@@ -25,6 +25,7 @@ class SelectCountryActivity : AppCompatActivity() {
             sharedPreferences!!.edit().putString("chosen",binding.txtCountryId.text.toString()).apply()
             val intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
+            finishAffinity()
         }
     }
     private fun setUpSlider() {

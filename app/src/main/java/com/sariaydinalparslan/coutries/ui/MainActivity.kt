@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.firebase.database.FirebaseDatabase
 import com.sariaydinalparslan.coutries.R
 import com.sariaydinalparslan.coutries.databinding.ActivityMainBinding
 import com.sariaydinalparslan.coutries.ui.ui.*
@@ -24,6 +25,8 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        code = ""
+        keyValue = ""
         replaceFragment(HomeFragment())
 
        binding.bottom.background =null

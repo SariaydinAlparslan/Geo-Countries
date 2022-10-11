@@ -42,9 +42,10 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val random = (1..12).shuffled().last()
 
-        Toast.makeText(requireContext(), random.toString(), Toast.LENGTH_SHORT).show()
+
+        //FirebaseDatabase.getInstance().reference.child("Room").child("AllPick")
+           // .child(keyValue).removeValue()
 
         val acct = GoogleSignIn.getLastSignedInAccount(requireActivity())
         if (acct != null) {

@@ -15,6 +15,7 @@ import com.sariaydinalparslan.coutries.databinding.FragmentCreateBinding
 import com.sariaydinalparslan.coutries.ui.GameActivity
 import com.sariaydinalparslan.coutries.ui.data.RoomData
 import com.sariaydinalparslan.coutries.ui.mySingleton
+import com.sariaydinalparslan.coutries.ui.utils.isValueAvaliable
 import kotlinx.android.synthetic.main.fragment_create.*
 import kotlinx.android.synthetic.main.include_pick_country.*
 import www.sanju.motiontoast.MotionToast
@@ -162,17 +163,5 @@ class CreateFragment() : Fragment() {
             ResourcesCompat.getFont(requireContext(), www.sanju.motiontoast.R.font.helvetica_regular))
     }
 }
-fun isValueAvaliable(snapshot : DataSnapshot,code:String):Boolean{
-    var data = snapshot.children
-    data.forEach{
-        var value = it.getValue().toString()
-        if (value == code){
-            keyValue = it.key.toString()
-           /* var alp = it.key.toString()
-            mySingleton.createRoomId = alp*/
-            return true
-        }
-    }
-    return false
-}
+
 

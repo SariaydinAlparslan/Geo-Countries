@@ -13,6 +13,10 @@ object mySingleton{
     var avatarId: String? = null
     //createfragment da firebasedeki room-allpick veriyi silmek için
     var createRoomId: String? = null
+    //singleplayer country kod
+    var singlePlayerCountryCode : String? = null
+    //singleplayer random ımage
+    var randomImageSingle : Int? = 0
 
 
 
