@@ -57,10 +57,11 @@ class CreateFragment() : Fragment() {
                 Toast.makeText(requireContext(), "Please Give a RoomName ", Toast.LENGTH_SHORT).show()
             }
             if (binding.radioOne.isChecked && binding.createRoomText.text.isNotEmpty()){
-                code = create_room_text.text.toString()
+                code = "null"
                 codeFound = false
                 checkTemp = true
                 keyValue = "null"
+                code = create_room_text.text.toString()
                 isCodeMaker = true
                 //allpick, game activity e geçiş
                         FirebaseDatabase.getInstance().reference.child("Room")
@@ -99,10 +100,11 @@ class CreateFragment() : Fragment() {
 
 
             }else if (binding.radioTwo.isChecked&& binding.createRoomText.text.isNotEmpty()){
-                code =binding.createRoomText.text.toString()
+                code = "null"
                 codeFound = false
                 checkTemp = true
                 keyValue = "null"
+                code =binding.createRoomText.text.toString()
                 isCodeMaker = true
                 FirebaseDatabase.getInstance().reference.child("Room")
                             .child("AllRandom")

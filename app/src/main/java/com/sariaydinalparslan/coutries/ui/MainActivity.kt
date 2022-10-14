@@ -25,8 +25,12 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        code = ""
-        keyValue = ""
+        code = "null"
+        codeFound = false
+        checkTemp = true
+        keyValue = "null"
+        // code = null.toString()
+        //  keyValue = null.toString()
         replaceFragment(HomeFragment())
 
        binding.bottom.background =null

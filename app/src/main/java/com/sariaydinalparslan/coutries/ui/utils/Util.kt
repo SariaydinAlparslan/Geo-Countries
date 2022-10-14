@@ -35,8 +35,6 @@ fun isValueAvaliable(snapshot : DataSnapshot, code:String):Boolean{
         var value = it.getValue().toString()
         if (value == code){
             keyValue = it.key.toString()
-            /* var alp = it.key.toString()
-             mySingleton.createRoomId = alp*/
             return true
         }
     }

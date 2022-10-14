@@ -33,6 +33,8 @@ class PickAdapter(private val empList : ArrayList<RoomData>,
         checkTemp = true
         keyValue = "null"
         isCodeMaker = false
+        // son ekleme
+        // code = "null"
         return LandmarkHolder(itemView)
     }
     override fun onBindViewHolder(holder: LandmarkHolder, position: Int) {

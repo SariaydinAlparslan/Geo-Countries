@@ -25,6 +25,7 @@ import kotlinx.android.synthetic.main.include_waiting_player.*
 import kotlinx.android.synthetic.main.reycler_row.*
 import www.sanju.motiontoast.MotionToast
 import www.sanju.motiontoast.MotionToastStyle
+import kotlin.system.exitProcess
 
 var isMyMove = isCodeMaker
 var playerTurn = true
@@ -61,6 +62,7 @@ class GameActivity : AppCompatActivity() {
         hostCountry()
         visitorCountry()
         data()
+        someoneQuitReady()
     }
     override fun onBackPressed() {
         //2.kaybetme yolu
@@ -68,16 +70,53 @@ class GameActivity : AppCompatActivity() {
         alert.setTitle("Are You Quit The Match")
         alert.setMessage("If you quit match is over and score update,Are You Sure")
         alert.setPositiveButton("yes") { dialog, which ->
-            goBack()
+
+            someoneQuit()
             failToast()
-            reset()
-            removeCode()
-            deleteGamersCountries()
+            // removeCode()
+            goBack()
+            Handler().postDelayed({
+                reset()
+                //removeCode()
+                deleteGamersCountries()
+            }, 2000)
         }
         alert.setNegativeButton("No") { dialog, which ->
             Toast.makeText(applicationContext, "DevamKe", Toast.LENGTH_SHORT).show()
         }
         alert.show()
+    }
+    private fun someoneQuit(){
+        FirebaseDatabase.getInstance().reference.child("someonequit").child(code)
+            .push().setValue("someonequit")
+    }
+
+    private fun someoneQuitReady(){
+        FirebaseDatabase.getInstance().reference.child("someonequit").child(code)
+            .addChildEventListener(object : ChildEventListener {
+                override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                    reset()
+                    goBack()
+
+                }
+
+                override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onChildRemoved(snapshot: DataSnapshot) {
+
+                }
+
+                override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
     }
 
     private fun data() {
@@ -99,8 +138,8 @@ class GameActivity : AppCompatActivity() {
                 }
 
                 override fun onChildRemoved(snapshot: DataSnapshot) {
-                    // 1 değişiklik
-                   // reset()
+                    reset()
+
                 }
 
                 override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
@@ -212,7 +251,7 @@ class GameActivity : AppCompatActivity() {
 
     private fun removeCode() {
         if (isCodeMaker) {
-            FirebaseDatabase.getInstance().reference.child("codes")
+            FirebaseDatabase.getInstance().reference.child("Room").child("AllPick")
                 .child(keyValue).removeValue()
         }
     }
