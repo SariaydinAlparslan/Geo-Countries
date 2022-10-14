@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.firebase.database.*
 import com.sariaydinalparslan.coutries.R
 import com.sariaydinalparslan.coutries.databinding.ActivityGameBinding
@@ -35,8 +36,8 @@ class GameActivity : AppCompatActivity() {
     var player1 = ArrayList<Int>()
     var emptyCells = ArrayList<Int>()
     var activeUser = 1
-    val max = 100
-    val min = 0
+    val max = 159
+    val min = 1
     val total: Int = max - min
     private lateinit var timer: CountDownTimer
     private lateinit var binding: ActivityGameBinding
@@ -45,6 +46,9 @@ class GameActivity : AppCompatActivity() {
         binding = ActivityGameBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        val number = (9..10).shuffled().last()
+        mySingleton.randomImageSingle = number
 
         timer = object : CountDownTimer(140000, 1000) {
             override fun onTick(p0: Long) {
@@ -57,12 +61,17 @@ class GameActivity : AppCompatActivity() {
                 finishAffinity()
             }
         }
-        //bunu onchild change e koy   timer.start()
+        //bunu onchild change e koy
+        // timer.start()
         setUpSlider()
+        visitorName()
+        hostName()
         hostCountry()
         visitorCountry()
         data()
         someoneQuitReady()
+        someoneWinReady()
+        wrongGuessReady()
     }
     override fun onBackPressed() {
         //2.kaybetme yolu
@@ -73,31 +82,79 @@ class GameActivity : AppCompatActivity() {
 
             someoneQuit()
             failToast()
-            // removeCode()
             goBack()
-            Handler().postDelayed({
-                reset()
-                //removeCode()
-                deleteGamersCountries()
-            }, 2000)
+            reset()
+            deleteGamersCountries()
+
         }
         alert.setNegativeButton("No") { dialog, which ->
-            Toast.makeText(applicationContext, "DevamKe", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, "continues", Toast.LENGTH_SHORT).show()
         }
         alert.show()
     }
-    private fun someoneQuit(){
-        FirebaseDatabase.getInstance().reference.child("someonequit").child(code)
-            .push().setValue("someonequit")
-    }
 
-    private fun someoneQuitReady(){
-        FirebaseDatabase.getInstance().reference.child("someonequit").child(code)
+    private fun data() {
+        FirebaseDatabase.getInstance().reference.child("data").child(code)
             .addChildEventListener(object : ChildEventListener {
                 override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                    reset()
-                    goBack()
+                    var data = snapshot.value
+                    if (isMyMove == true) {
+                        isMyMove = false
+                        moveOnline(data.toString(), isMyMove)
+                    } else {
+                        isMyMove = true
+                        moveOnline(data.toString(), isMyMove)
+                    }
+                }
+                override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+                    TODO("Not yet implemented")
+                }
 
+                override fun onChildRemoved(snapshot: DataSnapshot) {
+                    reset()
+
+                }
+
+                override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+            })
+    }
+    private fun hostName() {
+        FirebaseDatabase.getInstance().reference.child("hostname").child(code)
+            .addChildEventListener(object : ChildEventListener {
+                override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                    mySingleton.multiHostPlayerName = snapshot.value.toString()
+                    binding.countryTips.hostname.text = mySingleton.multiHostPlayerName
+                }
+
+                override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onChildRemoved(snapshot: DataSnapshot) {
+
+                }
+
+                override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+    }
+    private fun hostCountry() {
+        FirebaseDatabase.getInstance().reference.child("hostcountry").child(code)
+            .addChildEventListener(object : ChildEventListener {
+                override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                    mySingleton.readyhostCountry = snapshot.value.toString()
                 }
 
                 override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
@@ -119,18 +176,12 @@ class GameActivity : AppCompatActivity() {
             })
     }
 
-    private fun data() {
-        FirebaseDatabase.getInstance().reference.child("data").child(code)
+    private fun visitorName() {
+        FirebaseDatabase.getInstance().reference.child("visitorname").child(code)
             .addChildEventListener(object : ChildEventListener {
                 override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                    var data = snapshot.value
-                    if (isMyMove == true) {
-                        isMyMove = false
-                        moveOnline(data.toString(), isMyMove)
-                    } else {
-                        isMyMove = true
-                        moveOnline(data.toString(), isMyMove)
-                    }
+                    mySingleton.multiVisitorPlayerName = snapshot.value.toString()
+                    binding.countryTips.visitornameText.text = mySingleton.multiVisitorPlayerName
                 }
 
                 override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
@@ -138,7 +189,6 @@ class GameActivity : AppCompatActivity() {
                 }
 
                 override fun onChildRemoved(snapshot: DataSnapshot) {
-                    reset()
 
                 }
 
@@ -149,6 +199,7 @@ class GameActivity : AppCompatActivity() {
                 override fun onCancelled(error: DatabaseError) {
                     TODO("Not yet implemented")
                 }
+
             })
     }
     private fun visitorCountry() {
@@ -177,33 +228,6 @@ class GameActivity : AppCompatActivity() {
 
             })
     }
-
-    private fun hostCountry() {
-        FirebaseDatabase.getInstance().reference.child("hostcountry").child(code)
-            .addChildEventListener(object : ChildEventListener {
-                override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                    mySingleton.readyhostCountry = snapshot.value.toString()
-                }
-
-                override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-                    TODO("Not yet implemented")
-                }
-
-                override fun onChildRemoved(snapshot: DataSnapshot) {
-
-                }
-
-                override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
-                    TODO("Not yet implemented")
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
-
-            })
-    }
-
     private fun setUpSlider() {
         fluid_slider.positionListener = { pos ->
             fluid_slider.bubbleText = "${min + (total * pos).toInt()}";
@@ -241,11 +265,15 @@ class GameActivity : AppCompatActivity() {
             }
         }
     }
-
+    fun deleteGamersCountries() {
+        FirebaseDatabase.getInstance().reference.child("visitorscountry").child(code)
+            .removeValue()
+        FirebaseDatabase.getInstance().reference.child("hostcountry").child(code)
+            .removeValue()
+    }
     private fun goBack() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
-        finish()
         finishAffinity()
     }
 
@@ -255,7 +283,6 @@ class GameActivity : AppCompatActivity() {
                 .child(keyValue).removeValue()
         }
     }
-
     fun updateDatabase(cellId: Int) {
         FirebaseDatabase.getInstance().reference.child("data").child(code)
             .push().setValue(cellId)
@@ -263,13 +290,11 @@ class GameActivity : AppCompatActivity() {
 
     // buttona basan kiside görünen
     fun playNow(buttonSelected: Button, currCell: Int) {
-        val random = (1..10).shuffled().last()
         binding.countryTips.countrytips.visibility = View.VISIBLE
-            FirebaseDatabase.getInstance().reference.child("images").child("1")
-                .child(random.toString()).get().addOnSuccessListener {
+            FirebaseDatabase.getInstance().reference.child("images").child(mySingleton.readyVisitorCountry.toString())
+                .child(mySingleton.randomImageSingle.toString()).get().addOnSuccessListener {
                     binding.countryTips.tips1.downloadfromUrl(it.value.toString(), placeholderProgressBar(this))
                 }
-            binding.countryTips.tips1Text.text = random.toString()
             buttonSelected.setBackgroundColor(ContextCompat.getColor(this, R.color.black))
             Handler().postDelayed({
                 binding.countryTips.countrytips.visibility = View.GONE
@@ -278,12 +303,11 @@ class GameActivity : AppCompatActivity() {
                 emptyCells.add(currCell)
                 buttonSelected.isEnabled = false
             }, 6000)
-        //
-        FirebaseDatabase.getInstance().reference.child("images").child("2")
-            .child("3").get().addOnSuccessListener {
+
+        FirebaseDatabase.getInstance().reference.child("images").child(mySingleton.readyhostCountry.toString())
+            .child(mySingleton.randomImageSingle.toString()).get().addOnSuccessListener {
                 binding.countryTips.tips2.downloadfromUrl(it.value.toString(), placeholderProgressBar(this))
             }
-        binding.countryTips.tips2Text.text = random.toString()
         buttonSelected.setBackgroundColor(ContextCompat.getColor(this, R.color.black))
         Handler().postDelayed({
             binding.countryTips.countrytips.visibility = View.GONE
@@ -292,10 +316,10 @@ class GameActivity : AppCompatActivity() {
             emptyCells.add(currCell)
             buttonSelected.isEnabled = false
         }, 6000)
+        mySingleton.randomImageSingle = mySingleton.randomImageSingle!!-1
     }
     // buttona basan kisi değilde visitorda görünen
     fun moveOnline(data: String, move: Boolean) {
-        val random = (1..10).shuffled().last()
         if (move) {
             var buttonSelected: Button?
             buttonSelected = when (data.toInt()) {
@@ -310,11 +334,10 @@ class GameActivity : AppCompatActivity() {
                 }
             }
             binding.countryTips.countrytips.visibility = View.VISIBLE
-            FirebaseDatabase.getInstance().reference.child("images").child("1")
-                .child(random.toString()).get().addOnSuccessListener {
+            FirebaseDatabase.getInstance().reference.child("images").child(mySingleton.readyVisitorCountry.toString())
+                .child(mySingleton.randomImageSingle.toString()).get().addOnSuccessListener {
                     binding.countryTips.tips1.downloadfromUrl(it.value.toString(), placeholderProgressBar(this))
                 }
-            binding.countryTips.tips1Text.text = random.toString()
             buttonSelected.setBackgroundColor(ContextCompat.getColor(this, R.color.black))
             Handler().postDelayed({
                 binding.countryTips.countrytips.visibility = View.GONE
@@ -323,11 +346,10 @@ class GameActivity : AppCompatActivity() {
                 buttonSelected.isEnabled = false
             }, 6000)
             //
-            FirebaseDatabase.getInstance().reference.child("images").child("2")
-                .child("3").get().addOnSuccessListener {
+            FirebaseDatabase.getInstance().reference.child("images").child(mySingleton.readyhostCountry.toString())
+                .child(mySingleton.randomImageSingle.toString()).get().addOnSuccessListener {
                     binding.countryTips.tips2.downloadfromUrl(it.value.toString(), placeholderProgressBar(this))
                 }
-            binding.countryTips.tips2Text.text = random.toString()
             buttonSelected.setBackgroundColor(ContextCompat.getColor(this, R.color.black))
             Handler().postDelayed({
                 binding.countryTips.countrytips.visibility = View.GONE
@@ -378,59 +400,120 @@ class GameActivity : AppCompatActivity() {
         if (binding.guessCountryView.resultGuess.text == mySingleton.chosenCountry) {
             binding.guessCountryView.guessCountryView.visibility = View.GONE
             //1. kazanma yolu
-            //firebase e cevap gidecek on child change olunca diğer rakip you lose olacak
             binding.winViewOnline.winner.visibility = View.VISIBLE
             winToast()
             Handler().postDelayed({
                 reset()
                 goBack()
-                removeCode()
                 deleteGamersCountries()
             }, 4500)
+            someoneWin()
         } else {
-            //1.yanlış
             binding.guessCountryView.guessCountryView.visibility = View.GONE
             binding.guessCountryView.btnResultGuess1.visibility = View.GONE
-            Toast.makeText(this, "You Lose 1. yanlış : alp 1 oldu", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "You Have Last Chance", Toast.LENGTH_SHORT).show()
         }
     }
     fun list_guess2(view: View) {
         if (binding.guessCountryView.resultGuess.text == mySingleton.chosenCountry) {
             binding.guessCountryView.guessCountryView.visibility = View.GONE
             //2. kazanma yolu
-            //firebase e cevap gidecek on child change olunca diğer rakip you lose olacak
             binding.winViewOnline.winner.visibility = View.VISIBLE
             winToast()
             Handler().postDelayed({
                 reset()
                 goBack()
-                removeCode()
-               // deleteGamersCountries()
+               deleteGamersCountries()
             }, 4500)
+            someoneWin()
         } else {
-            //2.yanlış
-            //1.kaybetme yolu
-            //firebase e cevap gidecek on child change olunca diğer rakip you win olacak
             binding.guessCountryView.guessCountryView.visibility = View.GONE
             failToast()
             binding.loseViewOnline.loser.visibility = View.VISIBLE
             reset()
-            removeCode()
             deleteGamersCountries()
             Handler().postDelayed({
                 goBack()
             }, 4500)
+            wrongGuess()
         }
     }
 
-    fun deleteGamersCountries() {
-        FirebaseDatabase.getInstance().reference.child("visitorscountry").child(code)
-            .removeValue()
-        FirebaseDatabase.getInstance().reference.child("hostcountry").child(code)
-            .removeValue()
+    private fun someoneQuit(){
+        FirebaseDatabase.getInstance().reference.child("someonequit").child(code)
+            .push().setValue("someonequit")
     }
-
-    //hatalı kod u fail olunca main activity dönmüyor
+    private fun someoneQuitReady(){
+        FirebaseDatabase.getInstance().reference.child("someonequit").child(code)
+            .addChildEventListener(object : ChildEventListener {
+                override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                    quitToast()
+                    reset()
+                    goBack()
+                }
+                override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+                    TODO("Not yet implemented")
+                }
+                override fun onChildRemoved(snapshot: DataSnapshot) {
+                }
+                override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+                    TODO("Not yet implemented")
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+            })
+    }
+    private fun someoneWin(){
+        FirebaseDatabase.getInstance().reference.child("someonewin").child(code)
+            .push().setValue("someonewin")
+    }
+    private fun someoneWinReady(){
+        FirebaseDatabase.getInstance().reference.child("someonewin").child(code)
+            .addChildEventListener(object : ChildEventListener {
+                override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                    loseToast()
+                    reset()
+                    goBack()
+                }
+                override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+                    TODO("Not yet implemented")
+                }
+                override fun onChildRemoved(snapshot: DataSnapshot) {
+                }
+                override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+                    TODO("Not yet implemented")
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+            })
+    }
+    private fun wrongGuess(){
+        FirebaseDatabase.getInstance().reference.child("wrongguess").child(code)
+            .push().setValue("wrongguess")
+    }
+    private fun wrongGuessReady(){
+        FirebaseDatabase.getInstance().reference.child("wrongguess").child(code)
+            .addChildEventListener(object : ChildEventListener {
+                override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                    failguessToast()
+                    reset()
+                    goBack()
+                }
+                override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+                    TODO("Not yet implemented")
+                }
+                override fun onChildRemoved(snapshot: DataSnapshot) {
+                }
+                override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+                    TODO("Not yet implemented")
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+            })
+    }
 
     private fun winToast(){
         MotionToast.darkToast(
@@ -442,8 +525,32 @@ class GameActivity : AppCompatActivity() {
     }
     private fun failToast(){
         MotionToast.darkToast(
-            this, "U FAİL","" ,
+            this, "U FAİL","YOU GUESS WRONG COUNTRY" ,
             MotionToastStyle.ERROR,
+            MotionToast.GRAVITY_BOTTOM,
+            MotionToast.LONG_DURATION,
+            ResourcesCompat.getFont(this, www.sanju.motiontoast.R.font.helvetica_regular))
+    }
+    private fun loseToast(){
+        MotionToast.darkToast(
+            this, "U FAİL","OPPONENT HAS BEEN WİN" ,
+            MotionToastStyle.ERROR,
+            MotionToast.GRAVITY_BOTTOM,
+            MotionToast.LONG_DURATION,
+            ResourcesCompat.getFont(this, www.sanju.motiontoast.R.font.helvetica_regular))
+    }
+    private fun quitToast(){
+        MotionToast.darkToast(
+            this, "U WİN","OPPONENT HAS BEEN QUIT" ,
+            MotionToastStyle.INFO,
+            MotionToast.GRAVITY_BOTTOM,
+            MotionToast.LONG_DURATION,
+            ResourcesCompat.getFont(this, www.sanju.motiontoast.R.font.helvetica_regular))
+    }
+    private fun failguessToast(){
+        MotionToast.darkToast(
+            this, "U WİN","OPPONENT CHOOSE WRONG GUESS" ,
+            MotionToastStyle.INFO,
             MotionToast.GRAVITY_BOTTOM,
             MotionToast.LONG_DURATION,
             ResourcesCompat.getFont(this, www.sanju.motiontoast.R.font.helvetica_regular))

@@ -102,7 +102,7 @@ class SinglePlayerActivity : AppCompatActivity() {
     private fun goBack() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
-        finish()
+        finishAffinity()
     }
     fun playNow(buttonSelected: Button, currCell: Int) {
         val random =  mySingleton.randomImageSingle

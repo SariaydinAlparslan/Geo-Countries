@@ -47,6 +47,9 @@ class CreateFragment() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val randomCountry = (1..159).shuffled().last()
+        mySingleton.multiPlayerCountryCode= randomCountry.toString()
+
         binding.radioOne.text = "All Pick  " +
                 "(Your Country : ${mySingleton.chosenCountry})"
 
@@ -72,10 +75,6 @@ class CreateFragment() : Fragment() {
                                     Handler().postDelayed({
                                         if (check == true){
                                         }else{
-                                            //ap oyunda karşıya atış
-                                            /*FirebaseDatabase.getInstance().reference.child("hostcountry").child(code)
-                                                .push().setValue(mySingleton.chosenCountry)*/
-                                            //Roomliste kayıt
                                             FirebaseDatabase.getInstance().reference.child("Room")
                                                 .child("AllPick")
                                                 .push()
@@ -84,6 +83,12 @@ class CreateFragment() : Fragment() {
                                                     val gamedata=db.getReference("RoomList").child("AllPick")
                                                     val newroom = RoomData(code,mySingleton.hostName)
                                                     gamedata.push().setValue(newroom)
+                                                    //hostname gönderme
+                                                    FirebaseDatabase.getInstance().reference.child("hostname").child(code)
+                                                        .push().setValue(mySingleton.hostName)
+                                                    //hostcountry gönderme
+                                                    FirebaseDatabase.getInstance().reference.child("hostcountry").child(code)
+                                                        .push().setValue(mySingleton.chosenCountry)
                                                 }
                                             isValueAvaliable(snapshot,code)
                                            checkTemp = false
@@ -122,6 +127,12 @@ class CreateFragment() : Fragment() {
                                                     val gamedata=db.getReference("RoomList").child("AllRandom")
                                                     val newroom = RoomData(code,mySingleton.hostName)
                                                     gamedata.push().setValue(newroom)
+
+                                                    FirebaseDatabase.getInstance().reference.child("hostname").child(code)
+                                                        .push().setValue(mySingleton.hostName)
+                                                    //hostcountry gönderme
+                                                    FirebaseDatabase.getInstance().reference.child("hostcountry").child(code)
+                                                        .push().setValue(mySingleton.multiPlayerCountryCode)
                                                 }
                                             isValueAvaliable(snapshot, code)
                                             checkTemp = false
@@ -150,7 +161,7 @@ class CreateFragment() : Fragment() {
     private fun picktoast(){
         MotionToast.darkToast(
             requireContext() as Activity, "U Create The Pick Room","Room Name : ${code}" +
-                    "Your Country :  ${mySingleton.chosenCountry}",
+                      "Your Country :  ${mySingleton.chosenCountry}",
             MotionToastStyle.SUCCESS,
             MotionToast.GRAVITY_CENTER,
             MotionToast.LONG_DURATION,

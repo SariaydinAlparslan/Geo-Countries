@@ -14,25 +14,38 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/visitorname_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Kullanıcı Adı Country"
             android:layout_gravity="center"
+            android:layout_marginTop="5dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="25dp"
-            >
-        </TextView>
+            android:textSize="25dp"></TextView>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            />
+
         <TextView
+            android:id="@+id/hostname"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Kullanıcı Adı Country"
             android:layout_gravity="center"
+            android:layout_marginTop="5dp"
             android:gravity="center"
             android:textSize="25dp"
             >
         </TextView>
+
+        <ImageView
+            android:id="@+id/game_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            />
 
 
 
@@ -46,25 +59,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:layout_marginLeft="5dp"
                 android:layout_marginBottom="10dp"
                 android:orientation="vertical">
-
                 <ImageView
                     android:id="@+id/tips1"
                     android:layout_width="match_parent"
                     android:layout_weight="1"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp"
                     android:layout_height="match_parent"/>
-                <TextView
-                    android:id="@+id/tips1_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="10"
-                    android:text="hellowolrd"
-                    android:textColor="@color/black"
-                    android:gravity="center"
-                    >
 
-                </TextView>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -78,19 +83,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp"
                     android:visibility="visible" />
 
-                <TextView
-                    android:id="@+id/tips2_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="9"
-                    android:text="hellowolrd"
-                    android:textColor="@color/black"
-                    android:gravity="center"
-                    >
 
-                </TextView>
             </LinearLayout>
 
 

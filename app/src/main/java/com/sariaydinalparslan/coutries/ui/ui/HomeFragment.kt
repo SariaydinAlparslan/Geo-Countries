@@ -65,13 +65,11 @@ class HomeFragment : Fragment() {
 
         binding.homeChosenCountry.text = "Your Country : ${mySingleton.chosenCountry}"
 
-
         val resourceID = getResources().getIdentifier(
             "${mySingleton.avatarId}",
             "drawable",
             this.requireContext().packageName
         )
-        Log.e("alp", resourceID.toString())
         binding.avatarView.setImageResource(resourceID)
 
         binding.selectCountry.setOnClickListener {

@@ -38,15 +38,14 @@ class PickAdapter(private val empList : ArrayList<RoomData>,
         return LandmarkHolder(itemView)
     }
     override fun onBindViewHolder(holder: LandmarkHolder, position: Int) {
-
         val current=empList[position]
         val list = apRoomIdList[position]
-        //Log.e("alp",alpi.toString())
-        Log.e("alp",current.toString())
+
         holder.itemView.nickname.text = current.roomName
         holder.itemView.roomname.text= current.userId
         code = current.roomName.toString()
         holder.itemView.setOnClickListener {
+
          FirebaseDatabase.getInstance().reference.child("Room").child("AllPick")
              .addValueEventListener(object : ValueEventListener {
                  override fun onDataChange(snapshot: DataSnapshot) {
@@ -66,6 +65,9 @@ class PickAdapter(private val empList : ArrayList<RoomData>,
             //ap taki ülkeyi oyun acitivitye geçiş ve ready ayarlama
             FirebaseDatabase.getInstance().reference.child("visitorscountry").child(code)
                 .push().setValue(mySingleton.chosenCountry)
+            //oyuncu name i ayarlama
+            FirebaseDatabase.getInstance().reference.child("visitorname").child(code)
+                .push().setValue(mySingleton.hostName)
             //RoomList delete
             FirebaseDatabase.getInstance().reference
                 .child("RoomList")

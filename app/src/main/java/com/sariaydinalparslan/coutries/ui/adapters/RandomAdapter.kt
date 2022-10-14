@@ -27,6 +27,7 @@ class RandomAdapter(private val empList : ArrayList<RoomData>
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LandmarkHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.reycler_row,parent,false)
+
         codeFound = false
         checkTemp = true
         keyValue = "null"
@@ -41,11 +42,8 @@ class RandomAdapter(private val empList : ArrayList<RoomData>
         holder.itemView.roomname.text= current.roomName
         code = current.roomName.toString()
         holder.itemView.setOnClickListener {
-            //RoomList delete
-            FirebaseDatabase.getInstance().reference
-                .child("RoomList")
-                .child("AllRandom")
-                .child(list.arRoomId.toString()).removeValue()
+            val randomCountry = (1..159).shuffled().last()
+            mySingleton.multiPlayerCountryCode= randomCountry.toString()
 
             FirebaseDatabase.getInstance().reference.child("Room").child("AllRandom")
                 .addValueEventListener(object : ValueEventListener {
@@ -65,6 +63,17 @@ class RandomAdapter(private val empList : ArrayList<RoomData>
                         TODO("Not yet implemented")
                     }
                 })
+            //ar taki ülkeyi oyun acitivitye geçiş ve ready ayarlama
+            FirebaseDatabase.getInstance().reference.child("visitorscountry").child(code)
+                .push().setValue(mySingleton.multiPlayerCountryCode)
+            //oyuncu name i ayarlama
+            FirebaseDatabase.getInstance().reference.child("visitorname").child(code)
+                .push().setValue(mySingleton.hostName)
+            //RoomList delete
+            FirebaseDatabase.getInstance().reference
+                .child("RoomList")
+                .child("AllRandom")
+                .child(list.arRoomId.toString()).removeValue()
         }
     }
     override fun getItemCount(): Int {
