@@ -1,5 +1,6 @@
 package com.sariaydinalparslan.coutries.ui.ui
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -11,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import com.google.firebase.database.*
+import com.sariaydinalparslan.coutries.R
 import com.sariaydinalparslan.coutries.databinding.FragmentCreateBinding
 import com.sariaydinalparslan.coutries.ui.GameActivity
 import com.sariaydinalparslan.coutries.ui.data.RoomData
@@ -27,9 +29,6 @@ var codeFound = false
 var checkTemp = true
 var keyValue : String = "null"
 class CreateFragment() : Fragment() {
-    val max = 100
-    val min = 0
-    val total : Int = max - min
     private var _binding: FragmentCreateBinding? = null
     private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,20 +43,21 @@ class CreateFragment() : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val randomCountry = (1..159).shuffled().last()
         mySingleton.multiPlayerCountryCode= randomCountry.toString()
 
-        binding.radioOne.text = "All Pick  " +
-                "(Your Country : ${mySingleton.chosenCountry})"
+        binding.radioOne.text = getString(R.string.all_pick) +
+                "("+ getString(R.string.chosen_country)  +  " : ${mySingleton.chosenCountry})"
 
         btn_create.setOnClickListener {
             val db = FirebaseDatabase.getInstance()
 
             if (binding.createRoomText.text.isEmpty()){
-                Toast.makeText(requireContext(), "Please Give a RoomName ", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.give_roomname), Toast.LENGTH_SHORT).show()
             }
             if (binding.radioOne.isChecked && binding.createRoomText.text.isNotEmpty()){
                 code = "null"
@@ -160,8 +160,8 @@ class CreateFragment() : Fragment() {
     }
     private fun picktoast(){
         MotionToast.darkToast(
-            requireContext() as Activity, "U Create The Pick Room","Room Name : ${code}" +
-                      "Your Country :  ${mySingleton.chosenCountry}",
+            requireContext() as Activity, getString(R.string.create_room1), getString(R.string.room_name)+ ": ${code}" +
+                    getString(R.string.chosen_country) +":  ${mySingleton.chosenCountry}",
             MotionToastStyle.SUCCESS,
             MotionToast.GRAVITY_CENTER,
             MotionToast.LONG_DURATION,
@@ -169,7 +169,7 @@ class CreateFragment() : Fragment() {
     }
     private fun randomtoast(){
         MotionToast.darkToast(
-            requireContext() as Activity, "U Create The Room","Your Country Will Be Randomly Given ",
+            requireContext() as Activity, "U Create The Random Room",getString(R.string.random_room_message),
             MotionToastStyle.SUCCESS,
             MotionToast.GRAVITY_CENTER,
             MotionToast.LONG_DURATION,

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">بلدان</string>
+    <string name="alp">868207297026-hsq5p77o34to2tg95pgibk2b7uvrh672.apps.googleusercontent.com</string>
+    40553394226-nji7dqcrn50dke8inni175qpq29opac5.apps.googleusercontent.com
+    <string name="start">بداية</string>
+    <string name="account_created">تم إنشاء الحساب</string>
+    <string name="checknet">يرجى التحقق من الإنترنت</string>
+    <string name="next">التالي</string>
+    <string name="finish">إنهاء</string>
+    <string name="firstscreen">تلعب دول واحدة وتخمين</string>
+    <string name="secondscreen1">العب على الإنترنت أو أنشئ غرفة جديدة أو انضم إلى أي غرفة</string>
+    <string name="secondscreen2">اختر الدولة أو اختر عشوائيًا حاول تخمين بلد الخصم</string>
+    <string name="thirdscreen">ابحث عن دول التلميحات والتخمين</string>
+    <string name="select_country">حدد الدولة</string>
+    <string name="chosen_country">بلدك</string>
+    <string name="home">مسكن</string>
+    <string name="singleplayer">لاعب واحد</string>
+    <string name="gamelist">قائمة الألعاب</string>
+    <string name="settings">إعدادات</string>
+    <string name="room_name">اسم الغرفة</string>
+    <string name="all_random">كله عشوائي</string>
+    <string name="all_pick">كل اختيار</string>
+    <string name="create">خلق</string>
+    <string name="give_roomname">يرجى إعطاء اسم الغرفة</string>
+    <string name="create_room1">تقوم بإنشاء غرفة الاختيار</string>
+    <string name="create_room2">أنت تنشئ الغرفة العشوائية</string>
+    <string name="random_room_message">سيتم منح بلدك بشكل عشوائي</string>
+    <string name="pick">قطف او يقطف</string>
+    <string name="list">قائمة</string>
+    <string name="random">عشوائي</string>
+    <string name="join">انضم</string>
+    <string name="change_avatar">تغيير الصورة الرمزية</string>
+    <string name="share">يشارك</string>
+    <string name="rate_us">قيمنا</string>
+    <string name="guess">خمن</string>
+    <string name="alertdialog">هل خرجت من المباراة</string>
+    <string name="alertdialog2">إذا كنت قد انتهت المباراة ، هل أنت متأكد</string>
+    <string name="yes">نعم</string>
+    <string name="no">رقم</string>
+    <string name="lastchance">آخر فرصة</string>
+    <string name="correct">تخمينك صحيح</string>
+    <string name="wrong">بلدك الخاطئ في تخمين</string>
+    <string name="opponent1">تم الفوز بالخصم</string>
+    <string name="opponent2">تم استقالة الخصم</string>
+    <string name="opponent3">اختار الخصم التخمين الخاطئ</string>
+    <string name="fail">أنت تفشل</string>
+    <string name="lose">أنت تخسر</string>
+    <string name="win">فزت</string>
+    <string name="draw">أنت ترسم</string>
+
+</resources>

@@ -55,7 +55,7 @@ class GameActivity : AppCompatActivity() {
                 binding.txtTimer.text = " ${p0 / 1000}"
             }
             override fun onFinish() {
-                Toast.makeText(this@GameActivity, "U Draw", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@GameActivity, getString(R.string.draw), Toast.LENGTH_SHORT).show()
                 val intent = Intent(this@GameActivity, MainActivity::class.java)
                 startActivity(intent)
                 finishAffinity()
@@ -76,20 +76,17 @@ class GameActivity : AppCompatActivity() {
     override fun onBackPressed() {
         //2.kaybetme yolu
         val alert = AlertDialog.Builder(this)
-        alert.setTitle("Are You Quit The Match")
-        alert.setMessage("If you quit match is over and score update,Are You Sure")
-        alert.setPositiveButton("yes") { dialog, which ->
-
+        alert.setTitle(getString(R.string.alertdialog))
+        alert.setMessage(getString(R.string.alertdialog2))
+        alert.setPositiveButton(getString(R.string.yes)) { dialog, which ->
             someoneQuit()
             failToast()
             goBack()
             reset()
             deleteGamersCountries()
-
         }
-        alert.setNegativeButton("No") { dialog, which ->
-            Toast.makeText(applicationContext, "continues", Toast.LENGTH_SHORT).show()
-        }
+        alert.setNegativeButton(getString(R.string.no)) { dialog, which ->
+              }
         alert.show()
     }
 
@@ -411,7 +408,7 @@ class GameActivity : AppCompatActivity() {
         } else {
             binding.guessCountryView.guessCountryView.visibility = View.GONE
             binding.guessCountryView.btnResultGuess1.visibility = View.GONE
-            Toast.makeText(this, "You Have Last Chance", Toast.LENGTH_SHORT).show()
+            lastchance()
         }
     }
     fun list_guess2(view: View) {
@@ -517,7 +514,7 @@ class GameActivity : AppCompatActivity() {
 
     private fun winToast(){
         MotionToast.darkToast(
-            this, "U WİN","" ,
+            this, getString(R.string.win),getString(R.string.correct) ,
             MotionToastStyle.SUCCESS,
             MotionToast.GRAVITY_BOTTOM,
             MotionToast.LONG_DURATION,
@@ -525,7 +522,7 @@ class GameActivity : AppCompatActivity() {
     }
     private fun failToast(){
         MotionToast.darkToast(
-            this, "U FAİL","YOU GUESS WRONG COUNTRY" ,
+            this, getString(R.string.fail),getString(R.string.wrong) ,
             MotionToastStyle.ERROR,
             MotionToast.GRAVITY_BOTTOM,
             MotionToast.LONG_DURATION,
@@ -533,7 +530,7 @@ class GameActivity : AppCompatActivity() {
     }
     private fun loseToast(){
         MotionToast.darkToast(
-            this, "U FAİL","OPPONENT HAS BEEN WİN" ,
+            this, getString(R.string.lose),getString(R.string.opponent1),
             MotionToastStyle.ERROR,
             MotionToast.GRAVITY_BOTTOM,
             MotionToast.LONG_DURATION,
@@ -541,7 +538,7 @@ class GameActivity : AppCompatActivity() {
     }
     private fun quitToast(){
         MotionToast.darkToast(
-            this, "U WİN","OPPONENT HAS BEEN QUIT" ,
+            this, getString(R.string.win),getString(R.string.opponent2) ,
             MotionToastStyle.INFO,
             MotionToast.GRAVITY_BOTTOM,
             MotionToast.LONG_DURATION,
@@ -549,7 +546,15 @@ class GameActivity : AppCompatActivity() {
     }
     private fun failguessToast(){
         MotionToast.darkToast(
-            this, "U WİN","OPPONENT CHOOSE WRONG GUESS" ,
+            this,  getString(R.string.win), getString(R.string.opponent3),
+            MotionToastStyle.INFO,
+            MotionToast.GRAVITY_BOTTOM,
+            MotionToast.LONG_DURATION,
+            ResourcesCompat.getFont(this, www.sanju.motiontoast.R.font.helvetica_regular))
+    }
+    private fun lastchance(){
+        MotionToast.darkToast(
+            this, getString(R.string.wrong),getString(R.string.lastchance) ,
             MotionToastStyle.INFO,
             MotionToast.GRAVITY_BOTTOM,
             MotionToast.LONG_DURATION,

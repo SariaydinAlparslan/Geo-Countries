@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Paesi</string>
+    <string name="alp">868207297026-hsq5p77o34to2tg95pgibk2b7uvrh672.apps.googleusercontent.com</string>
+    40553394226-nji7dqcrn50dke8inni175qpq29opac5.apps.googleusercontent.com
+    <string name="start">Inizio</string>
+    <string name="account_created">Account creato</string>
+    <string name="checknet">Si prega di controllare Internet</string>
+    <string name="next">Prossimo</string>
+    <string name="finish">Fine</string>
+    <string name="firstscreen">Gioca a Single e Indovina i Paesi</string>
+    <string name="secondscreen1">Gioca online, crea una nuova stanza o entra in qualsiasi stanza</string>
+    <string name="secondscreen2">Scegli Paese o Scegli a caso Prova a indovinare il Paese dell\'avversario</string>
+    <string name="thirdscreen">Trova i suggerimenti e indovina i paesi</string>
+    <string name="select_country">Seleziona il paese</string>
+    <string name="chosen_country">Il tuo paese</string>
+    <string name="home">Casa</string>
+    <string name="singleplayer">Giocatore singolo</string>
+    <string name="gamelist">Elenco giochi</string>
+    <string name="settings">Impostazioni</string>
+    <string name="room_name">Nome della stanza</string>
+    <string name="all_random">Tutto casuale</string>
+    <string name="all_pick">Tutti Scegli</string>
+    <string name="create">Creare</string>
+    <string name="give_roomname">Per favore, dai un nome alla stanza</string>
+    <string name="create_room1">Crei tu la stanza di prelievo</string>
+    <string name="create_room2">Crei tu la stanza casuale</string>
+    <string name="random_room_message">Il tuo paese verrà assegnato a caso</string>
+    <string name="pick">Scegliere</string>
+    <string name="list">Elenco</string>
+    <string name="random">A caso</string>
+    <string name="join">Giuntura</string>
+    <string name="change_avatar">Cambia avatar</string>
+    <string name="share">Condividere</string>
+    <string name="rate_us">Valutaci</string>
+    <string name="guess">Indovina</string>
+    <string name="alertdialog">Hai lasciato la partita</string>
+    <string name="alertdialog2">Se esci dalla partita è finita, sei sicuro</string>
+    <string name="yes">Sì</string>
+    <string name="no">No</string>
+    <string name="lastchance">Ultima possibilità</string>
+    <string name="correct">LA TUA INDIZIONE E\'CORRETTA</string>
+    <string name="wrong">IL TUO PAESE SBAGLIATO</string>
+    <string name="opponent1">L\'AVVERSARIO È STATO WİN</string>
+    <string name="opponent2">L\'AVVERSARIO E\' STATO USCITO</string>
+    <string name="opponent3">L\'AVVERSARIO SCEGLIE SBAGLIATO</string>
+    <string name="fail">Hai fallito</string>
+    <string name="lose">Hai perso</string>
+    <string name="win">Hai vinto</string>
+    <string name="draw">Tu disegni</string>
+</resources>

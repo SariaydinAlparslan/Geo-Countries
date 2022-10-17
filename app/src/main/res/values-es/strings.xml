@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Países</string>
+    <string name="alp">868207297026-hsq5p77o34to2tg95pgibk2b7uvrh672.apps.googleusercontent.com</string>
+    40553394226-nji7dqcrn50dke8inni175qpq29opac5.apps.googleusercontent.com
+    <string name="start">Comienzo</string>
+    <string name="account_created">Cuenta Creada</string>
+    <string name="checknet">Por favor revise Internet</string>
+    <string name="next">Próximo</string>
+    <string name="finish">Finalizar</string>
+    <string name="firstscreen">Juega solo y adivina países</string>
+    <string name="secondscreen1">Juega en línea, crea una nueva sala o únete a cualquier sala</string>
+    <string name="secondscreen2">Elige un país o elige al azar Intenta adivinar el país del oponente</string>
+    <string name="thirdscreen">Encuentra las pistas y adivina los países</string>
+    <string name="select_country">Seleccionar país</string>
+    <string name="chosen_country">Tu país</string>
+    <string name="home">Hogar</string>
+    <string name="singleplayer">Un jugador</string>
+    <string name="gamelist">Lista de juegos</string>
+    <string name="settings">Ajustes</string>
+    <string name="room_name">Nombre de la habitación</string>
+    <string name="all_random">Todo al azar</string>
+    <string name="all_pick">Todas Selección</string>
+    <string name="create">Crear</string>
+    <string name="give_roomname">Por favor, dé un nombre de habitación</string>
+    <string name="create_room1">Tú creas la sala de selección</string>
+    <string name="create_room2">Tú creas la habitación aleatoria</string>
+    <string name="random_room_message">Su país será dado al azar</string>
+    <string name="pick">Elegir</string>
+    <string name="list">Lista</string>
+    <string name="random">Aleatorio</string>
+    <string name="join">Unirse</string>
+    <string name="change_avatar">Cambiar avatar</string>
+    <string name="share">Cuota</string>
+    <string name="rate_us">Nos califica</string>
+    <string name="guess">Adivinar</string>
+    <string name="alertdialog">¿Estás saliendo del partido?</string>
+    <string name="alertdialog2">Si renuncias al partido, ¿estás seguro?</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
+    <string name="lastchance">Última oportunidad</string>
+    <string name="correct">TU SUPOSICIÓN ES CORRECTA</string>
+    <string name="wrong">TU PAIS EQUIVOCADO</string>
+    <string name="opponent1">EL OPONENTE HA SIDO GANADO</string>
+    <string name="opponent2">EL OPONENTE HA SIDO ABANDONADO</string>
+    <string name="opponent3">OPONENTE ELIGE ADIVINACIÓN INCORRECTA</string>
+    <string name="fail">Fallaste</string>
+    <string name="lose">Tú pierdes</string>
+    <string name="win">Tú ganas</string>
+    <string name="draw">Tu dibujas</string>
+</resources>

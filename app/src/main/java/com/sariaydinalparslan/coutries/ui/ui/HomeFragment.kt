@@ -14,6 +14,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.sariaydinalparslan.coutries.R
 import com.sariaydinalparslan.coutries.databinding.FragmentHomeBinding
 import com.sariaydinalparslan.coutries.ui.SelectCountryActivity
 import com.sariaydinalparslan.coutries.ui.mySingleton
@@ -22,7 +23,6 @@ import com.sariaydinalparslan.coutries.ui.mySingleton
 class HomeFragment : Fragment() {
     var prefs: String? = null
     var chosen: String? = null
-    var scoreShared: Int? = null
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
@@ -42,11 +42,6 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
-        //FirebaseDatabase.getInstance().reference.child("Room").child("AllPick")
-           // .child(keyValue).removeValue()
-
         val acct = GoogleSignIn.getLastSignedInAccount(requireActivity())
         if (acct != null) {
             val personName = acct.displayName
@@ -63,7 +58,7 @@ class HomeFragment : Fragment() {
         chosen = sharedPreferences!!.getString("chosen", "")
         mySingleton.chosenCountry = chosen
 
-        binding.homeChosenCountry.text = "Your Country : ${mySingleton.chosenCountry}"
+        binding.homeChosenCountry.text =getString(R.string.chosen_country)+" : ${mySingleton.chosenCountry}"
 
         val resourceID = getResources().getIdentifier(
             "${mySingleton.avatarId}",

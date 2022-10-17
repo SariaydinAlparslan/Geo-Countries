@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">देशों</string>
+    <string name="alp">868207297026-hsq5p77o34to2tg95pgibk2b7uvrh672.apps.googleusercontent.com</string>
+    40553394226-nji7dqcrn50dke8inni175qpq29opac5.apps.googleusercontent.com
+    <string name="start">शुरू</string>
+    <string name="account_created">खाता बन गया</string>
+    <string name="checknet">कृपया इंटरनेट जांचें</string>
+    <string name="next">अगला</string>
+    <string name="finish">खत्म करना</string>
+    <string name="firstscreen">सिंगल और गेस कंट्रीज खेलें</string>
+    <string name="secondscreen1">ऑनलाइन खेलें, एक नया कमरा बनाएं या किसी भी कमरे में शामिल हों</string>
+    <string name="secondscreen2">देश चुनें या यादृच्छिक चुनें प्रतिद्वंद्वी के देश का अनुमान लगाने का प्रयास करें</string>
+    <string name="thirdscreen">संकेत और अनुमान लगाने वाले देश खोजें</string>
+    <string name="select_country">देश चुनें</string>
+    <string name="chosen_country">आपका देश</string>
+    <string name="home">घर</string>
+    <string name="singleplayer">अकेला खिलाडी</string>
+    <string name="gamelist">खेल सूची</string>
+    <string name="settings">समायोजन</string>
+    <string name="room_name">कमरे का नाम</string>
+    <string name="all_random">सभी यादृच्छिक</string>
+    <string name="all_pick">सभी को चुनें</string>
+    <string name="create">सृजन करना</string>
+    <string name="give_roomname">कृपया एक कमरे का नाम दें</string>
+    <string name="create_room1">आप पिक रूम बनाएं</string>
+    <string name="create_room2">आप रैंडम रूम बनाएं</string>
+    <string name="random_room_message">आपका देश बेतरतीब ढंग से दिया जाएगा</string>
+    <string name="pick">चुनना</string>
+    <string name="list">सूची</string>
+    <string name="random">यादृच्छिक रूप से</string>
+    <string name="join">जोड़ना</string>
+    <string name="change_avatar">अवतार परिवर्तन</string>
+    <string name="share">शेयर करना</string>
+    <string name="rate_us">हमें रेटिंग दें</string>
+    <string name="guess">अनुमान लगाना</string>
+    <string name="alertdialog">क्या आप मैच छोड़ रहे हैं</string>
+    <string name="alertdialog2">इफ यू क्विट मैच खत्म हो गया है, क्या आप निश्चित हैं</string>
+    <string name="yes">हाँ</string>
+    <string name="no">नहीं</string>
+    <string name="lastchance">अंतिम अवसर</string>
+    <string name="correct">आपका अनुमान सही है</string>
+    <string name="wrong">आपका अनुमान गलत देश</string>
+    <string name="opponent1">विरोधी जीत गया है</string>
+    <string name="opponent2">विपक्ष छोड़ दिया गया है</string>
+    <string name="opponent3">विरोधी गलत अनुमान चुनें</string>
+    <string name="fail">आप विफल हुए</string>
+    <string name="lose">तुम हारे</string>
+    <string name="win">आप जीतते हैं</string>
+    <string name="draw">आपने निकाला</string>
+</resources>

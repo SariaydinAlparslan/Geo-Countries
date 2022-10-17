@@ -29,8 +29,6 @@ class MainActivity : AppCompatActivity() {
         codeFound = false
         checkTemp = true
         keyValue = "null"
-        // code = null.toString()
-        //  keyValue = null.toString()
         replaceFragment(HomeFragment())
 
        binding.bottom.background =null

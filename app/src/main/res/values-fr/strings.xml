@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Des pays</string>
+    <string name="alp">868207297026-hsq5p77o34to2tg95pgibk2b7uvrh672.apps.googleusercontent.com</string>
+    40553394226-nji7dqcrn50dke8inni175qpq29opac5.apps.googleusercontent.com
+    <string name="start">Commencer</string>
+    <string name="account_created">Compte créé</string>
+    <string name="checknet">Veuillez vérifier Internet</string>
+    <string name="next">Prochain</string>
+    <string name="finish">Finir</string>
+    <string name="firstscreen">Jouez en solo et devinez les pays</string>
+    <string name="secondscreen1">Jouez en ligne, créez une nouvelle salle ou rejoignez n\'importe quelle salle</string>
+    <string name="secondscreen2">Choisissez le pays ou choisissez au hasard Essayez de deviner le pays de l\'adversaire</string>
+    <string name="thirdscreen">Trouvez les indices et devinez les pays</string>
+    <string name="select_country">Choisissez le pays</string>
+    <string name="chosen_country">Votre pays</string>
+    <string name="home">Maison</string>
+    <string name="singleplayer">Joueur unique</string>
+    <string name="gamelist">Liste des jeux</string>
+    <string name="settings">Réglages</string>
+    <string name="room_name">Nom de la salle</string>
+    <string name="all_random">Tout hasard</string>
+    <string name="all_pick">Tout choisir</string>
+    <string name="create">Créer</string>
+    <string name="give_roomname">Veuillez donner un nom de salle</string>
+    <string name="create_room1">Vous créez la salle de sélection</string>
+    <string name="create_room2">Vous créez la pièce aléatoire</string>
+    <string name="random_room_message">Votre pays sera donné au hasard</string>
+    <string name="pick">Prendre</string>
+    <string name="list">Liste</string>
+    <string name="random">Aléatoire</string>
+    <string name="join">Rejoindre</string>
+    <string name="change_avatar">Changer d\'avatar</string>
+    <string name="share">Partager</string>
+    <string name="rate_us">Évaluez nous</string>
+    <string name="guess">Deviner</string>
+    <string name="alertdialog">Êtes-vous quitter le match</string>
+    <string name="alertdialog2">Si vous quittez le match est terminé, êtes-vous sûr</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="lastchance">Dernière chance</string>
+    <string name="correct">VOTRE DEVIS EST CORRECT</string>
+    <string name="wrong">VOUS AVEZ DEVENU MAUVAISE PAYS</string>
+    <string name="opponent1">L\'ADVERSAIRE A ÉTÉ WİN</string>
+    <string name="opponent2">L\'ADVERSAIRE A ÉTÉ QUITTÉ</string>
+    <string name="opponent3">L\'ADVERSAIRE CHOISIT UNE MAUVAISE HYPOTHÈSE</string>
+    <string name="fail">Vous échouez</string>
+    <string name="lose">Tu as perdu</string>
+    <string name="win">Vous gagnez</string>
+    <string name="draw">Tu dessines</string>
+</resources>

@@ -33,7 +33,7 @@ import www.sanju.motiontoast.MotionToastStyle
 class SinglePlayerActivity : AppCompatActivity() {
     var emptyCells = ArrayList<Int>()
     var player1 = ArrayList<Int>()
-    val max = 195
+    val max = 159
     val min = 1
     var activeUser = 1
     val total: Int = max - min
@@ -55,14 +55,14 @@ class SinglePlayerActivity : AppCompatActivity() {
     }
     override fun onBackPressed() {
         val alert = AlertDialog.Builder(this)
-        alert.setTitle("Are You Quit The Match")
-        alert.setMessage("If you quit match is over,Are You Sure")
-        alert.setPositiveButton("yes") { dialog, which ->
+        alert.setTitle(getString(R.string.alertdialog))
+        alert.setMessage(getString(R.string.alertdialog2))
+        alert.setPositiveButton(getString(R.string.yes)) { dialog, which ->
             failToast()
             reset()
             goBack()
         }
-        alert.setNegativeButton("No") { dialog, which ->
+        alert.setNegativeButton(getString(R.string.no)) { dialog, which ->
         }
         alert.show()
     }
@@ -168,7 +168,7 @@ class SinglePlayerActivity : AppCompatActivity() {
             //1.yanlış
             binding.guessCountryView.visibility = View.GONE
             binding.btnResultGuess1.visibility = View.GONE
-            Toast.makeText(this, "Wrong Guess You Have 1 Guess", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.lastchance), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -192,7 +192,7 @@ class SinglePlayerActivity : AppCompatActivity() {
     }
     private fun winToast(){
         MotionToast.darkToast(
-            this, "You Win","" ,
+            this, getString(R.string.win),getString(R.string.correct),
             MotionToastStyle.SUCCESS,
             MotionToast.GRAVITY_BOTTOM,
             MotionToast.LONG_DURATION,
@@ -200,7 +200,7 @@ class SinglePlayerActivity : AppCompatActivity() {
     }
     private fun failToast(){
         MotionToast.darkToast(
-            this, "You Lose","" ,
+            this, getString(R.string.lose),getString(R.string.wrong) ,
             MotionToastStyle.WARNING,
             MotionToast.GRAVITY_BOTTOM,
             MotionToast.LONG_DURATION,

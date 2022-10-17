@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:layout_marginLeft="40dp"
-                android:text="Change Avatar" />
+                android:text="@string/change_avatar" />
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/avatar_lootie"
@@ -57,16 +57,17 @@
             android:orientation="vertical"
             android:id="@+id/share"
             >
+
             <TextView
                 android:id="@+id/share_text"
-                android:visibility="visible"
-                android:gravity="center"
-                android:textSize="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
                 android:layout_marginLeft="40dp"
-                android:text="Share" />
+                android:layout_marginTop="40dp"
+                android:gravity="center"
+                android:text="@string/share"
+                android:textSize="20dp"
+                android:visibility="visible" />
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/share_lootie"
@@ -86,16 +87,17 @@
             android:orientation="vertical"
             android:id="@+id/rate"
             >
+
             <TextView
                 android:id="@+id/Rate_text"
-                android:visibility="visible"
-                android:gravity="center"
-                android:textSize="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
                 android:layout_marginLeft="40dp"
-                android:text="Rate Us" />
+                android:layout_marginTop="40dp"
+                android:gravity="center"
+                android:text="@string/rate_us"
+                android:textSize="20dp"
+                android:visibility="visible" />
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/rate_lootie"

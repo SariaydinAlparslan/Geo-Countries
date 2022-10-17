@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Countries</string>
+    <string name="alp">868207297026-hsq5p77o34to2tg95pgibk2b7uvrh672.apps.googleusercontent.com</string>
+    40553394226-nji7dqcrn50dke8inni175qpq29opac5.apps.googleusercontent.com
+    <string name="start">Start</string>
+    <string name="account_created">Account Created</string>
+    <string name="checknet">Please Check Internet</string>
+    <string name="next">Next</string>
+    <string name="finish">Finish</string>
+    <string name="firstscreen">Play Single And Guess Countries</string>
+    <string name="secondscreen1">Play Online, Create A New Room Or Join Any Room</string>
+    <string name="secondscreen2">Choose Country or Pick Random Try To Guess the Opponent\'s Country</string>
+    <string name="thirdscreen">Find the Hints and Guess Countries</string>
+    <string name="select_country">Select Country</string>
+    <string name="chosen_country">Your Country</string>
+    <string name="home">Home</string>
+    <string name="singleplayer">Single Player</string>
+    <string name="gamelist">Game List</string>
+    <string name="settings">Settings</string>
+    <string name="room_name">Room Name</string>
+    <string name="all_random">All Random</string>
+    <string name="all_pick">All Pick</string>
+    <string name="create">Create</string>
+    <string name="give_roomname">Please Give a RoomName</string>
+    <string name="create_room1">You Create The Pick Room</string>
+    <string name="create_room2">You Create The Random Room</string>
+    <string name="random_room_message">Your Country Will Be Randomly Given</string>
+    <string name="pick">Pick</string>
+    <string name="list">List</string>
+    <string name="random">Random</string>
+    <string name="join">Join</string>
+    <string name="change_avatar">Change Avatar</string>
+    <string name="share">Share</string>
+    <string name="rate_us">Rate Us</string>
+    <string name="guess">Guess</string>
+    <string name="alertdialog">Are You Quit The Match</string>
+    <string name="alertdialog2">If You Quit Match is Over,Are You Sure</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="lastchance">Last Chance</string>
+    <string name="correct">YOUR GUESS IS CORRECT</string>
+    <string name="wrong">YOUR GUESS WRONG COUNTRY</string>
+    <string name="opponent1">OPPONENT HAS BEEN WİN</string>
+    <string name="opponent2">OPPONENT HAS BEEN QUIT</string>
+    <string name="opponent3">OPPONENT CHOOSE WRONG GUESS</string>
+    <string name="fail">You Fail</string>
+    <string name="lose">You Lose</string>
+    <string name="win">You Win</string>
+    <string name="draw">You Draw</string>
+
+</resources>

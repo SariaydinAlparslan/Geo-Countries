@@ -37,7 +37,7 @@
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Join"
+        android:text="@string/join"
         android:drawableRight="@drawable/send_24"
         android:gravity="center"
         android:textSize="15sp"

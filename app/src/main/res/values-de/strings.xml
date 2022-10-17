@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Länder</string>
+    <string name="alp">868207297026-hsq5p77o34to2tg95pgibk2b7uvrh672.apps.googleusercontent.com</string>
+    40553394226-nji7dqcrn50dke8inni175qpq29opac5.apps.googleusercontent.com
+    <string name="start">Anfang</string>
+    <string name="account_created">Account erstellt</string>
+    <string name="checknet">Bitte überprüfen Sie das Internet</string>
+    <string name="next">Nächste</string>
+    <string name="finish">Fertig</string>
+    <string name="firstscreen">Spielen Sie einzelne und erraten Sie Länder</string>
+    <string name="secondscreen1">Spielen Sie online, erstellen Sie einen neuen Raum oder treten Sie einem beliebigen Raum bei</string>
+    <string name="secondscreen2">Wählen Sie ein Land oder wählen Sie einen zufälligen Versuch, das Land des Gegners zu erraten</string>
+    <string name="thirdscreen">Finden Sie die Hinweise und erraten Sie Länder</string>
+    <string name="select_country">Land auswählen</string>
+    <string name="chosen_country">Dein Land</string>
+    <string name="home">Heim</string>
+    <string name="singleplayer">Einzelspielerr</string>
+    <string name="gamelist">Spieleliste</string>
+    <string name="settings">Einstellungen</string>
+    <string name="room_name">Raumname</string>
+    <string name="all_random">Alles Zufall</string>
+    <string name="all_pick">Alles auswählen</string>
+    <string name="create">Schaffen</string>
+    <string name="give_roomname">Bitte geben Sie einen Raumnamen an</string>
+    <string name="create_room1">Sie erstellen den Kommissionierraum</string>
+    <string name="create_room2">Du erschaffst den Zufallsraum</string>
+    <string name="random_room_message">Ihr Land wird nach dem Zufallsprinzip vergeben</string>
+    <string name="pick">Wählen</string>
+    <string name="list">Aufführen</string>
+    <string name="random">Zufällig</string>
+    <string name="join">Verbinden</string>
+    <string name="change_avatar">Avatar ändern</string>
+    <string name="share">Teilen</string>
+    <string name="rate_us">Bewerten Sie uns</string>
+    <string name="guess">Erraten</string>
+    <string name="alertdialog">Beenden Sie das Spiel</string>
+    <string name="alertdialog2">Wenn Sie das Spiel beenden, ist es vorbei, sind Sie sicher?</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nein</string>
+    <string name="lastchance">Letzte Möglichkeit</string>
+    <string name="correct">DEINE VERMUTUNG IST RICHTIG</string>
+    <string name="wrong">IHR SCHÄTZT DAS FALSCHE LAND</string>
+    <string name="opponent1">GEGNER HAT GEWINNT</string>
+    <string name="opponent2">GEGNER WURDE BEENDET</string>
+    <string name="opponent3">GEGNER WÄHLEN FALSCHE RATEN</string>
+    <string name="fail">Du scheiterst</string>
+    <string name="lose">Du verlierst</string>
+    <string name="win">Du gewinnst</string>
+    <string name="draw">Du zeichnest</string>
+</resources>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Länder</string>
+    <string name="alp">868207297026-hsq5p77o34to2tg95pgibk2b7uvrh672.apps.googleusercontent.com</string>
+    40553394226-nji7dqcrn50dke8inni175qpq29opac5.apps.googleusercontent.com
+    <string name="start">Start</string>
+    <string name="account_created">Konto skapat</string>
+    <string name="checknet">Kontrollera Internet</string>
+    <string name="next">Nästa</string>
+    <string name="finish">Avsluta</string>
+    <string name="firstscreen">Spela singel och gissa länder</string>
+    <string name="secondscreen1">Spela online, skapa ett nytt rum eller gå med i valfritt rum</string>
+    <string name="secondscreen2">Välj land eller välj slumpmässigt Försök att gissa motståndarens land</string>
+    <string name="thirdscreen">Hitta tips och gissa länder</string>
+    <string name="select_country">Välj land</string>
+    <string name="chosen_country">Ditt land</string>
+    <string name="home">Hem</string>
+    <string name="singleplayer">Enspelarläge</string>
+    <string name="gamelist">Spellista</string>
+    <string name="settings">inställningar</string>
+    <string name="room_name">Rumsnamn</string>
+    <string name="all_random">Allt slumpmässigt</string>
+    <string name="all_pick">Alla Pick</string>
+    <string name="create">Skapa</string>
+    <string name="give_roomname">Vänligen ange ett rumsnamn</string>
+    <string name="create_room1">Du skapar The Pick Room</string>
+    <string name="create_room2">Du skapar The Random Room</string>
+    <string name="random_room_message">Ditt land kommer att ges slumpmässigt</string>
+    <string name="pick">Plocka</string>
+    <string name="list">Lista</string>
+    <string name="random">Slumpmässig</string>
+    <string name="join">Ansluta sig</string>
+    <string name="change_avatar">Ändra avatar</string>
+    <string name="share">Dela med sig</string>
+    <string name="rate_us">Gradera oss</string>
+    <string name="guess">Gissa</string>
+    <string name="alertdialog">Har du slutat med matchen</string>
+    <string name="alertdialog2">Om du avslutar Match är över, är du säker</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nej</string>
+    <string name="lastchance">Sista chansen</string>
+    <string name="correct">DIN GISSNING ÄR RÄTT</string>
+    <string name="wrong">DIN GISSNING FEL LAND</string>
+    <string name="opponent1">MOTSTANDAREN HAR BLIVIT WİN</string>
+    <string name="opponent2">MOTSTANDARE HAR AVSLUTATS</string>
+    <string name="opponent3">MOTSTÅNDARE VÄLJER FEL GISSNING</string>
+    <string name="fail">Du misslyckas</string>
+    <string name="lose">Du förlorar</string>
+    <string name="win">Du vinner</string>
+    <string name="draw">Du ritar</string>
+</resources>

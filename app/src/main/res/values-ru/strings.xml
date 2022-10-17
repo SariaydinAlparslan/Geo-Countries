@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Страны</string>
+    <string name="alp">868207297026-hsq5p77o34to2tg95pgibk2b7uvrh672.apps.googleusercontent.com</string>
+    40553394226-nji7dqcrn50dke8inni175qpq29opac5.apps.googleusercontent.com
+    <string name="start">Начинать</string>
+    <string name="account_created">Аккаунт создан</string>
+    <string name="checknet">Пожалуйста, проверьте Интернет</string>
+    <string name="next">Следующий</string>
+    <string name="finish">Заканчивать</string>
+    <string name="firstscreen">Играй в одиночку и угадывай страны</string>
+    <string name="secondscreen1">Играйте онлайн, создайте новую комнату или присоединитесь к любой комнате</string>
+    <string name="secondscreen2">Выберите страну или выберите случайную попытку угадать страну противника</string>
+    <string name="thirdscreen">Найдите подсказки и угадайте страны</string>
+    <string name="select_country">Выберите страну</string>
+    <string name="chosen_country">Твоя страна</string>
+    <string name="home">Дом</string>
+    <string name="singleplayer">Одиночная игра</string>
+    <string name="gamelist">Список игр</string>
+    <string name="settings">Настройки</string>
+    <string name="room_name">Название комнаты</string>
+    <string name="all_random">Всe случайные</string>
+    <string name="all_pick">Все выбрать</string>
+    <string name="create">Создавать</string>
+    <string name="give_roomname">Пожалуйста, дайте название комнаты</string>
+    <string name="create_room1">Вы создаете комнату выбора</string>
+    <string name="create_room2">Вы создаете случайную комнату</string>
+    <string name="random_room_message">Ваша страна будет выдана случайным образом</string>
+    <string name="pick">Выбирать</string>
+    <string name="list">Список</string>
+    <string name="random">Случайный</string>
+    <string name="join">Присоединиться</string>
+    <string name="change_avatar">Сменить аватар</string>
+    <string name="share">Делиться</string>
+    <string name="rate_us">Оцените нас</string>
+    <string name="guess">Предполагать</string>
+    <string name="alertdialog">Вы выходите из матча</string>
+    <string name="alertdialog2">Если вы вышли из игры, матч окончен, вы уверены?</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="lastchance">Последний шанс</string>
+    <string name="correct">ВАША ДУМА ВЕРНА</string>
+    <string name="wrong">ВАША НЕПРАВИЛЬНАЯ СТРАНА</string>
+    <string name="opponent1">ПРОТИВНИК ПОБЕДИЛ</string>
+    <string name="opponent2">ПРОТИВНИК УХОДИЛ</string>
+    <string name="opponent3">ПРОТИВНИК ВЫБИРАЕТ НЕПРАВИЛЬНУЮ УГАДКУ</string>
+    <string name="fail">Ты облажался</string>
+    <string name="lose">Ты проиграл</string>
+    <string name="win">Ты победил</string>
+    <string name="draw">Ты рисуешь</string>
+</resources>

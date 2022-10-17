@@ -52,7 +52,6 @@ class LoginActivity : AppCompatActivity() {
             val account = accountTask.getResult(ApiException::class.java)
                 firebaseAuthWithGoogle(account)
             }catch (e:Exception){
-                Toast.makeText(this, "U fail", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -61,14 +60,14 @@ class LoginActivity : AppCompatActivity() {
         auth!!.signInWithCredential(credential)
             .addOnSuccessListener { authResult->
                 if (authResult.additionalUserInfo!!.isNewUser){
-                    Toast.makeText(this, "Account Created", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.account_created), Toast.LENGTH_SHORT).show()
                 }else{
                 }
                 startActivity(Intent(this@LoginActivity,OnBoardingActivity::class.java))
                 finish()
             }
             .addOnFailureListener {
-                Toast.makeText(this, "Fail Login", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.checknet), Toast.LENGTH_SHORT).show()
             }
     }
 

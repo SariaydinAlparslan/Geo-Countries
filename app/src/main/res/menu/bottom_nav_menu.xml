@@ -3,12 +3,12 @@
     <item
         android:id="@+id/bottomHome"
         android:icon="@drawable/home_24"
-        android:title="Home"/>
+        android:title="@string/home"/>
 
     <item
         android:id="@+id/bottomSingle"
         android:icon="@drawable/person_24"
-        android:title="Single Player"/>
+        android:title="@string/singleplayer"/>
 
     <item
         android:id="@+id/placeholder"
@@ -17,10 +17,10 @@
     <item
         android:id="@+id/bottomList"
         android:icon="@drawable/search_24"
-        android:title="Game List"/>
+        android:title="@string/gamelist"/>
 
     <item
         android:id="@+id/bottomProfile"
         android:icon="@drawable/settings_24"
-        android:title="Settings"/>
+        android:title="@string/settings"/>
 </menu>

@@ -6,12 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.ui.CreateFragment">
 
-
-    <include layout="@layout/include_pick_country"
-        android:id="@+id/includecountrypick"
-        android:visibility="gone"
-        />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -31,7 +25,7 @@
                 android:layout_margin="10dp"
                 android:ems="10"
                 android:gravity="center"
-                android:hint="RoomName"
+                android:hint="@string/room_name"
                 android:inputType="textPersonName" />
 
             <RadioGroup
@@ -48,13 +42,13 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:checked="true"
-                    android:text="All Random" />
+                    android:text="@string/all_random" />
                 <RadioButton
                     android:id="@+id/radio_one"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="All Pick" />
+                    android:text="@string/all_pick" />
 
 
 
@@ -68,7 +62,7 @@
                 android:layout_marginTop="30dp"
                 android:gravity="center"
                 android:onClick="create"
-                android:text="Create" />
+                android:text="@string/create" />
 
 
         </LinearLayout>
