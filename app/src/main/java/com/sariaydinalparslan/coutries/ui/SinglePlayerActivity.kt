@@ -1,16 +1,22 @@
 package com.sariaydinalparslan.coutries.ui
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import com.google.android.gms.ads.*
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.firebase.database.FirebaseDatabase
 import com.sariaydinalparslan.coutries.R
 import com.sariaydinalparslan.coutries.databinding.ActivitySinglePlayerBinding
@@ -37,6 +43,7 @@ class SinglePlayerActivity : AppCompatActivity() {
     val min = 1
     var activeUser = 1
     val total: Int = max - min
+    private var mInterstitialAd: InterstitialAd? = null
     private lateinit var binding: ActivitySinglePlayerBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,22 +52,29 @@ class SinglePlayerActivity : AppCompatActivity() {
         setContentView(view)
         setUpSlider()
 
+        MobileAds.initialize(this) {}
+
+        adMobInter()
+
         val number = (9..10).shuffled().last()
         mySingleton.randomImageSingle = number
         val randomCountry = (1..159).shuffled().last()
         mySingleton.singlePlayerCountryCode= randomCountry.toString()
-        //slinecek
-        Toast.makeText(this, randomCountry.toString(), Toast.LENGTH_SHORT).show()
 
     }
+
     override fun onBackPressed() {
         val alert = AlertDialog.Builder(this)
         alert.setTitle(getString(R.string.alertdialog))
         alert.setMessage(getString(R.string.alertdialog2))
         alert.setPositiveButton(getString(R.string.yes)) { dialog, which ->
+
             failToast()
             reset()
-            goBack()
+            Handler().postDelayed({
+                goBack()
+                adMob()
+            },3500)
         }
         alert.setNegativeButton(getString(R.string.no)) { dialog, which ->
         }
@@ -111,8 +125,6 @@ class SinglePlayerActivity : AppCompatActivity() {
             .child(random.toString()).get().addOnSuccessListener {
                 binding.countryTipsView.tips1.downloadfromUrl(it.value.toString(), placeholderProgressBar(this))
             }
-        //slinecek
-        Toast.makeText(this, random.toString(), Toast.LENGTH_SHORT).show()
 
         Handler().postDelayed({
             binding.countryTipsView.countrytipsSingle.visibility = View.GONE
@@ -121,7 +133,7 @@ class SinglePlayerActivity : AppCompatActivity() {
             emptyCells.add(currCell)
             buttonSelected.isEnabled = false
             buttonSelected.setBackgroundColor(ContextCompat.getColor(this, R.color.black))
-        }, 3000)
+        }, 6000)
         mySingleton.randomImageSingle = mySingleton.randomImageSingle!!-1
     }
     fun clickfun(view: View) {
@@ -160,10 +172,11 @@ class SinglePlayerActivity : AppCompatActivity() {
             //1. kazanma yolu
             winToast()
             binding.winView.winner.visibility = View.VISIBLE
+            reset()
             Handler().postDelayed({
-                reset()
                 goBack()
-            }, 3000)
+                adMob()
+            }, 3500)
         } else {
             //1.yanlış
             binding.guessCountryView.visibility = View.GONE
@@ -177,17 +190,19 @@ class SinglePlayerActivity : AppCompatActivity() {
             binding.guessCountryView.visibility = View.GONE
             winToast()
             binding.winView.winner.visibility = View.VISIBLE
+            reset()
             Handler().postDelayed({
-                reset()
                 goBack()
-            }, 5000)
+                adMob()
+            }, 3500)
         } else {
             failToast()
             binding.loseView.loser.visibility = View.VISIBLE
+            reset()
             Handler().postDelayed({
-                reset()
                 goBack()
-            }, 3000)
+                adMob()
+            }, 3500)
         }
     }
     private fun winToast(){
@@ -205,5 +220,56 @@ class SinglePlayerActivity : AppCompatActivity() {
             MotionToast.GRAVITY_BOTTOM,
             MotionToast.LONG_DURATION,
             ResourcesCompat.getFont(this, www.sanju.motiontoast.R.font.helvetica_regular))
+    }
+    private fun adMobInter() {
+        val adRequest = AdRequest.Builder().build()
+
+        InterstitialAd.load(this,"ca-app-pub-3940256099942544/1033173712", adRequest, object : InterstitialAdLoadCallback() {
+
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                Log.d(TAG, adError?.toString())
+                mInterstitialAd = null
+            }
+
+            override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                Log.d(TAG, "Ad was loaded.")
+                mInterstitialAd = interstitialAd
+            }
+        })
+        mInterstitialAd?.fullScreenContentCallback = object: FullScreenContentCallback() {
+            override fun onAdClicked() {
+                // Called when a click is recorded for an ad.
+                Log.d(TAG, "Ad was clicked.")
+            }
+
+            override fun onAdDismissedFullScreenContent() {
+                // Called when ad is dismissed.
+                Log.d(TAG, "Ad dismissed fullscreen content.")
+                mInterstitialAd = null
+            }
+
+            override fun onAdFailedToShowFullScreenContent(p0: AdError) {
+                // Called when ad fails to show.
+                Log.e(TAG, "Ad failed to show fullscreen content.")
+                mInterstitialAd = null
+            }
+
+            override fun onAdImpression() {
+                // Called when an impression is recorded for an ad.
+                Log.d(TAG, "Ad recorded an impression.")
+            }
+
+            override fun onAdShowedFullScreenContent() {
+                // Called when ad is shown.
+                Log.d(TAG, "Ad showed fullscreen content.")
+            }
+        }
+    }
+    private fun adMob(){
+        if (mInterstitialAd != null) {
+            mInterstitialAd?.show(this)
+        } else {
+            Log.e("alp", "The interstitial ad wasn't ready yet.")
+        }
     }
 }

@@ -16,6 +16,7 @@
     <string name="chosen_country">Il tuo paese</string>
     <string name="home">Casa</string>
     <string name="singleplayer">Giocatore singolo</string>
+    <string name="singleplayertext">Indovina il Paese</string>
     <string name="gamelist">Elenco giochi</string>
     <string name="settings">Impostazioni</string>
     <string name="room_name">Nome della stanza</string>

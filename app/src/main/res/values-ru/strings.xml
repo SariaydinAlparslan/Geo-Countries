@@ -16,6 +16,7 @@
     <string name="chosen_country">Твоя страна</string>
     <string name="home">Дом</string>
     <string name="singleplayer">Одиночная игра</string>
+    <string name="singleplayertext">Угадай страну</string>
     <string name="gamelist">Список игр</string>
     <string name="settings">Настройки</string>
     <string name="room_name">Название комнаты</string>

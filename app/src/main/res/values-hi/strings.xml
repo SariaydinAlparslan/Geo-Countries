@@ -16,6 +16,7 @@
     <string name="chosen_country">आपका देश</string>
     <string name="home">घर</string>
     <string name="singleplayer">अकेला खिलाडी</string>
+    <string name="singleplayertext">देश का अनुमान लगाएं</string>
     <string name="gamelist">खेल सूची</string>
     <string name="settings">समायोजन</string>
     <string name="room_name">कमरे का नाम</string>

@@ -1,7 +1,9 @@
 package com.sariaydinalparslan.coutries.ui.ui
 
+import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -23,9 +25,10 @@ import com.sariaydinalparslan.coutries.ui.mySingleton
 class HomeFragment : Fragment() {
     var prefs: String? = null
     var chosen: String? = null
+    var id: String? = null
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-
+    lateinit var sharedPreferences : SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,12 +45,24 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+         sharedPreferences = this.requireActivity().getSharedPreferences("com.sariaydinalparslan.coutries",
+            Context.MODE_PRIVATE)
+
+        sharedPreferences!!.edit().putString("id",mySingleton.SignInname).apply()
+
+        id = sharedPreferences!!.getString("id","")
+        mySingleton.SignInname = id
+
         val acct = GoogleSignIn.getLastSignedInAccount(requireActivity())
         if (acct != null) {
-            val personName = acct.displayName
-            binding.nameText.text = personName
-            mySingleton.hostName = personName
+            mySingleton.SignInname = acct.displayName
+            binding.nameText.text =  mySingleton.SignInname
+            mySingleton.hostName =  mySingleton.SignInname
         }
+        val signInName = mySingleton.SignInname
+        binding.nameText.text = signInName
+        mySingleton.hostName =signInName
+
         val sharedPreferences = this.activity?.getSharedPreferences(
             "com.sariaydinalparslan.coutries",
             MODE_PRIVATE

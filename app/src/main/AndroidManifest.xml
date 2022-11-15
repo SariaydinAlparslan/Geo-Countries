@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name="com.sariaydinalparslan.tuto.MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -16,9 +17,13 @@
         android:theme="@style/Theme.Coutries"
         tools:targetApi="31">
         <activity
-            android:name=".ui.OnBoardingActivity"
+            android:name=".ui.SplashActivity"
             android:screenOrientation="landscape"
             android:exported="false" />
+        <activity
+            android:name=".ui.OnBoardingActivity"
+            android:exported="false"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".ui.SelectCountryActivity"
             android:exported="false"
@@ -31,7 +36,6 @@
             android:name=".ui.GameActivity"
             android:exported="false"
             android:screenOrientation="landscape" />
-
         <activity
             android:name=".ui.LoginActivity"
             android:exported="true"
@@ -46,6 +50,10 @@
             android:name=".ui.MainActivity"
             android:exported="true"
             android:screenOrientation="landscape" />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713" />
     </application>
 
 </manifest>

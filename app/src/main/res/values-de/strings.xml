@@ -16,6 +16,7 @@
     <string name="chosen_country">Dein Land</string>
     <string name="home">Heim</string>
     <string name="singleplayer">Einzelspielerr</string>
+    <string name="singleplayertext">Erraten Sie das Land</string>
     <string name="gamelist">Spieleliste</string>
     <string name="settings">Einstellungen</string>
     <string name="room_name">Raumname</string>

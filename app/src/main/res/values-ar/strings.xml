@@ -16,6 +16,7 @@
     <string name="chosen_country">بلدك</string>
     <string name="home">مسكن</string>
     <string name="singleplayer">لاعب واحد</string>
+    <string name="singleplayertext">تخمين البلد</string>
     <string name="gamelist">قائمة الألعاب</string>
     <string name="settings">إعدادات</string>
     <string name="room_name">اسم الغرفة</string>

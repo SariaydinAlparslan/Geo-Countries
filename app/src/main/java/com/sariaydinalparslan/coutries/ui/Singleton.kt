@@ -1,6 +1,8 @@
 package com.sariaydinalparslan.coutries.ui
 
 object mySingleton{
+    //normal signin name
+    var SignInname: String? = null
     //visitorın özellikleri seçtiği ve adapter de kendini game activity atması
     var chosenCountry: String? = null
     //create (hostun özellikleri)

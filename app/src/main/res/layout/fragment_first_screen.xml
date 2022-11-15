@@ -15,13 +15,12 @@
         android:layout_height="297dp"
         android:src="@drawable/onboarding1" />
 
-
     <TextView
         android:id="@+id/description1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="50dp"
         android:gravity="center"
         android:text="@string/firstscreen"
@@ -31,7 +30,6 @@
         android:id="@+id/next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
         android:text="@string/next"
         android:layout_marginRight="50dp"
         android:layout_gravity="end"

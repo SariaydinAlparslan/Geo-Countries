@@ -16,6 +16,7 @@
     <string name="chosen_country">Ülken</string>
     <string name="home">Anasayfa</string>
     <string name="singleplayer">Tek Oyuncu</string>
+    <string name="singleplayertext">Ülkeyi Tahmin Et</string>
     <string name="gamelist">Oyun Listesi</string>
     <string name="settings">Ayarlar</string>
     <string name="room_name">Oda Adı</string>

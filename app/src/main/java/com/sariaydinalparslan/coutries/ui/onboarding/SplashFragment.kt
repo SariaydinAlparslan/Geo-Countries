@@ -19,13 +19,13 @@ class SplashFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         Handler().postDelayed({
-            if(onBoardingFinished()){
+           if(onBoardingFinished()){
               val intent = Intent(requireActivity(),MainActivity::class.java)
                 startActivity(intent)
             }else{
                 findNavController().navigate(R.id.action_splashFragment_to_viewPagerFragment)
             }
-        }, 2500)
+        }, 3500)
 
         return inflater.inflate(R.layout.fragment_splash, container, false)
     }

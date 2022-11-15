@@ -1,16 +1,21 @@
 package com.sariaydinalparslan.coutries.ui
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import com.google.android.gms.ads.*
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.firebase.database.*
 import com.sariaydinalparslan.coutries.R
@@ -41,11 +46,16 @@ class GameActivity : AppCompatActivity() {
     val total: Int = max - min
     private lateinit var timer: CountDownTimer
     private lateinit var binding: ActivityGameBinding
+    private var mInterstitialAd: InterstitialAd? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityGameBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        MobileAds.initialize(this) {}
+
+        adMobInter()
 
         val number = (9..10).shuffled().last()
         mySingleton.randomImageSingle = number
@@ -81,9 +91,12 @@ class GameActivity : AppCompatActivity() {
         alert.setPositiveButton(getString(R.string.yes)) { dialog, which ->
             someoneQuit()
             failToast()
-            goBack()
             reset()
             deleteGamersCountries()
+            Handler().postDelayed({
+                goBack()
+                adMob()
+            },3500)
         }
         alert.setNegativeButton(getString(R.string.no)) { dialog, which ->
               }
@@ -402,8 +415,9 @@ class GameActivity : AppCompatActivity() {
             Handler().postDelayed({
                 reset()
                 goBack()
+                adMob()
                 deleteGamersCountries()
-            }, 4500)
+            }, 3500)
             someoneWin()
         } else {
             binding.guessCountryView.guessCountryView.visibility = View.GONE
@@ -420,8 +434,9 @@ class GameActivity : AppCompatActivity() {
             Handler().postDelayed({
                 reset()
                 goBack()
+                adMob()
                deleteGamersCountries()
-            }, 4500)
+            }, 3500)
             someoneWin()
         } else {
             binding.guessCountryView.guessCountryView.visibility = View.GONE
@@ -431,6 +446,7 @@ class GameActivity : AppCompatActivity() {
             deleteGamersCountries()
             Handler().postDelayed({
                 goBack()
+                adMob()
             }, 4500)
             wrongGuess()
         }
@@ -559,5 +575,56 @@ class GameActivity : AppCompatActivity() {
             MotionToast.GRAVITY_BOTTOM,
             MotionToast.LONG_DURATION,
             ResourcesCompat.getFont(this, www.sanju.motiontoast.R.font.helvetica_regular))
+    }
+    private fun adMobInter() {
+        val adRequest = AdRequest.Builder().build()
+
+        InterstitialAd.load(this,"ca-app-pub-3940256099942544/1033173712", adRequest, object : InterstitialAdLoadCallback() {
+
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                Log.d(TAG, adError?.toString())
+                mInterstitialAd = null
+            }
+
+            override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                Log.d(TAG, "Ad was loaded.")
+                mInterstitialAd = interstitialAd
+            }
+        })
+        mInterstitialAd?.fullScreenContentCallback = object: FullScreenContentCallback() {
+            override fun onAdClicked() {
+                // Called when a click is recorded for an ad.
+                Log.d(TAG, "Ad was clicked.")
+            }
+
+            override fun onAdDismissedFullScreenContent() {
+                // Called when ad is dismissed.
+                Log.d(TAG, "Ad dismissed fullscreen content.")
+                mInterstitialAd = null
+            }
+
+            override fun onAdFailedToShowFullScreenContent(p0: AdError) {
+                // Called when ad fails to show.
+                Log.e(TAG, "Ad failed to show fullscreen content.")
+                mInterstitialAd = null
+            }
+
+            override fun onAdImpression() {
+                // Called when an impression is recorded for an ad.
+                Log.d(TAG, "Ad recorded an impression.")
+            }
+
+            override fun onAdShowedFullScreenContent() {
+                // Called when ad is shown.
+                Log.d(TAG, "Ad showed fullscreen content.")
+            }
+        }
+    }
+    private fun adMob(){
+        if (mInterstitialAd != null) {
+            mInterstitialAd?.show(this)
+        } else {
+            Log.e("alp", "The interstitial ad wasn't ready yet.")
+        }
     }
 }

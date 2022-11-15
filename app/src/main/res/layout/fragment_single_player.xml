@@ -10,12 +10,21 @@
     android:gravity="center"
     tools:context=".ui.ui.SinglePlayerFragment">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/singleplayertext"
+        android:textSize="50dp"
+        android:layout_weight="0.1"
+        android:gravity="center"/>
+
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/btnStart"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:lottie_autoPlay="true"
+        android:layout_weight="1"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/start" />
 
@@ -35,7 +44,7 @@
             android:layout_marginBottom="40dp"
             app:lottie_autoPlay="false"
             app:lottie_loop="false"
-            app:lottie_rawRes="@raw/countdown" />
+            app:lottie_rawRes="@raw/ucikibir" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

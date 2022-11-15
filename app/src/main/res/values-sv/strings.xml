@@ -15,7 +15,8 @@
     <string name="select_country">Välj land</string>
     <string name="chosen_country">Ditt land</string>
     <string name="home">Hem</string>
-    <string name="singleplayer">Enspelarläge</string>
+    <string name="singleplayer">Gissa landet</string>
+    <string name="singleplayertext">Угадай страну</string>
     <string name="gamelist">Spellista</string>
     <string name="settings">inställningar</string>
     <string name="room_name">Rumsnamn</string>
