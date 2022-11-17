@@ -10,7 +10,26 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/loot"
+        android:orientation="vertical"
+        android:layout_weight="3"
+        android:gravity="center_vertical">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="40dp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="false"
+            app:lottie_rawRes="@raw/login" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/socialicons"
@@ -98,29 +117,12 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginTop="50dp"
-            android:layout_marginLeft="80dp"
+            android:layout_gravity="center"
             android:src="@drawable/google" />
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/loot"
-        android:orientation="vertical"
-        android:layout_weight="1"
-        android:gravity="center_vertical">
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottie1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="40dp"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="false"
-            app:lottie_rawRes="@raw/login" />
-
-    </LinearLayout>
 
 
 </LinearLayout>
