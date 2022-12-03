@@ -20,9 +20,8 @@ android {
         applicationId "com.sariaydinalparslan.coutries"
         minSdk 23
         targetSdk 32
-        versionCode 4
-        versionName "2.0"
-
+        versionCode 9
+        versionName "3.4"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

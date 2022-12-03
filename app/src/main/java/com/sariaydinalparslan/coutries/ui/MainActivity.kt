@@ -63,13 +63,6 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
     }
-    private fun replaceFragment (fragment : Fragment){
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.frame_layout,fragment)
-        fragmentTransaction.commit()
-    }
-
     fun avatar(view:View){
         val but = view as TextView
         when(but.id){
@@ -109,16 +102,20 @@ class MainActivity : AppCompatActivity() {
             R.id.radio_34 -> mySingleton.avatarId = "thirtyfour"
             R.id.radio_35 -> mySingleton.avatarId = "thirtyfive"
             R.id.radio_36 -> mySingleton.avatarId = "thirtysix"
-
         }
         val sharedPreferences = this.getSharedPreferences("com.sariaydinalparslan.coutries",
             Context.MODE_PRIVATE)
         sharedPreferences!!.edit().putString("pref",mySingleton.avatarId!!).apply()
         replaceFragment(HomeFragment())
-        binding.bottom.selectedItemId = R.id.placeholder
         includeavatar.visibility = View.GONE
         change_avatar.visibility=View.VISIBLE
         share.visibility = View.VISIBLE
         rate.visibility=View.VISIBLE
+    }
+    private fun replaceFragment (fragment : Fragment){
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.frame_layout,fragment)
+        fragmentTransaction.commit()
     }
 }

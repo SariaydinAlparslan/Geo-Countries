@@ -10,28 +10,37 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="297dp"
+        android:layout_width="550dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="0.7"
+        android:scaleType="fitXY"
         android:src="@drawable/onboarding3" />
-
     <TextView
         android:id="@+id/description1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="50dp"
         android:gravity="center"
+        android:layout_weight="1.6"
         android:text="@string/thirdscreen"
         android:textSize="16sp" />
-
     <TextView
         android:id="@+id/finish"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:text="@string/finish"
         android:layout_marginRight="50dp"
+        android:layout_weight="1.9"
         android:layout_gravity="end"
-        android:gravity="center"
+        android:gravity="end"
         android:textSize="22sp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.9">
+
+    </View>
 </LinearLayout>

@@ -11,8 +11,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import com.sariaydinalparslan.coutries.R
 import com.sariaydinalparslan.coutries.databinding.FragmentSettingsBinding
+import com.sariaydinalparslan.coutries.ui.mySingleton
 import kotlinx.android.synthetic.main.fragment_settings.*
 import kotlinx.android.synthetic.main.include_avatar_layout.*
 

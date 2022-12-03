@@ -4,6 +4,7 @@
     package="com.sariaydinalparslan.coutries">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
 
     <application
         android:name="com.sariaydinalparslan.tuto.MyApplication"
@@ -51,7 +52,7 @@
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713" />
+            android:value="ca-app-pub-2330201235781557~5304193414" />
     </application>
 
 </manifest>

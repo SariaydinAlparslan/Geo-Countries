@@ -14,10 +14,9 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         Handler().postDelayed({
-            val application = application as? MyApplication
 
+            val application = application as? MyApplication
             if (application == null) {
-                Log.e("alp", "Failed to cast application to MyApplication.")
                 navigation()
             }
             application!!.showAdIfAvailable(

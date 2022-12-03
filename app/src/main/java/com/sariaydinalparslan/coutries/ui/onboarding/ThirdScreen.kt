@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.sariaydinalparslan.coutries.R
 import com.sariaydinalparslan.coutries.ui.MainActivity
+import com.sariaydinalparslan.tuto.MyApplication
 import kotlinx.android.synthetic.main.fragment_third_screen.view.*
 
 class ThirdScreen : Fragment() {
@@ -19,18 +20,23 @@ class ThirdScreen : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_third_screen, container, false)
-
-        view.finish.setOnClickListener {
-            val intent = Intent(requireActivity(),MainActivity::class.java)
-            onBoardingFinished()
-            startActivity(intent)
-        }
-
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        view.finish.setOnClickListener {
+            onBoardingFinished()
+            navigation()
+        }
+    }
+    fun navigation(){
+        val intent = Intent(requireActivity(),MainActivity::class.java)
+        startActivity(intent)
+    }
     private fun onBoardingFinished(){
-        val sharedPref = requireActivity().getSharedPreferences("onBoarding", Context.MODE_PRIVATE)
+        val sharedPref = requireActivity().getSharedPreferences("com.sariaydinalparslan.coutries", Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
         editor.putBoolean("Finished", true)
         editor.apply()

@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     tools:context=".ui.LoginActivity">
 <LinearLayout
     android:layout_width="match_parent"
@@ -17,113 +16,76 @@
         android:layout_height="match_parent"
         android:id="@+id/loot"
         android:orientation="vertical"
-        android:layout_weight="3"
+        android:layout_weight="1"
         android:gravity="center_vertical">
-
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottie1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="20dp"
             app:lottie_autoPlay="true"
-            app:lottie_loop="false"
+            app:lottie_loop="true"
             app:lottie_rawRes="@raw/login" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/socialicons"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="3"
-        android:gravity="start"
-        android:orientation="vertical">
-
-
-        <EditText
-            android:id="@+id/etEmail"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:layout_weight="1">
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="25dp"
-            android:inputType="textEmailAddress"
-            android:layout_marginEnd="15dp"
-            android:hint="Email"
-            android:padding="12dp"/>
+            android:layout_height="match_parent"
+            app:cardCornerRadius="25dp"
+            app:cardUseCompatPadding="true"
+            android:layout_weight="1"
+            app:cardElevation="8dp">
+            <TextView
+                android:id="@+id/basictext"
+                android:text="Enter A Name"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"/>
 
-        <EditText
-            android:id="@+id/etPassword"
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="5dp"
-            android:inputType="textPassword"
-            android:layout_marginEnd="15dp"
-            android:hint="Passwoord"
-            android:padding="12dp"
-            android:textColor="@color/black" />
-        <EditText
-            android:id="@+id/etConfirmPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:inputType="textPassword"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="15dp"
-            android:textColor="@color/black"
-            android:hint="Confirm Password"
-            android:visibility="gone"
-            android:padding="12dp" />
-        <EditText
-            android:id="@+id/etName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="15dp"
-            android:inputType="text"
-            android:textColor="@color/black"
-            android:hint="Name"
-            android:visibility="gone"
-            android:padding="12dp" />
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="25dp"
+            app:cardUseCompatPadding="true"
+            app:cardElevation="8dp">
 
-
-        <Button
-            android:id="@+id/buttonlogin"
+            <EditText
+                android:id="@+id/enterNameText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center" />
+        </androidx.cardview.widget.CardView>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/signInBtn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:layout_marginEnd="2dp"
+            android:layout_height="match_parent"
             android:textColor="@color/white"
-            android:visibility="visible"
-            android:text="Log In"/>
-
-        <Button
-            android:id="@+id/buttonsignup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:text="Sıgn Up"/>
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:visibility="gone"
-            android:text="SIGN UP" />
-        <ImageView
-            android:id="@+id/google"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="50dp"
-            android:layout_gravity="center"
-            android:src="@drawable/google" />
-
+            app:cornerRadius="45dp"
+            app:cardUseCompatPadding="true"
+            app:cardElevation="8dp"
+            android:layout_weight="1.2"
+            app:backgroundTint="@color/green"
+            android:text="Sıgn In"/>
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.4">
 
-
-
-
+    </View>
 </LinearLayout>
+
 </RelativeLayout>

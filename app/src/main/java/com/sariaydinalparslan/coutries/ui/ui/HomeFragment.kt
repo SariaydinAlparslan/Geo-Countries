@@ -29,7 +29,6 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     lateinit var sharedPreferences : SharedPreferences
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -48,43 +47,34 @@ class HomeFragment : Fragment() {
          sharedPreferences = this.requireActivity().getSharedPreferences("com.sariaydinalparslan.coutries",
             Context.MODE_PRIVATE)
 
-        sharedPreferences!!.edit().putString("id",mySingleton.SignInname).apply()
 
-        id = sharedPreferences!!.getString("id","")
-        mySingleton.SignInname = id
+        id = sharedPreferences!!.getString("nickname","")
+        binding.nameText.text = id
+        mySingleton.hostName =id
 
-        val acct = GoogleSignIn.getLastSignedInAccount(requireActivity())
-        if (acct != null) {
-            mySingleton.SignInname = acct.displayName
-            binding.nameText.text =  mySingleton.SignInname
-            mySingleton.hostName =  mySingleton.SignInname
-        }
-        val signInName = mySingleton.SignInname
-        binding.nameText.text = signInName
-        mySingleton.hostName =signInName
-
-        val sharedPreferences = this.activity?.getSharedPreferences(
-            "com.sariaydinalparslan.coutries",
-            MODE_PRIVATE
-        )
         prefs = sharedPreferences!!.getString("pref", "")
         mySingleton.avatarId = prefs
+        Log.e("alp",prefs.toString())
 
         chosen = sharedPreferences!!.getString("chosen", "")
         mySingleton.chosenCountry = chosen
 
-        binding.homeChosenCountry.text =getString(R.string.chosen_country)+" : ${mySingleton.chosenCountry}"
+        binding.homeChosenCountry.text =getString(R.string.chosen_country)+":" +"${mySingleton.chosenCountry}"
 
-        val resourceID = getResources().getIdentifier(
-            "${mySingleton.avatarId}",
-            "drawable",
-            this.requireContext().packageName
-        )
-        binding.avatarView.setImageResource(resourceID)
+        if(prefs!!.isNotEmpty()){
+            val resourceID = getResources().getIdentifier(
+                "${mySingleton.avatarId}",
+                "drawable",
+                this.requireContext().packageName
+            )
+            binding.avatarView.setImageResource(resourceID)
+        }else{
+            binding.avatarView.setImageResource(R.drawable.person_24)
+        }
 
         binding.selectCountry.setOnClickListener {
-            val intebt = Intent(requireActivity(), SelectCountryActivity::class.java)
-            startActivity(intebt)
+            val intent = Intent(requireActivity(), SelectCountryActivity::class.java)
+            startActivity(intent)
         }
     }
 
