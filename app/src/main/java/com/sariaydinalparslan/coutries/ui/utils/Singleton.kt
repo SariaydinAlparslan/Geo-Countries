@@ -22,6 +22,9 @@ object mySingleton{
     var multiHostPlayerName : String? = null
     //multiplayer visitroname
     var multiVisitorPlayerName : String? = null
-
-
+    //infos
+    var continent : String? = null
+    var population : Int? = 0
+    var partContinent : String? = null
+    var longlat : String? = null
 }

@@ -89,4 +89,5 @@ dependencies {
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
     implementation 'androidx.multidex:multidex:2.0.1'
 
+
 }

@@ -123,30 +123,38 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0" />
-
+        <TextView
+            android:id="@+id/infoBtn"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="200dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/round_btn"
+            android:gravity="center"
+            android:onClick="info"
+            android:text="Info"
+            app:layout_constraintEnd_toEndOf="@+id/worldismy"
+            app:layout_constraintTop_toTopOf="parent" />
         <TextView
             android:id="@+id/guess"
             android:layout_width="100dp"
             android:layout_height="60dp"
-            android:layout_marginTop="45dp"
+            android:layout_marginTop="80dp"
             android:layout_marginRight="5dp"
             android:background="@drawable/round_btn"
-            android:drawableTop="@drawable/think1"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:onClick="guess"
             android:text="@string/guess"
             app:layout_constraintEnd_toEndOf="@+id/worldismy"
             app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:id="@+id/guess2"
             android:layout_width="100dp"
             android:layout_height="60dp"
-            android:layout_marginTop="45dp"
+            android:layout_marginTop="80dp"
             android:layout_marginRight="5dp"
             android:background="@drawable/round_btn"
-            android:drawableTop="@drawable/think1"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:onClick="guess2"
             android:text="@string/guess"
             android:visibility="gone"
@@ -157,7 +165,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="bottom|center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp">
 
             <Button
                 android:id="@+id/button4"
@@ -209,6 +219,7 @@
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/q5"
                 android:onClick="clickfun" />
+
             <Button
                 android:id="@+id/button7"
                 android:layout_width="89dp"
@@ -216,6 +227,7 @@
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/q5"
                 android:onClick="clickfun" />
+
             <Button
                 android:id="@+id/button8"
                 android:layout_width="89dp"
@@ -265,5 +277,4 @@
         </LinearLayout>
 
     </LinearLayout>
-
 </LinearLayout>

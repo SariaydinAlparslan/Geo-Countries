@@ -36,4 +36,5 @@
     <color name="light_brown">#964a00</color>
     <color name="border_light_gray">#08191127</color>
     <color name="border_gray">#41e64949</color>
+    <color name="trans">#00000000</color>
 </resources>

@@ -19,7 +19,7 @@ class SinglePlayerFragment : Fragment() {
 
     private var _binding: FragmentSinglePlayerBinding? = null
     private val binding get() = _binding!!
-    private val SPLASH_TIME_OUT:Long=3000
+    private val SPLASH_TIME_OUT:Long=2500
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

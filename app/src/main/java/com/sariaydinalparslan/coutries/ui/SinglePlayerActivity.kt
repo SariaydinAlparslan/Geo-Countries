@@ -11,15 +11,19 @@ import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.firebase.database.FirebaseDatabase
 import com.sariaydinalparslan.coutries.R
 import com.sariaydinalparslan.coutries.databinding.ActivitySinglePlayerBinding
+import com.sariaydinalparslan.coutries.ui.bottomsheet.ActionBottom
+import com.sariaydinalparslan.coutries.ui.bottomsheet.ItemClickListener
 import com.sariaydinalparslan.coutries.ui.ui.isCodeMaker
 import com.sariaydinalparslan.coutries.ui.utils.downloadfromUrl
 import com.sariaydinalparslan.coutries.ui.utils.placeholderProgressBar
@@ -36,7 +40,7 @@ import kotlinx.android.synthetic.main.include_guess_view.view.*
 import www.sanju.motiontoast.MotionToast
 import www.sanju.motiontoast.MotionToastStyle
 
-class SinglePlayerActivity : AppCompatActivity() {
+class SinglePlayerActivity : AppCompatActivity(), ItemClickListener {
     var emptyCells = ArrayList<Int>()
     var player1 = ArrayList<Int>()
     val max = 159
@@ -45,6 +49,7 @@ class SinglePlayerActivity : AppCompatActivity() {
     val total: Int = max - min
     private var mInterstitialAd: InterstitialAd? = null
     private lateinit var binding: ActivitySinglePlayerBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySinglePlayerBinding.inflate(layoutInflater)
@@ -53,14 +58,29 @@ class SinglePlayerActivity : AppCompatActivity() {
         setUpSlider()
 
         MobileAds.initialize(this) {}
-
         adMobInter()
 
         val number = (9..10).shuffled().last()
         mySingleton.randomImageSingle = number
         val randomCountry = (1..159).shuffled().last()
-        mySingleton.singlePlayerCountryCode= randomCountry.toString()
-
+        //mySingleton.singlePlayerCountryCode= randomCountry.toString()
+        mySingleton.singlePlayerCountryCode= "1"
+        FirebaseDatabase.getInstance().reference.child("images").child(mySingleton.singlePlayerCountryCode.toString())
+            .child("11").get().addOnSuccessListener {
+                mySingleton.continent = it.value.toString()
+            }
+        FirebaseDatabase.getInstance().reference.child("images").child(mySingleton.singlePlayerCountryCode.toString())
+            .child("12").get().addOnSuccessListener {
+                mySingleton.population = it.value.toString().toInt()
+            }
+        FirebaseDatabase.getInstance().reference.child("images").child(mySingleton.singlePlayerCountryCode.toString())
+            .child("13").get().addOnSuccessListener {
+                mySingleton.partContinent = it.value.toString()
+            }
+        FirebaseDatabase.getInstance().reference.child("images").child(mySingleton.singlePlayerCountryCode.toString())
+            .child("14").get().addOnSuccessListener {
+                mySingleton.longlat = it.value.toString()
+            }
     }
 
     override fun onBackPressed() {
@@ -68,7 +88,6 @@ class SinglePlayerActivity : AppCompatActivity() {
         alert.setTitle(getString(R.string.alertdialog))
         alert.setMessage(getString(R.string.alertdialog2))
         alert.setPositiveButton(getString(R.string.yes)) { dialog, which ->
-
             failToast()
             reset()
             Handler().postDelayed({
@@ -164,6 +183,9 @@ class SinglePlayerActivity : AppCompatActivity() {
     fun guess2(view: View) {
         binding.guessCountryView.visibility = View.VISIBLE
         binding.btnResultGuess2.visibility = View.VISIBLE
+    }
+    fun info(view: View){
+        openBottomSheet()
     }
 
     fun list_guess(view: View) {
@@ -271,5 +293,14 @@ class SinglePlayerActivity : AppCompatActivity() {
         } else {
             Log.e("alp", "The interstitial ad wasn't ready yet.")
         }
+    }
+    fun openBottomSheet(){
+        val addPhotoBottomDialogFragment = ActionBottom.newInstance(this)
+        addPhotoBottomDialogFragment.show(supportFragmentManager, ActionBottom.TAG
+        )
+    }
+
+    override fun onItemClick(item: String?) {
+        TODO("Not yet implemented")
     }
 }
