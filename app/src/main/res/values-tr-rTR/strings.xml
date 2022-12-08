@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Geo-Ülkeler</string>
+    868207297026-hsq5p77o34to2tg95pgibk2b7uvrh672.apps.googleusercontent.com
+    <string name="alp">868207297026-hsq5p77o34to2tg95pgibk2b7uvrh672.apps.googleusercontent.com</string>
+    40553394226-nji7dqcrn50dke8inni175qpq29opac5.apps.googleusercontent.com
+    <string name="start">Başla</string>
+    <string name="account_created">Hesap Oluşturuldu</string>
+    <string name="checknet">Lütfen İnternetinizi Kontrol Edin</string>
+    <string name="next">İlerle</string>
+    <string name="finish">Bitir</string>
+    <string name="firstscreen">Tek Başına Oyna ve Ülkeleri Tahmin</string>
+    <string name="secondscreen1">Çevrimiçi oyna, Yeni Oda Kur veya Odaya Katıl</string>
+    <string name="secondscreen2">Ülke Seç veya Rastgele Seçimi Dene, Rakibinin Ülkesini Tahmin Etmeye Çalış</string>
+    <string name="thirdscreen">İpuçlarını Bul ve Ülkeyi Tahmin Et</string>
+    <string name="select_country">Ülke Seç</string>
+    <string name="chosen_country">Ülken</string>
+    <string name="home">Anasayfa</string>
+    <string name="singleplayer">Tek Oyuncu</string>
+    <string name="singleplayertext">Ülkeyi Tahmin Et</string>
+    <string name="gamelist">Oyun Listesi</string>
+    <string name="settings">Ayarlar</string>
+    <string name="room_name">Oda Adı</string>
+    <string name="all_random">Rasgele Seçim</string>
+    <string name="all_pick">Seçim</string>
+    <string name="create">Oluştur</string>
+    <string name="give_roomname">Odaya İsim Ver</string>
+    <string name="create_room1">Seçim Oyun Modu Kurdun</string>
+    <string name="create_room2">Rasgele Oyun Modu Kurdun</string>
+    <string name="random_room_message">Ülken Rastgele Verilecek</string>
+    <string name="pick">Seçim</string>
+    <string name="list">Liste</string>
+    <string name="random">Rasgele</string>
+    <string name="join">Katıl</string>
+    <string name="change_avatar">Avatar Değiştir</string>
+    <string name="share">Paylaş</string>
+    <string name="rate_us">Puan Ver</string>
+    <string name="guess">Tahmin Et</string>
+    <string name="alertdialog">Eşleşmeden Çıkmak İstiyor Musun</string>
+    <string name="alertdialog2">Eğer çıkarsan oyun sonlanır</string>
+    <string name="yes">Evet</string>
+    <string name="no">Hayır</string>
+    <string name="lastchance">Son Şansın</string>
+    <string name="correct">Tahminin Doğru</string>
+    <string name="wrong">Tahminin Yanlış</string>
+    <string name="opponent1">Rakip Kazandı</string>
+    <string name="opponent2">Rakip Çıktı</string>
+    <string name="opponent3">Rakip Yanlış Tahmin Etti</string>
+    <string name="fail">Yanlış</string>
+    <string name="lose">Kaybettin</string>
+    <string name="win">Kazandın</string>
+    <string name="foronlinemode">(Online mode için)</string>
+    <string name="info">Bilgi</string>
+    <string name="close">Kapat</string>
+    <string name="asia">Asya</string>
+    <string name="europe">Avrupa</string>
+    <string name="africa">Afrika</string>
+    <string name="australia">Avustralya</string>
+    <string name="america">Amerika</string>
+    <string name="continent">Kıta</string>
+    <string name="population">Nüfus</string>
+    <string name="milion">Milyon</string>
+    <string name="milionless">1 Milyon Az</string>
+    <string name="milyar">1 Milyardan Çok </string>
+    <string name="inwhichpartcontinent">Kıtanın Hangi Bölümünde</string>
+    <string name="east">Doğu</string>
+    <string name="west">Batı</string>
+    <string name="north">Kuzey</string>
+    <string name="south">Güney</string>
+    <string name="middle">Orta</string>
+    <string name="latlong">Enlem ve Boylam </string>
+    <string name="enteraname">Bir İsim Gir</string>
+
+</resources>

@@ -48,5 +48,25 @@
     <string name="fail">Fallaste</string>
     <string name="lose">Tú pierdes</string>
     <string name="win">Tú ganas</string>
-    <string name="draw">Tu dibujas</string>
+    <string name="foronlinemode">(para el modo en línea)</string>
+    <string name="info">Información</string>
+    <string name="close">Cerca</string>
+    <string name="asia">Asia</string>
+    <string name="europe">Europa</string>
+    <string name="africa">Áfrico</string>
+    <string name="australia">Australia</string>
+    <string name="america">America</string>
+    <string name="continent">Continente</string>
+    <string name="population">Población</string>
+    <string name="milion">Millón</string>
+    <string name="milionless">1 millón menos</string>
+    <string name="milyar">Más de 1 mil millones </string>
+    <string name="inwhichpartcontinent">¿En qué parte del continente</string>
+    <string name="east">Este</string>
+    <string name="west">Oeste</string>
+    <string name="north">Norte</string>
+    <string name="south">Sur</string>
+    <string name="middle">Medio</string>
+    <string name="latlong">Latitud y longitud</string>
+    <string name="enteraname">ingresa un nombre</string>
 </resources>

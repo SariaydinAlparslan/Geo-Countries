@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".ui.guess.Europe">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true">
+        <com.sariaydinalparslan.coutries.ui.guess.RadioGridGroup
+            android:id="@+id/genderRadioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:columnCount="10"
+            app:rowCount="10">
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/guess2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:drawableRight="@drawable/armenia"
+                app:layout_column="0"
+                app:layout_row="0" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/guess4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:drawableRight="@drawable/andorra"
+                app:layout_column="0"
+                app:layout_row="1" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/guess18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:drawableRight="@drawable/belarus"
+                app:layout_column="0"
+                app:layout_row="2" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:id="@+id/guess19"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:drawableRight="@drawable/belgium"
+                app:layout_column="0"
+                app:layout_row="3" />
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:id="@+id/guess21"
+                android:clickable="true"
+                android:drawableRight="@drawable/bosnia"
+                app:layout_column="0"
+                app:layout_row="4" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:id="@+id/guess39"
+                android:drawableRight="@drawable/czech"
+                app:layout_column="1"
+                app:layout_row="2" />
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:id="@+id/guess40"
+                android:clickable="true"
+                android:drawableRight="@drawable/denmark"
+                app:layout_column="1"
+                app:layout_row="3" />
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:id="@+id/guess48"
+                android:drawableRight="@drawable/estonia"
+                app:layout_column="1"
+                app:layout_row="4" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:id="@+id/guess51"
+                android:clickable="true"
+                android:drawableRight="@drawable/finland"
+                app:layout_column="8"
+                app:layout_row="1" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:id="@+id/guess52"
+                android:drawableRight="@drawable/france"
+                app:layout_column="2"
+                app:layout_row="1" />
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:id="@+id/guess54"
+                android:drawableRight="@drawable/georgia"
+                app:layout_column="2"
+                app:layout_row="2" />
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:id="@+id/guess55"
+                android:clickable="true"
+                android:drawableRight="@drawable/germany"
+                app:layout_column="2"
+                app:layout_row="3" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:id="@+id/guess57"
+                android:clickable="true"
+                android:drawableRight="@drawable/greece"
+                app:layout_column="2"
+                app:layout_row="4" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:id="@+id/guess63"
+                android:clickable="true"
+                android:drawableRight="@drawable/hungary"
+                app:layout_column="8"
+                app:layout_row="2" />
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:id="@+id/guess64"
+                android:drawableRight="@drawable/iceland"
+                app:layout_column="3"
+                app:layout_row="0" />
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:id="@+id/guess69"
+                android:clickable="true"
+                android:drawableRight="@drawable/ireland"
+                app:layout_column="3"
+                app:layout_row="1" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:id="@+id/guess71"
+                android:drawableRight="@drawable/italy"
+                app:layout_column="3"
+                app:layout_row="2" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:id="@+id/guess78"
+                android:drawableRight="@drawable/kosovo"
+                app:layout_column="3"
+                app:layout_row="3" />
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:id="@+id/guess83"
+                android:clickable="true"
+                android:drawableRight="@drawable/latvia"
+                app:layout_column="3"
+                app:layout_row="4" />
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:id="@+id/guess87"
+                android:drawableRight="@drawable/liechtenstein"
+                app:layout_column="8"
+                app:layout_row="3" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:id="@+id/guess88"
+                android:clickable="true"
+                android:drawableRight="@drawable/lithuania"
+                app:layout_column="4"
+                app:layout_row="0" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:id="@+id/guess89"
+                android:clickable="true"
+                android:drawableRight="@drawable/luxembourg"
+                app:layout_column="4"
+                app:layout_row="1" />
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:id="@+id/guess95"
+                android:drawableRight="@drawable/malta"
+                app:layout_column="4"
+                app:layout_row="2" />
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:id="@+id/guess98"
+                android:drawableRight="@drawable/moldova"
+                app:layout_column="4"
+                app:layout_row="3" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:id="@+id/guess99"
+                android:drawableRight="@drawable/monaco"
+                app:layout_column="4"
+                app:layout_row="4" />
+
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:id="@+id/guess101"
+                android:drawableRight="@drawable/montenegro"
+                app:layout_column="5"
+                app:layout_row="0" />
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:id="@+id/guess106"
+                android:drawableRight="@drawable/netherlands"
+                app:layout_column="5"
+                app:layout_row="1" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:id="@+id/guess110"
+                android:drawableRight="@drawable/macedonia"
+                app:layout_column="5"
+                app:layout_row="2" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:id="@+id/guess111"
+                android:drawableRight="@drawable/norway"
+                app:layout_column="5"
+                app:layout_row="3" />
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:id="@+id/guess117"
+                android:drawableRight="@drawable/poland"
+                app:layout_column="5"
+                app:layout_row="4" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:id="@+id/guess118"
+                android:drawableRight="@drawable/portugal"
+                app:layout_column="6"
+                app:layout_row="1" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:id="@+id/guess123"
+                android:drawableRight="@drawable/romania"
+                app:layout_column="6"
+                app:layout_row="2" />
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:id="@+id/guess129"
+                android:drawableRight="@drawable/serbia"
+                app:layout_column="6"
+                app:layout_row="3" />
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:id="@+id/guess131"
+                android:drawableRight="@drawable/slovakia"
+                app:layout_column="6"
+                app:layout_row="4" />
+
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:id="@+id/guess132"
+                android:drawableRight="@drawable/slovenia"
+                app:layout_column="6"
+                app:layout_row="0" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:id="@+id/guess139"
+                android:drawableRight="@drawable/switzerland"
+                app:layout_column="7"
+                app:layout_row="0" />
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:id="@+id/guess146"
+                android:drawableRight="@drawable/turkey"
+                app:layout_column="7"
+                app:layout_row="1" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:id="@+id/guess148"
+                android:drawableRight="@drawable/ukraine"
+                app:layout_column="7"
+                app:layout_row="2" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/guess150"
+                android:layout_width="78dp"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:drawableRight="@drawable/unitedkingdom"
+                app:layout_column="7"
+                app:layout_row="3" />
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:id="@+id/guess154"
+                android:clickable="true"
+                android:drawableRight="@drawable/vatican"
+                app:layout_column="7"
+                app:layout_row="4" />
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:id="@+id/guess10"
+                android:drawableRight="@drawable/austria"
+                app:layout_column="1"
+                app:layout_row="0" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:id="@+id/guess24"
+                android:drawableRight="@drawable/bulgaria"
+                app:layout_column="2"
+                app:layout_row="0" />
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:id="@+id/guess135"
+                android:drawableRight="@drawable/spain"
+                app:layout_column="8"
+                app:layout_row="4" />
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:id="@+id/guess36"
+                android:drawableRight="@drawable/croatia"
+                app:layout_column="1"
+                app:layout_row="1" />
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:id="@+id/guess138"
+                android:drawableRight="@drawable/sweden"
+                app:layout_column="8"
+                app:layout_row="0" />
+
+
+        </com.sariaydinalparslan.coutries.ui.guess.RadioGridGroup>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

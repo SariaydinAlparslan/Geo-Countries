@@ -48,7 +48,26 @@
     <string name="fail">Yanlış</string>
     <string name="lose">Kaybettin</string>
     <string name="win">Kazandın</string>
-    <string name="draw">Berabere</string>
+    <string name="foronlinemode">(Online mode için)</string>
+    <string name="info">Bilgi</string>
+    <string name="close">Kapat</string>
+    <string name="asia">Asya</string>
+    <string name="europe">Avrupa</string>
+    <string name="africa">Afrika</string>
+    <string name="australia">Avustralya</string>
+    <string name="america">Amerika</string>
+    <string name="continent">Kıta</string>
+    <string name="population">Nüfus</string>
+    <string name="milion">Milyon</string>
+    <string name="milionless">1 Milyon Az</string>
+    <string name="milyar">1 Milyardan Çok </string>
+    <string name="inwhichpartcontinent">Kıtanın Hangi Bölümünde</string>
+    <string name="east">Doğu</string>
+    <string name="west">Batı</string>
+    <string name="north">Kuzey</string>
+    <string name="south">Güney</string>
+    <string name="middle">Orta</string>
+    <string name="latlong">Enlem ve Boylam </string>
+    <string name="enteraname">Bir İsim Gir</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -48,5 +48,25 @@
     <string name="fail">Ты облажался</string>
     <string name="lose">Ты проиграл</string>
     <string name="win">Ты победил</string>
-    <string name="draw">Ты рисуешь</string>
+    <string name="foronlinemode">(для онлайн режима)</string>
+    <string name="info">Информация</string>
+    <string name="close">Закрывать</string>
+    <string name="asia">Азия</string>
+    <string name="europe">Европа</string>
+    <string name="africa">Африка</string>
+    <string name="australia">Австралия</string>
+    <string name="america">Америка</string>
+    <string name="continent">Континент</string>
+    <string name="population">Население</string>
+    <string name="milion">Миллион</string>
+    <string name="milionless">На 1 миллион меньше</string>
+    <string name="milyar">Более 1 миллиарда</string>
+    <string name="inwhichpartcontinent">В какой части континента</string>
+    <string name="east">Восток</string>
+    <string name="west">Запад</string>
+    <string name="north">Север</string>
+    <string name="south">Юг</string>
+    <string name="middle">Середина</string>
+    <string name="latlong">Широта и долгота</string>
+    <string name="enteraname">Бир Исим Гир</string>
 </resources>

@@ -12,48 +12,33 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:text="@string/singleplayertext"
         android:textSize="45dp"
-        android:layout_weight="0.1"
+        android:layout_weight="5"
         android:gravity="center"/>
 
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/btnStart"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:lottie_autoPlay="true"
+        android:layout_marginBottom="40dp"
+        android:visibility="visible"
         android:layout_weight="1"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/start" />
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/startCount"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
+        android:layout_marginBottom="40dp"
         android:layout_weight="1"
-        android:id="@+id/startCount"
         android:visibility="gone"
-        android:gravity="center">
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottie_count"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="40dp"
-            app:lottie_autoPlay="false"
-            app:lottie_loop="false"
-            app:lottie_rawRes="@raw/ucikibir" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-
-
-
-
+        app:lottie_autoPlay="false"
+        app:lottie_loop="false"
+        app:lottie_rawRes="@raw/ucikibir" />
 
 </LinearLayout>

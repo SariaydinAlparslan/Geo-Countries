@@ -41,7 +41,7 @@ class SinglePlayerFragment : Fragment() {
         binding.btnStart.setOnClickListener {
             binding.btnStart.visibility=View.GONE
             binding.startCount.visibility = View.VISIBLE
-            binding.lottieCount.playAnimation()
+            binding.startCount.playAnimation()
             hand.postDelayed(c,SPLASH_TIME_OUT)
         }
     }

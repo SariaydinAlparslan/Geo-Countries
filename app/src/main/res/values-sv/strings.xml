@@ -48,5 +48,25 @@
     <string name="fail">Du misslyckas</string>
     <string name="lose">Du förlorar</string>
     <string name="win">Du vinner</string>
-    <string name="draw">Du ritar</string>
+    <string name="foronlinemode">(för onlineläge)</string>
+    <string name="info">Information</string>
+    <string name="close">Stänga</string>
+    <string name="asia">Asien</string>
+    <string name="europe">Europa</string>
+    <string name="africa">Afrika</string>
+    <string name="australia">Australien</string>
+    <string name="america">Amerika</string>
+    <string name="continent">Kontinent</string>
+    <string name="population">Befolkning</string>
+    <string name="milion">Miljon</string>
+    <string name="milionless">1 miljon mindre</string>
+    <string name="milyar">Mer än 1 miljard</string>
+    <string name="inwhichpartcontinent">I vilken del av kontinenten</string>
+    <string name="east">Öst</string>
+    <string name="west">Väst</string>
+    <string name="north">Norr</string>
+    <string name="south">Söder</string>
+    <string name="middle">Mitten</string>
+    <string name="latlong">Latitud och longitud</string>
+    <string name="enteraname">Ange ett namn</string>
 </resources>

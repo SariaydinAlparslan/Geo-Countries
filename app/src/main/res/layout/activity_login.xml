@@ -44,7 +44,7 @@
             app:cardElevation="8dp">
             <TextView
                 android:id="@+id/basictext"
-                android:text="Enter A Name"
+                android:text="@string/enteraname"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:textColor="@color/black"
@@ -68,17 +68,18 @@
                 android:layout_gravity="center"
                 android:gravity="center" />
         </androidx.cardview.widget.CardView>
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/signInBtn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="@color/white"
-            app:cornerRadius="45dp"
-            app:cardUseCompatPadding="true"
-            app:cardElevation="8dp"
             android:layout_weight="1.2"
+            android:text="@string/join"
+            android:textColor="@color/white"
             app:backgroundTint="@color/green"
-            android:text="Sıgn In"/>
+            app:cardElevation="8dp"
+            app:cardUseCompatPadding="true"
+            app:cornerRadius="45dp" />
     </LinearLayout>
     <View
         android:layout_width="match_parent"

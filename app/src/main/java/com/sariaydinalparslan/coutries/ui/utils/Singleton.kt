@@ -1,8 +1,6 @@
 package com.sariaydinalparslan.coutries.ui
 
 object mySingleton{
-    //normal signin name
-    var SignInname: String? = null
     //visitorın özellikleri seçtiği ve adapter de kendini game activity atması
     var chosenCountry: String? = null
     //create (hostun özellikleri)
@@ -14,6 +12,8 @@ object mySingleton{
     var avatarId: String? = null
     //singleplayer country kod
     var singlePlayerCountryCode : String? = null
+    //singleplayer guess kod
+    var singlePlayerCountryGuessCode : String? = null
     //multiplayer country kod
     var multiPlayerCountryCode : String? = null
     //singleplayer random ımage
@@ -27,4 +27,5 @@ object mySingleton{
     var population : Int? = 0
     var partContinent : String? = null
     var longlat : String? = null
+
 }

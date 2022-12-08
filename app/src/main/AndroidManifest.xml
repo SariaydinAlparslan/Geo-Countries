@@ -25,10 +25,6 @@
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".ui.SelectCountryActivity"
-            android:exported="false"
-            android:screenOrientation="landscape" />
-        <activity
             android:name=".ui.SinglePlayerActivity"
             android:exported="false"
             android:screenOrientation="landscape" />

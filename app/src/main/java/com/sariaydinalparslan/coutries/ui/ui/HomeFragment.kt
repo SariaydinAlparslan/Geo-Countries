@@ -1,7 +1,6 @@
 package com.sariaydinalparslan.coutries.ui.ui
 
 import android.content.Context
-import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -10,15 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat.finishAffinity
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
 import com.sariaydinalparslan.coutries.R
 import com.sariaydinalparslan.coutries.databinding.FragmentHomeBinding
-import com.sariaydinalparslan.coutries.ui.SelectCountryActivity
+import com.sariaydinalparslan.coutries.ui.MainActivity
+import com.sariaydinalparslan.coutries.ui.guess.Guess
 import com.sariaydinalparslan.coutries.ui.mySingleton
 
 
@@ -56,10 +52,7 @@ class HomeFragment : Fragment() {
         mySingleton.avatarId = prefs
         Log.e("alp",prefs.toString())
 
-        chosen = sharedPreferences!!.getString("chosen", "")
-        mySingleton.chosenCountry = chosen
 
-        binding.homeChosenCountry.text =getString(R.string.chosen_country)+":" +"${mySingleton.chosenCountry}"
 
         if(prefs!!.isNotEmpty()){
             val resourceID = getResources().getIdentifier(
@@ -73,13 +66,38 @@ class HomeFragment : Fragment() {
         }
 
         binding.selectCountry.setOnClickListener {
-            val intent = Intent(requireActivity(), SelectCountryActivity::class.java)
-            startActivity(intent)
+            replaceFragment(Guess())
+            binding.chooseCountryLayout.visibility = View.VISIBLE
+            binding.lottie1.visibility= View.GONE
+            binding.avatarView.visibility = View.GONE
+            binding.nameText.visibility = View.GONE
+            binding.homeChosenCountry.visibility = View.GONE
+            binding.selectCountry.visibility = View.GONE
+            binding.selectBtn.visibility = View.VISIBLE
         }
+        binding.selectBtn.setOnClickListener {
+            sharedPreferences!!.edit().putString("chosen",mySingleton.singlePlayerCountryGuessCode).apply()
+
+            val intent = Intent(Intent(requireActivity(),MainActivity::class.java))
+            startActivity(intent)
+            finishAffinity(requireActivity())
+        }
+        chosen = sharedPreferences!!.getString("chosen", "")
+        mySingleton.chosenCountry = chosen
+        binding.homeChosenCountry.text =getString(R.string.chosen_country)+":" +"${mySingleton.chosenCountry}"+getString(R.string.foronlinemode)
+
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun replaceFragment (fragment : Fragment){
+
+        val fragmentManager = requireActivity().supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.choose_country_layout,fragment)
+        fragmentTransaction.commit()
     }
 }

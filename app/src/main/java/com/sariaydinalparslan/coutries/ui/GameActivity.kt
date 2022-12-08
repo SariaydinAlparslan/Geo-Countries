@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.Fragment
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
@@ -20,6 +21,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.firebase.database.*
 import com.sariaydinalparslan.coutries.R
 import com.sariaydinalparslan.coutries.databinding.ActivityGameBinding
+import com.sariaydinalparslan.coutries.ui.guess.Guess
 import com.sariaydinalparslan.coutries.ui.ui.code
 import com.sariaydinalparslan.coutries.ui.ui.isCodeMaker
 import com.sariaydinalparslan.coutries.ui.ui.keyValue
@@ -41,10 +43,7 @@ class GameActivity : AppCompatActivity() {
     var player1 = ArrayList<Int>()
     var emptyCells = ArrayList<Int>()
     var activeUser = 1
-    val max = 159
-    val min = 1
-    val total: Int = max - min
-    private lateinit var timer: CountDownTimer
+    private var wrongGuessCode : Boolean? = false
     private lateinit var binding: ActivityGameBinding
     private var mInterstitialAd: InterstitialAd? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,20 +59,6 @@ class GameActivity : AppCompatActivity() {
         val number = (9..10).shuffled().last()
         mySingleton.randomImageSingle = number
 
-        timer = object : CountDownTimer(140000, 1000) {
-            override fun onTick(p0: Long) {
-                binding.txtTimer.text = " ${p0 / 1000}"
-            }
-            override fun onFinish() {
-                Toast.makeText(this@GameActivity, getString(R.string.draw), Toast.LENGTH_SHORT).show()
-                val intent = Intent(this@GameActivity, MainActivity::class.java)
-                startActivity(intent)
-                finishAffinity()
-            }
-        }
-        //bunu onchild change e koy
-        // timer.start()
-        setUpSlider()
         visitorName()
         hostName()
         hostCountry()
@@ -238,15 +223,7 @@ class GameActivity : AppCompatActivity() {
 
             })
     }
-    private fun setUpSlider() {
-        fluid_slider.positionListener = { pos ->
-            fluid_slider.bubbleText = "${min + (total * pos).toInt()}";
-            result_guess.text = "${min + (total * pos).toInt()}"
-        }
-        fluid_slider.position = 0.3f
-        fluid_slider.startText = "$min"
-        fluid_slider.endText = "$max"
-    }
+
 
     private fun reset() {
         player1.clear()
@@ -285,13 +262,6 @@ class GameActivity : AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finishAffinity()
-    }
-
-    private fun removeCode() {
-        if (isCodeMaker) {
-            FirebaseDatabase.getInstance().reference.child("Room").child("AllPick")
-                .child(keyValue).removeValue()
-        }
     }
     fun updateDatabase(cellId: Int) {
         FirebaseDatabase.getInstance().reference.child("data").child(code)
@@ -396,62 +366,66 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun guess(view: View) {
-        binding.guessCountryView.guessCountryView.visibility = View.VISIBLE
-        binding.guess.visibility = View.GONE
-        binding.guess2.visibility = View.VISIBLE
+        replaceFragment(Guess())
+        binding.guessView.guessVerticalLayout.visibility= View.VISIBLE
     }
-
-    fun guess2(view: View) {
-        binding.guessCountryView.guessCountryView.visibility = View.VISIBLE
-        binding.guessCountryView.btnResultGuess2.visibility = View.VISIBLE
+    fun closeBtn (view: View){
+        binding.guessView.guessVerticalLayout.visibility =  View.GONE
+        Toast.makeText(this, mySingleton.singlePlayerCountryGuessCode, Toast.LENGTH_SHORT).show()
     }
-
-    fun list_guess(view: View) {
-        if (binding.guessCountryView.resultGuess.text == mySingleton.chosenCountry) {
-            binding.guessCountryView.guessCountryView.visibility = View.GONE
-            //1. kazanma yolu
-            binding.winViewOnline.winner.visibility = View.VISIBLE
-            winToast()
-            Handler().postDelayed({
+    fun guessBtn(view: View) {
+        if (wrongGuessCode == false) {
+            binding.guessView.guessVerticalLayout.visibility = View.GONE
+            if (mySingleton.singlePlayerCountryGuessCode == mySingleton.singlePlayerCountryCode.toString()) {
+                //1. win scenerio
+                winToast()
+                binding.winViewOnline.winner.visibility = View.VISIBLE
                 reset()
-                goBack()
-                adMob()
+                Handler().postDelayed({
+                    goBack()
+                    adMob()
+                    deleteGamersCountries()
+                }, 3500)
+                someoneWin()
+            } else {
+                //1.wrong guess scenerio
+                wrongGuessCode = true
+                lastChanceToast()
+            }
+        }else{
+            binding.guessView.guessVerticalLayout.visibility =  View.GONE
+            if (mySingleton.singlePlayerCountryGuessCode == mySingleton.singlePlayerCountryCode.toString()) {
+                //2. win scenerio
+                winToast()
+                binding.winViewOnline.winner.visibility = View.VISIBLE
+                reset()
+                Handler().postDelayed({
+                    goBack()
+                    adMob()
+                    deleteGamersCountries()
+                }, 3500)
+                someoneWin()
+            }else{
+                //2. wrong guess scenerio
+                failToast()
+                binding.loseViewOnline.loser.visibility = View.VISIBLE
+                reset()
                 deleteGamersCountries()
-            }, 3500)
-            someoneWin()
-        } else {
-            binding.guessCountryView.guessCountryView.visibility = View.GONE
-            binding.guessCountryView.btnResultGuess1.visibility = View.GONE
-            lastchance()
+                Handler().postDelayed({
+                    goBack()
+                    adMob()
+                }, 4500)
+                wrongGuess()
+            }
         }
     }
-    fun list_guess2(view: View) {
-        if (binding.guessCountryView.resultGuess.text == mySingleton.chosenCountry) {
-            binding.guessCountryView.guessCountryView.visibility = View.GONE
-            //2. kazanma yolu
-            binding.winViewOnline.winner.visibility = View.VISIBLE
-            winToast()
-            Handler().postDelayed({
-                reset()
-                goBack()
-                adMob()
-               deleteGamersCountries()
-            }, 3500)
-            someoneWin()
-        } else {
-            binding.guessCountryView.guessCountryView.visibility = View.GONE
-            failToast()
-            binding.loseViewOnline.loser.visibility = View.VISIBLE
-            reset()
-            deleteGamersCountries()
-            Handler().postDelayed({
-                goBack()
-                adMob()
-            }, 4500)
-            wrongGuess()
-        }
-    }
+    private fun replaceFragment (fragment : Fragment){
 
+        val fragmentManager = this.supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.guess_layout_online,fragment)
+        fragmentTransaction.commit()
+    }
     private fun someoneQuit(){
         FirebaseDatabase.getInstance().reference.child("someonequit").child(code)
             .push().setValue("someonequit")
@@ -568,7 +542,7 @@ class GameActivity : AppCompatActivity() {
             MotionToast.LONG_DURATION,
             ResourcesCompat.getFont(this, www.sanju.motiontoast.R.font.helvetica_regular))
     }
-    private fun lastchance(){
+    private fun lastChanceToast(){
         MotionToast.darkToast(
             this, getString(R.string.wrong),getString(R.string.lastchance) ,
             MotionToastStyle.INFO,

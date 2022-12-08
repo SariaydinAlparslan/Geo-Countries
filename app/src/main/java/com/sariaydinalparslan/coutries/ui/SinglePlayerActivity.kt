@@ -4,27 +4,24 @@ import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.Fragment
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.firebase.database.FirebaseDatabase
 import com.sariaydinalparslan.coutries.R
 import com.sariaydinalparslan.coutries.databinding.ActivitySinglePlayerBinding
 import com.sariaydinalparslan.coutries.ui.bottomsheet.ActionBottom
 import com.sariaydinalparslan.coutries.ui.bottomsheet.ItemClickListener
-import com.sariaydinalparslan.coutries.ui.ui.isCodeMaker
+import com.sariaydinalparslan.coutries.ui.guess.Guess
 import com.sariaydinalparslan.coutries.ui.utils.downloadfromUrl
 import com.sariaydinalparslan.coutries.ui.utils.placeholderProgressBar
 import kotlinx.android.synthetic.main.activity_game.*
@@ -43,19 +40,15 @@ import www.sanju.motiontoast.MotionToastStyle
 class SinglePlayerActivity : AppCompatActivity(), ItemClickListener {
     var emptyCells = ArrayList<Int>()
     var player1 = ArrayList<Int>()
-    val max = 159
-    val min = 1
     var activeUser = 1
-    val total: Int = max - min
     private var mInterstitialAd: InterstitialAd? = null
     private lateinit var binding: ActivitySinglePlayerBinding
-
+    private var wrongGuessCode : Boolean? = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySinglePlayerBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        setUpSlider()
 
         MobileAds.initialize(this) {}
         adMobInter()
@@ -63,19 +56,19 @@ class SinglePlayerActivity : AppCompatActivity(), ItemClickListener {
         val number = (9..10).shuffled().last()
         mySingleton.randomImageSingle = number
         val randomCountry = (1..159).shuffled().last()
-        //mySingleton.singlePlayerCountryCode= randomCountry.toString()
-        mySingleton.singlePlayerCountryCode= "1"
+        mySingleton.singlePlayerCountryCode= randomCountry.toString()
+
         FirebaseDatabase.getInstance().reference.child("images").child(mySingleton.singlePlayerCountryCode.toString())
             .child("11").get().addOnSuccessListener {
                 mySingleton.continent = it.value.toString()
             }
         FirebaseDatabase.getInstance().reference.child("images").child(mySingleton.singlePlayerCountryCode.toString())
             .child("12").get().addOnSuccessListener {
-                mySingleton.population = it.value.toString().toInt()
+                mySingleton.partContinent = it.value.toString()
             }
         FirebaseDatabase.getInstance().reference.child("images").child(mySingleton.singlePlayerCountryCode.toString())
             .child("13").get().addOnSuccessListener {
-                mySingleton.partContinent = it.value.toString()
+                mySingleton.population = it.value.toString().toInt()
             }
         FirebaseDatabase.getInstance().reference.child("images").child(mySingleton.singlePlayerCountryCode.toString())
             .child("14").get().addOnSuccessListener {
@@ -100,15 +93,6 @@ class SinglePlayerActivity : AppCompatActivity(), ItemClickListener {
         alert.show()
     }
 
-    private fun setUpSlider() {
-        binding.guessCountryView.fluid_slider.positionListener = { pos ->
-            binding.guessCountryView.fluid_slider.bubbleText = "${min + (total * pos).toInt()}";
-            binding.guessCountryView.result_guess.text = "${min + (total * pos).toInt()}"
-        }
-        binding.guessCountryView.fluid_slider.position = 0.3f
-        binding.guessCountryView.fluid_slider.startText = "$min"
-        binding.guessCountryView.fluid_slider.endText = "$max"
-    }
 
     private fun reset() {
         player1.clear()
@@ -152,7 +136,7 @@ class SinglePlayerActivity : AppCompatActivity(), ItemClickListener {
             emptyCells.add(currCell)
             buttonSelected.isEnabled = false
             buttonSelected.setBackgroundColor(ContextCompat.getColor(this, R.color.black))
-        }, 6000)
+        }, 5000)
         mySingleton.randomImageSingle = mySingleton.randomImageSingle!!-1
     }
     fun clickfun(view: View) {
@@ -173,59 +157,58 @@ class SinglePlayerActivity : AppCompatActivity(), ItemClickListener {
             }
             playNow(but, cellOnline)
     }
-
     fun guess(view: View) {
-        binding.guessCountryView.visibility = View.VISIBLE
-        binding.guess.visibility = View.GONE
-        binding.guess2.visibility = View.VISIBLE
-    }
+        replaceFragment(Guess())
+        binding.guessView.guessVerticalLayout.visibility= View.VISIBLE
 
-    fun guess2(view: View) {
-        binding.guessCountryView.visibility = View.VISIBLE
-        binding.btnResultGuess2.visibility = View.VISIBLE
+    }
+    fun closeBtn (view: View){
+        binding.guessView.guessVerticalLayout.visibility =  View.GONE
+
     }
     fun info(view: View){
         openBottomSheet()
     }
-
-    fun list_guess(view: View) {
-        if (binding.resultGuess.text == mySingleton.singlePlayerCountryCode.toString()) {
-            binding.guessCountryView.visibility = View.GONE
-            //1. kazanma yolu
-            winToast()
-            binding.winView.winner.visibility = View.VISIBLE
-            reset()
-            Handler().postDelayed({
-                goBack()
-                adMob()
-            }, 3500)
-        } else {
-            //1.yanlış
-            binding.guessCountryView.visibility = View.GONE
-            binding.btnResultGuess1.visibility = View.GONE
-            Toast.makeText(this, getString(R.string.lastchance), Toast.LENGTH_SHORT).show()
+    fun guessBtn(view: View) {
+        if (wrongGuessCode == false){
+            binding.guessView.guessVerticalLayout.visibility =  View.GONE
+            if (mySingleton.singlePlayerCountryGuessCode == mySingleton.singlePlayerCountryCode.toString()) {
+                //1. win scenerio
+                winToast()
+                binding.winView.winner.visibility = View.VISIBLE
+                reset()
+                Handler().postDelayed({
+                    goBack()
+                    adMob()
+                }, 3500)
+            } else {
+                //1.wrong guess scenerio
+                wrongGuessCode = true
+                lastChanceToast()
+            }
+        }else{
+            binding.guessView.guessVerticalLayout.visibility =  View.GONE
+            if (mySingleton.singlePlayerCountryGuessCode == mySingleton.singlePlayerCountryCode.toString()) {
+                //2. win scenerio
+                winToast()
+                binding.winView.winner.visibility = View.VISIBLE
+                reset()
+                Handler().postDelayed({
+                    goBack()
+                    adMob()
+                }, 3500)
+            } else {
+                //2. wrong guess scenerio
+                failToast()
+                binding.loseView.loser.visibility = View.VISIBLE
+                reset()
+                Handler().postDelayed({
+                    goBack()
+                    adMob()
+                }, 3500)
+            }
         }
-    }
 
-    fun list_guess2(view: View) {
-        if (binding.resultGuess.text == mySingleton.singlePlayerCountryCode.toString()) {
-            binding.guessCountryView.visibility = View.GONE
-            winToast()
-            binding.winView.winner.visibility = View.VISIBLE
-            reset()
-            Handler().postDelayed({
-                goBack()
-                adMob()
-            }, 3500)
-        } else {
-            failToast()
-            binding.loseView.loser.visibility = View.VISIBLE
-            reset()
-            Handler().postDelayed({
-                goBack()
-                adMob()
-            }, 3500)
-        }
     }
     private fun winToast(){
         MotionToast.darkToast(
@@ -238,6 +221,14 @@ class SinglePlayerActivity : AppCompatActivity(), ItemClickListener {
     private fun failToast(){
         MotionToast.darkToast(
             this, getString(R.string.lose),getString(R.string.wrong) ,
+            MotionToastStyle.WARNING,
+            MotionToast.GRAVITY_BOTTOM,
+            MotionToast.LONG_DURATION,
+            ResourcesCompat.getFont(this, www.sanju.motiontoast.R.font.helvetica_regular))
+    }
+    private fun lastChanceToast(){
+        MotionToast.darkToast(
+            this, getString(R.string.lastchance),getString(R.string.wrong) ,
             MotionToastStyle.WARNING,
             MotionToast.GRAVITY_BOTTOM,
             MotionToast.LONG_DURATION,
@@ -298,6 +289,13 @@ class SinglePlayerActivity : AppCompatActivity(), ItemClickListener {
         val addPhotoBottomDialogFragment = ActionBottom.newInstance(this)
         addPhotoBottomDialogFragment.show(supportFragmentManager, ActionBottom.TAG
         )
+    }
+    private fun replaceFragment (fragment : Fragment){
+
+        val fragmentManager = this.supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.guess_layout_single,fragment)
+        fragmentTransaction.commit()
     }
 
     override fun onItemClick(item: String?) {

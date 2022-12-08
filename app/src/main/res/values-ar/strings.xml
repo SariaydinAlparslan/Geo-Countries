@@ -48,6 +48,26 @@
     <string name="fail">أنت تفشل</string>
     <string name="lose">أنت تخسر</string>
     <string name="win">فزت</string>
-    <string name="draw">أنت ترسم</string>
+    <string name="foronlinemode">(للوضع عبر الإنترنت)</string>
+    <string name="info">معلومة</string>
+    <string name="close">أغلق</string>
+    <string name="asia">آسيا</string>
+    <string name="europe">أوروبا</string>
+    <string name="africa">الأفريقي</string>
+    <string name="australia">أستراليا</string>
+    <string name="america">أمريكا</string>
+    <string name="continent">القارة</string>
+    <string name="population">تعداد السكان</string>
+    <string name="milion">مليون</string>
+    <string name="milionless">بلا مليون</string>
+    <string name="milyar">مليار </string>
+    <string name="inwhichpartcontinent">في أي جزء من القارة</string>
+    <string name="east">شرق</string>
+    <string name="west">الغرب</string>
+    <string name="north">شمال</string>
+    <string name="south">جنوب</string>
+    <string name="middle">وسط</string>
+    <string name="latlong">خط الطول وخط العرض</string>
+    <string name="enteraname">إدخال اسم</string>
 
 </resources>

@@ -48,5 +48,25 @@
     <string name="fail">आप विफल हुए</string>
     <string name="lose">तुम हारे</string>
     <string name="win">आप जीतते हैं</string>
-    <string name="draw">आपने निकाला</string>
+    <string name="foronlinemode">(ऑनलाइन मोड के लिए)</string>
+    <string name="info">जानकारी</string>
+    <string name="close">बंद करना</string>
+    <string name="asia">एशिया</string>
+    <string name="europe">यूरोप</string>
+    <string name="africa">अफ्रीका</string>
+    <string name="australia">ऑस्ट्रेलिया</string>
+    <string name="america">अमेरिका</string>
+    <string name="continent">महाद्वीप</string>
+    <string name="population">जनसंख्या</string>
+    <string name="milion">दस लाख</string>
+    <string name="milionless">1 मिलियन कम</string>
+    <string name="milyar">1 बिलियन से अधिक </string>
+    <string name="inwhichpartcontinent">महाद्वीप के किस भाग में</string>
+    <string name="east">पूर्व</string>
+    <string name="west">पश्चिम</string>
+    <string name="north">उत्तर</string>
+    <string name="south">दक्षिण</string>
+    <string name="middle">मध्यम</string>
+    <string name="latlong">अक्षांश और देशांतर</string>
+    <string name="enteraname">नाम डालें</string>
 </resources>

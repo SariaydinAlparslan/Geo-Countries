@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".ui.guess.Guess">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="8dp"
+        android:layout_weight="5"
+        app:cardUseCompatPadding="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/asia"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:background="@color/button_stroke_color"
+                android:textColor="@color/black"
+                android:text="@string/asia"
+                android:layout_weight="1"/>
+            <View
+                android:layout_width="3dp"
+                android:background="@color/publish_grey"
+                android:layout_height="match_parent"/>
+            <TextView
+                android:id="@+id/europe"
+                android:layout_width="match_parent"
+                android:background="@color/button_stroke_color"
+                android:textColor="@color/black"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/europe"
+                android:layout_weight="1"/>
+            <View
+                android:layout_width="3dp"
+                android:background="@color/publish_grey"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:id="@+id/africa"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/button_stroke_color"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:text="@string/africa" />
+
+            <View
+                android:layout_width="3dp"
+                android:background="@color/publish_grey"
+                android:layout_height="match_parent"/>
+            <TextView
+                android:id="@+id/avustralya"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/button_stroke_color"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:text="@string/australia"
+                android:layout_weight="1"/>
+            <View
+                android:layout_width="3dp"
+                android:background="@color/publish_grey"
+                android:layout_height="match_parent"/>
+            <TextView
+                android:id="@+id/america"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:background="@color/button_stroke_color"
+                android:textColor="@color/black"
+                android:text="@string/america"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+    <FrameLayout
+        android:id="@+id/continent_layout"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:visibility="visible"
+        android:layout_height="match_parent">
+    </FrameLayout>
+
+</LinearLayout>

@@ -18,11 +18,12 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             app:cardCornerRadius="15dp"
+            android:layout_margin="5dp"
             app:cardUseCompatPadding="true">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Info"
+                android:text="@string/info"
                 android:layout_gravity="center"
                 android:gravity="center"/>
         </androidx.cardview.widget.CardView>
@@ -47,8 +48,9 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Continent"
+                    android:text="@string/continent"
                     android:layout_weight="1"
+                    android:layout_margin="5dp"
                     android:layout_gravity="center"
                     android:gravity="center"/>
                 <TextView
@@ -57,6 +59,7 @@
                     android:layout_height="match_parent"
                     android:text="Info"
                     android:layout_weight="1"
+                    android:layout_margin="5dp"
                     android:layout_gravity="center"
                     android:gravity="center"/>
             </LinearLayout>
@@ -75,7 +78,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Population"
+                    android:text="@string/population"
                     android:layout_weight="1"
                     android:layout_gravity="center"
                     android:gravity="center"/>
@@ -110,8 +113,9 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="In Which Part of the Continent"
+                    android:text="@string/inwhichpartcontinent"
                     android:layout_weight="1"
+                    android:layout_margin="5dp"
                     android:layout_gravity="center"
                     android:gravity="center"/>
                 <TextView
@@ -120,6 +124,7 @@
                     android:layout_height="match_parent"
                     android:text="Info"
                     android:layout_weight="1"
+                    android:layout_margin="5dp"
                     android:layout_gravity="center"
                     android:gravity="center"/>
             </LinearLayout>
@@ -137,8 +142,9 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Longitude &amp; Latitude"
+                    android:text="@string/latlong"
                     android:layout_weight="1"
+                    android:layout_margin="5dp"
                     android:layout_gravity="center"
                     android:gravity="center"/>
                 <TextView
@@ -147,6 +153,7 @@
                     android:layout_height="match_parent"
                     android:text="Info"
                     android:layout_weight="1"
+                    android:layout_margin="5dp"
                     android:layout_gravity="center"
                     android:gravity="center"/>
             </LinearLayout>

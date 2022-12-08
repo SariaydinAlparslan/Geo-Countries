@@ -8,10 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
-import com.google.firebase.ktx.Firebase
 import com.sariaydinalparslan.coutries.R
 import com.sariaydinalparslan.coutries.databinding.FragmentSearchBinding
 import com.sariaydinalparslan.coutries.ui.adapters.PickAdapter
@@ -24,7 +21,6 @@ import com.sariaydinalparslan.coutries.ui.mySingleton
 class SearchFragment : Fragment() {
     private lateinit var roomlistRecyclerView: RecyclerView
     private lateinit var pickroomlistRecyclerView: RecyclerView
-    private lateinit var auth: FirebaseAuth
     private lateinit var db: DatabaseReference
     private lateinit var empList: ArrayList<RoomData>
     private lateinit var pickList: ArrayList<RoomData>
@@ -47,7 +43,6 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        auth = Firebase.auth
         roomlistRecyclerView = view.findViewById(R.id.recyclerandomroomlist)
         roomlistRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         pickroomlistRecyclerView =view.findViewById(R.id.recycleroomlist)
